@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:handyfarm/signup.dart';
 import 'common_ui.dart' as cui;
 import 'device_scale.dart' as ds;
 
-void main() => runApp(MyApp());
+void main() => runApp(signup());
 
 class MyApp extends StatelessWidget {
   static const String _title = 'Flutter Code Sample';

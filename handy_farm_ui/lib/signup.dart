@@ -2,9 +2,41 @@ import 'package:flutter/material.dart';
 import 'common_ui.dart' as cui;
 import 'device_scale.dart' as ds;
 
+Widget certButton(String text, int size){
+  Color _backgroundColor;
+  _backgroundColor= Color(0xFFFFFFFF);
+  return Container(
+    child: Row(
+
+      children: <Widget>[
+        ButtonTheme(
+            height: 43.0 * ds.deviceScale,
+            minWidth: size * ds.deviceScale * ds.deviceScale,
+            child: RaisedButton (
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0 * ds.deviceScale),
+                  side: BorderSide(color: _backgroundColor, width: 2.0 * ds.deviceScale)
+              ),
+              textColor: Color(0xFF22AA4D),
+              color: _backgroundColor,
+              padding: EdgeInsets.all(8.0 * ds.deviceScale),
+              onPressed: () {},
+
+              child: Text(text, style: TextStyle(
+                  fontSize: 17.0 * ds.deviceScale,
+                  fontWeight: FontWeight.w800
+              ),
+              ),
+            )
+        )
+      ],
+    ),
+  );
+
+}
+
 
 class signup extends StatelessWidget {
-
 
   @override
   Widget build(BuildContext context) {
@@ -21,38 +53,6 @@ class signup extends StatelessWidget {
 
 class signupNew extends StatelessWidget {
 
-  Widget certButton(String text, int size){
-    Color _backgroundColor;
-    _backgroundColor= Color(0xFFFFFFFF);
-    return Container(
-      child: Row(
-
-        children: <Widget>[
-          ButtonTheme(
-              height: 43.0 * ds.deviceScale,
-              minWidth: size * ds.deviceScale * ds.deviceScale,
-              child: RaisedButton (
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0 * ds.deviceScale),
-                    side: BorderSide(color: _backgroundColor, width: 2.0 * ds.deviceScale)
-                ),
-                textColor: Color(0xFF22AA4D),
-                color: _backgroundColor,
-                padding: EdgeInsets.all(8.0 * ds.deviceScale),
-                onPressed: () {},
-
-                child: Text(text, style: TextStyle(
-                    fontSize: 17.0 * ds.deviceScale,
-                    fontWeight: FontWeight.w800
-                ),
-                ),
-              )
-          )
-        ],
-      ),
-    );
-
-  }
 
   @override
   Widget build(BuildContext context) {

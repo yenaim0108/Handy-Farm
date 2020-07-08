@@ -19,9 +19,9 @@ Widget TextBox(String text, int size, bool isShort){
 
   // 버튼 길이 지정
   if (isShort)
-    wLength = 180.0;
+    wLength = 180.0 * ds.deviceScale;
   else
-    wLength = 270.0;
+    wLength = 270.0 * ds.deviceScale;
 
   return Container(
     child: Row(
@@ -68,7 +68,7 @@ Widget pageButton(String text, bool isSelectedPage, bool isShort) {
 
   // 버튼 길이 지정
   if (isShort)
-    wLength = 150.0 * ds.deviceScale;
+    wLength = 145.0 * ds.deviceScale;
   else
     wLength = 170.0 * ds.deviceScale;
 
@@ -119,7 +119,7 @@ Widget interactionButton(String text, bool isConfirm, bool isShort) {
 
   // 버튼 길이 지정
   if (isShort)
-    wLength = 150.0 * ds.deviceScale;
+    wLength = 145.0 * ds.deviceScale;
   else
     wLength = 300.0 * ds.deviceScale;
 

@@ -46,6 +46,7 @@ Widget TextBox(String text, int size, bool isShort){
                     fontSize: 17.0 * ds.deviceScale,
                     fontWeight: FontWeight.w600 ),
                 ),
+
               )
             )
         )

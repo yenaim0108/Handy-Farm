@@ -8,6 +8,8 @@ Color hfRed = Color(0xFFE8474B);
 Color hfLiteGreen = Color(0xFFAACC03);
 Color bgColor = Color(0xFFF5F5F3);
 Color titleText = Color(0xFF000000);
+Color certButtonShadow = Color(0xFFD1D1D1);
+
 
 
 

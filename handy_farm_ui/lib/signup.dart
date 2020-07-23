@@ -6,11 +6,15 @@ Widget certButton(String text, int size){
   Color _backgroundColor;
   _backgroundColor= Color(0xFFFFFFFF);
   return Container(
+    decoration: BoxDecoration(
+        color: Colors.black,
+        borderRadius: new BorderRadius.circular(25.0),
+        boxShadow: [BoxShadow(color: Color(0xFFD1D1D1) , blurRadius: 2.0, spreadRadius: -0.5, offset: Offset(1.0, 2.0))]
+    ),
     child: Row(
-
       children: <Widget>[
         ButtonTheme(
-            height: 43.0 * ds.deviceScale,
+            height: 48.0 * ds.deviceScale,
             minWidth: size * ds.deviceScale * ds.deviceScale,
             child: RaisedButton (
               shape: RoundedRectangleBorder(

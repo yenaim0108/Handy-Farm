@@ -25,9 +25,9 @@ public class HandyFarmDTO {
 	String cultivar_number;             // 작물 - 품종번호
 	String crops_name;                  // 작물 - 작물 이름
 	String cal_number;                  // 일정 - 일정번호
-	String cal_title;                   // 일정 - 일정 제목
+	String cal_title;                   // 일정 - 일정제목
 	Time cal_start;                     // 일정 - 시작 시간
-	Time cal_end;                       // 일정 - 종료시간
+	Time cal_end;                       // 일정 - 종료 시간
 	String cal_memo;                    // 일정 - 메모
 	float cal_yield_kg;                 // 일정 - 수확량 (kg)
 	Timestamp cal_yield_time;           // 일정 - 수확시기
@@ -54,24 +54,24 @@ public class HandyFarmDTO {
 	boolean push;                       // 알림 관리 - 메시지 알림
 	boolean sound;                      // 알림 관리 - 소리
 	boolean vibration;                  // 알림 관리 - 진동
-	float psuh_sum_mrn_min_temperature; // 알림 관리 - 알림_여름 오전 최저 온도
-	float psuh_sum_mrn_max_temperature; // 알림 관리 - 알림_여름 오전 최고 온도
-	float psuh_sum_aft_min_temperature; // 알림 관리 - 알림_여름 오후 최저 온도
-	float psuh_sum_aft_max_temperature; // 알림 관리 - 알림_여름 오후 최고 온도
-	float psuh_sum_ngh_min_temperature; // 알림 관리 - 알림_여름 야간 최저 온도
-	float psuh_sum_ngh_max_temperature; // 알림 관리 - 알림_여름 야간 최고 온도
-	float psuh_win_day_min_temperature; // 알림 관리 - 알림_겨울 주간 최저 온도
-	float psuh_win_day_max_temperature; // 알림 관리 - 알림_겨울 주간 최고 온도
-	float psuh_win_ngh_min_temperature; // 알림 관리 - 알림_겨울 야간 최저 온도
-	float psuh_win_ngh_max_temperature; // 알림 관리 - 알림_겨울 야간 최고 온도
-	float psuh_min_humidity;            // 알림 관리 - 알림_최저 습도
-	float psuh_max_humidity;            // 알림 관리 - 알림_최고 습도
-	float psuh_max_co2;                 // 알림 관리 - 알림_최대 이산화탄소
-	float psuh_min_soil_moisture;       // 알림 관리 - 알림_최저 토양 수분도
-	float psuh_max_soil_moisture;       // 알림 관리 - 알림_최고 토양 수분도
-	float psuh_min_sunshine;            // 알림 관리 - 알림_최저 일조량
-	float psuh_min_soil_temperature;    // 알림 관리 - 알림_토양 속 최저 온도
-	float psuh_max_soil_temperature;    // 알림 관리 - 알림_토양 속 최고 온도
+	float push_sum_mrn_min_temperature; // 알림 관리 - 알림_여름 오전 최저 온도
+	float push_sum_mrn_max_temperature; // 알림 관리 - 알림_여름 오전 최고 온도
+	float push_sum_aft_min_temperature; // 알림 관리 - 알림_여름 오후 최저 온도
+	float push_sum_aft_max_temperature; // 알림 관리 - 알림_여름 오후 최고 온도
+	float push_sum_ngh_min_temperature; // 알림 관리 - 알림_여름 야간 최저 온도
+	float push_sum_ngh_max_temperature; // 알림 관리 - 알림_여름 야간 최고 온도
+	float push_win_day_min_temperature; // 알림 관리 - 알림_겨울 주간 최저 온도
+	float push_win_day_max_temperature; // 알림 관리 - 알림_겨울 주간 최고 온도
+	float push_win_ngh_min_temperature; // 알림 관리 - 알림_겨울 야간 최저 온도
+	float push_win_ngh_max_temperature; // 알림 관리 - 알림_겨울 야간 최고 온도
+	float push_min_humidity;            // 알림 관리 - 알림_최저 습도
+	float push_max_humidity;            // 알림 관리 - 알림_최고 습도
+	float push_max_co2;                 // 알림 관리 - 알림_최대 이산화탄소
+	float push_min_soil_moisture;       // 알림 관리 - 알림_최저 토양 수분도
+	float push_max_soil_moisture;       // 알림 관리 - 알림_최고 토양 수분도
+	float push_min_sunshine;            // 알림 관리 - 알림_최저 일조량
+	float push_min_soil_temperature;    // 알림 관리 - 알림_토양 속 최저 온도
+	float push_max_soil_temperature;    // 알림 관리 - 알림_토양 속 최고 온도
 	boolean harvestable_60;             // 알림 관리 - 수확 가능 비율 60%
 	boolean harvestable_70;             // 알림 관리 - 수확 가능 비율 70%
 	boolean harvestable_80;             // 알림 관리 - 수확 가능 비율 80%
@@ -89,12 +89,12 @@ public class HandyFarmDTO {
 			float win_ngh_min_temperature, float win_ngh_max_temperature, float min_humidity, float max_humidity,
 			float max_co2, float min_soil_moisture, float max_soil_moisture, float min_sunshine,
 			float min_soil_temperature, float max_soil_temperature, boolean wish, boolean push, boolean sound,
-			boolean vibration, float psuh_sum_mrn_min_temperature, float psuh_sum_mrn_max_temperature,
-			float psuh_sum_aft_min_temperature, float psuh_sum_aft_max_temperature, float psuh_sum_ngh_min_temperature,
-			float psuh_sum_ngh_max_temperature, float psuh_win_day_min_temperature, float psuh_win_day_max_temperature,
-			float psuh_win_ngh_min_temperature, float psuh_win_ngh_max_temperature, float psuh_min_humidity,
-			float psuh_max_humidity, float psuh_max_co2, float psuh_min_soil_moisture, float psuh_max_soil_moisture,
-			float psuh_min_sunshine, float psuh_min_soil_temperature, float psuh_max_soil_temperature,
+			boolean vibration, float push_sum_mrn_min_temperature, float push_sum_mrn_max_temperature,
+			float push_sum_aft_min_temperature, float push_sum_aft_max_temperature, float push_sum_ngh_min_temperature,
+			float push_sum_ngh_max_temperature, float push_win_day_min_temperature, float push_win_day_max_temperature,
+			float push_win_ngh_min_temperature, float push_win_ngh_max_temperature, float push_min_humidity,
+			float push_max_humidity, float push_max_co2, float push_min_soil_moisture, float push_max_soil_moisture,
+			float push_min_sunshine, float push_min_soil_temperature, float push_max_soil_temperature,
 			boolean harvestable_60, boolean harvestable_70, boolean harvestable_80, boolean harvestable_90) {
 		super();
 		this.phone_number = phone_number;
@@ -144,30 +144,30 @@ public class HandyFarmDTO {
 		this.push = push;
 		this.sound = sound;
 		this.vibration = vibration;
-		this.psuh_sum_mrn_min_temperature = psuh_sum_mrn_min_temperature;
-		this.psuh_sum_mrn_max_temperature = psuh_sum_mrn_max_temperature;
-		this.psuh_sum_aft_min_temperature = psuh_sum_aft_min_temperature;
-		this.psuh_sum_aft_max_temperature = psuh_sum_aft_max_temperature;
-		this.psuh_sum_ngh_min_temperature = psuh_sum_ngh_min_temperature;
-		this.psuh_sum_ngh_max_temperature = psuh_sum_ngh_max_temperature;
-		this.psuh_win_day_min_temperature = psuh_win_day_min_temperature;
-		this.psuh_win_day_max_temperature = psuh_win_day_max_temperature;
-		this.psuh_win_ngh_min_temperature = psuh_win_ngh_min_temperature;
-		this.psuh_win_ngh_max_temperature = psuh_win_ngh_max_temperature;
-		this.psuh_min_humidity = psuh_min_humidity;
-		this.psuh_max_humidity = psuh_max_humidity;
-		this.psuh_max_co2 = psuh_max_co2;
-		this.psuh_min_soil_moisture = psuh_min_soil_moisture;
-		this.psuh_max_soil_moisture = psuh_max_soil_moisture;
-		this.psuh_min_sunshine = psuh_min_sunshine;
-		this.psuh_min_soil_temperature = psuh_min_soil_temperature;
-		this.psuh_max_soil_temperature = psuh_max_soil_temperature;
+		this.push_sum_mrn_min_temperature = push_sum_mrn_min_temperature;
+		this.push_sum_mrn_max_temperature = push_sum_mrn_max_temperature;
+		this.push_sum_aft_min_temperature = push_sum_aft_min_temperature;
+		this.push_sum_aft_max_temperature = push_sum_aft_max_temperature;
+		this.push_sum_ngh_min_temperature = push_sum_ngh_min_temperature;
+		this.push_sum_ngh_max_temperature = push_sum_ngh_max_temperature;
+		this.push_win_day_min_temperature = push_win_day_min_temperature;
+		this.push_win_day_max_temperature = push_win_day_max_temperature;
+		this.push_win_ngh_min_temperature = push_win_ngh_min_temperature;
+		this.push_win_ngh_max_temperature = push_win_ngh_max_temperature;
+		this.push_min_humidity = push_min_humidity;
+		this.push_max_humidity = push_max_humidity;
+		this.push_max_co2 = push_max_co2;
+		this.push_min_soil_moisture = push_min_soil_moisture;
+		this.push_max_soil_moisture = push_max_soil_moisture;
+		this.push_min_sunshine = push_min_sunshine;
+		this.push_min_soil_temperature = push_min_soil_temperature;
+		this.push_max_soil_temperature = push_max_soil_temperature;
 		this.harvestable_60 = harvestable_60;
 		this.harvestable_70 = harvestable_70;
 		this.harvestable_80 = harvestable_80;
 		this.harvestable_90 = harvestable_90;
 	}
-	
+
 	// getter/setter
 	public String getPhone_number() {
 		return phone_number;
@@ -545,148 +545,148 @@ public class HandyFarmDTO {
 		this.vibration = vibration;
 	}
 
-	public float getPsuh_sum_mrn_min_temperature() {
-		return psuh_sum_mrn_min_temperature;
+	public float getPush_sum_mrn_min_temperature() {
+		return push_sum_mrn_min_temperature;
 	}
 
-	public void setPsuh_sum_mrn_min_temperature(float psuh_sum_mrn_min_temperature) {
-		this.psuh_sum_mrn_min_temperature = psuh_sum_mrn_min_temperature;
+	public void setPush_sum_mrn_min_temperature(float push_sum_mrn_min_temperature) {
+		this.push_sum_mrn_min_temperature = push_sum_mrn_min_temperature;
 	}
 
-	public float getPsuh_sum_mrn_max_temperature() {
-		return psuh_sum_mrn_max_temperature;
+	public float getPush_sum_mrn_max_temperature() {
+		return push_sum_mrn_max_temperature;
 	}
 
-	public void setPsuh_sum_mrn_max_temperature(float psuh_sum_mrn_max_temperature) {
-		this.psuh_sum_mrn_max_temperature = psuh_sum_mrn_max_temperature;
+	public void setPush_sum_mrn_max_temperature(float push_sum_mrn_max_temperature) {
+		this.push_sum_mrn_max_temperature = push_sum_mrn_max_temperature;
 	}
 
-	public float getPsuh_sum_aft_min_temperature() {
-		return psuh_sum_aft_min_temperature;
+	public float getPush_sum_aft_min_temperature() {
+		return push_sum_aft_min_temperature;
 	}
 
-	public void setPsuh_sum_aft_min_temperature(float psuh_sum_aft_min_temperature) {
-		this.psuh_sum_aft_min_temperature = psuh_sum_aft_min_temperature;
+	public void setPush_sum_aft_min_temperature(float push_sum_aft_min_temperature) {
+		this.push_sum_aft_min_temperature = push_sum_aft_min_temperature;
 	}
 
-	public float getPsuh_sum_aft_max_temperature() {
-		return psuh_sum_aft_max_temperature;
+	public float getPush_sum_aft_max_temperature() {
+		return push_sum_aft_max_temperature;
 	}
 
-	public void setPsuh_sum_aft_max_temperature(float psuh_sum_aft_max_temperature) {
-		this.psuh_sum_aft_max_temperature = psuh_sum_aft_max_temperature;
+	public void setPush_sum_aft_max_temperature(float push_sum_aft_max_temperature) {
+		this.push_sum_aft_max_temperature = push_sum_aft_max_temperature;
 	}
 
-	public float getPsuh_sum_ngh_min_temperature() {
-		return psuh_sum_ngh_min_temperature;
+	public float getPush_sum_ngh_min_temperature() {
+		return push_sum_ngh_min_temperature;
 	}
 
-	public void setPsuh_sum_ngh_min_temperature(float psuh_sum_ngh_min_temperature) {
-		this.psuh_sum_ngh_min_temperature = psuh_sum_ngh_min_temperature;
+	public void setPush_sum_ngh_min_temperature(float push_sum_ngh_min_temperature) {
+		this.push_sum_ngh_min_temperature = push_sum_ngh_min_temperature;
 	}
 
-	public float getPsuh_sum_ngh_max_temperature() {
-		return psuh_sum_ngh_max_temperature;
+	public float getPush_sum_ngh_max_temperature() {
+		return push_sum_ngh_max_temperature;
 	}
 
-	public void setPsuh_sum_ngh_max_temperature(float psuh_sum_ngh_max_temperature) {
-		this.psuh_sum_ngh_max_temperature = psuh_sum_ngh_max_temperature;
+	public void setPush_sum_ngh_max_temperature(float push_sum_ngh_max_temperature) {
+		this.push_sum_ngh_max_temperature = push_sum_ngh_max_temperature;
 	}
 
-	public float getPsuh_win_day_min_temperature() {
-		return psuh_win_day_min_temperature;
+	public float getPush_win_day_min_temperature() {
+		return push_win_day_min_temperature;
 	}
 
-	public void setPsuh_win_day_min_temperature(float psuh_win_day_min_temperature) {
-		this.psuh_win_day_min_temperature = psuh_win_day_min_temperature;
+	public void setPush_win_day_min_temperature(float push_win_day_min_temperature) {
+		this.push_win_day_min_temperature = push_win_day_min_temperature;
 	}
 
-	public float getPsuh_win_day_max_temperature() {
-		return psuh_win_day_max_temperature;
+	public float getPush_win_day_max_temperature() {
+		return push_win_day_max_temperature;
 	}
 
-	public void setPsuh_win_day_max_temperature(float psuh_win_day_max_temperature) {
-		this.psuh_win_day_max_temperature = psuh_win_day_max_temperature;
+	public void setPush_win_day_max_temperature(float push_win_day_max_temperature) {
+		this.push_win_day_max_temperature = push_win_day_max_temperature;
 	}
 
-	public float getPsuh_win_ngh_min_temperature() {
-		return psuh_win_ngh_min_temperature;
+	public float getPush_win_ngh_min_temperature() {
+		return push_win_ngh_min_temperature;
 	}
 
-	public void setPsuh_win_ngh_min_temperature(float psuh_win_ngh_min_temperature) {
-		this.psuh_win_ngh_min_temperature = psuh_win_ngh_min_temperature;
+	public void setPush_win_ngh_min_temperature(float push_win_ngh_min_temperature) {
+		this.push_win_ngh_min_temperature = push_win_ngh_min_temperature;
 	}
 
-	public float getPsuh_win_ngh_max_temperature() {
-		return psuh_win_ngh_max_temperature;
+	public float getPush_win_ngh_max_temperature() {
+		return push_win_ngh_max_temperature;
 	}
 
-	public void setPsuh_win_ngh_max_temperature(float psuh_win_ngh_max_temperature) {
-		this.psuh_win_ngh_max_temperature = psuh_win_ngh_max_temperature;
+	public void setPush_win_ngh_max_temperature(float push_win_ngh_max_temperature) {
+		this.push_win_ngh_max_temperature = push_win_ngh_max_temperature;
 	}
 
-	public float getPsuh_min_humidity() {
-		return psuh_min_humidity;
+	public float getPush_min_humidity() {
+		return push_min_humidity;
 	}
 
-	public void setPsuh_min_humidity(float psuh_min_humidity) {
-		this.psuh_min_humidity = psuh_min_humidity;
+	public void setPush_min_humidity(float push_min_humidity) {
+		this.push_min_humidity = push_min_humidity;
 	}
 
-	public float getPsuh_max_humidity() {
-		return psuh_max_humidity;
+	public float getPush_max_humidity() {
+		return push_max_humidity;
 	}
 
-	public void setPsuh_max_humidity(float psuh_max_humidity) {
-		this.psuh_max_humidity = psuh_max_humidity;
+	public void setPush_max_humidity(float push_max_humidity) {
+		this.push_max_humidity = push_max_humidity;
 	}
 
-	public float getPsuh_max_co2() {
-		return psuh_max_co2;
+	public float getPush_max_co2() {
+		return push_max_co2;
 	}
 
-	public void setPsuh_max_co2(float psuh_max_co2) {
-		this.psuh_max_co2 = psuh_max_co2;
+	public void setPush_max_co2(float push_max_co2) {
+		this.push_max_co2 = push_max_co2;
 	}
 
-	public float getPsuh_min_soil_moisture() {
-		return psuh_min_soil_moisture;
+	public float getPush_min_soil_moisture() {
+		return push_min_soil_moisture;
 	}
 
-	public void setPsuh_min_soil_moisture(float psuh_min_soil_moisture) {
-		this.psuh_min_soil_moisture = psuh_min_soil_moisture;
+	public void setPush_min_soil_moisture(float push_min_soil_moisture) {
+		this.push_min_soil_moisture = push_min_soil_moisture;
 	}
 
-	public float getPsuh_max_soil_moisture() {
-		return psuh_max_soil_moisture;
+	public float getPush_max_soil_moisture() {
+		return push_max_soil_moisture;
 	}
 
-	public void setPsuh_max_soil_moisture(float psuh_max_soil_moisture) {
-		this.psuh_max_soil_moisture = psuh_max_soil_moisture;
+	public void setPush_max_soil_moisture(float push_max_soil_moisture) {
+		this.push_max_soil_moisture = push_max_soil_moisture;
 	}
 
-	public float getPsuh_min_sunshine() {
-		return psuh_min_sunshine;
+	public float getPush_min_sunshine() {
+		return push_min_sunshine;
 	}
 
-	public void setPsuh_min_sunshine(float psuh_min_sunshine) {
-		this.psuh_min_sunshine = psuh_min_sunshine;
+	public void setPush_min_sunshine(float push_min_sunshine) {
+		this.push_min_sunshine = push_min_sunshine;
 	}
 
-	public float getPsuh_min_soil_temperature() {
-		return psuh_min_soil_temperature;
+	public float getPush_min_soil_temperature() {
+		return push_min_soil_temperature;
 	}
 
-	public void setPsuh_min_soil_temperature(float psuh_min_soil_temperature) {
-		this.psuh_min_soil_temperature = psuh_min_soil_temperature;
+	public void setPush_min_soil_temperature(float push_min_soil_temperature) {
+		this.push_min_soil_temperature = push_min_soil_temperature;
 	}
 
-	public float getPsuh_max_soil_temperature() {
-		return psuh_max_soil_temperature;
+	public float getPush_max_soil_temperature() {
+		return push_max_soil_temperature;
 	}
 
-	public void setPsuh_max_soil_temperature(float psuh_max_soil_temperature) {
-		this.psuh_max_soil_temperature = psuh_max_soil_temperature;
+	public void setPush_max_soil_temperature(float push_max_soil_temperature) {
+		this.push_max_soil_temperature = push_max_soil_temperature;
 	}
 
 	public boolean isHarvestable_60() {

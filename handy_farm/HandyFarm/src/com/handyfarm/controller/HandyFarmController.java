@@ -14,11 +14,6 @@ import com.handyfarm.service.HandyFarmCalendarInsertCommand;
 import com.handyfarm.service.HandyFarmCalendarSelectCommand;
 import com.handyfarm.service.HandyFarmCalendarUpdateCommand;
 import com.handyfarm.service.HandyFarmCommand;
-import com.handyfarm.service.HandyFarmLoginCommand;
-import com.handyfarm.service.HandyFarmRoboDeleteCommand;
-import com.handyfarm.service.HandyFarmRoboInsertCommand;
-import com.handyfarm.service.HandyFarmRoboUpdateCommand;
-import com.handyfarm.service.HandyFarmSignupCommand;
 
 /**
  * Servlet implementation class HandyFarmController
@@ -41,41 +36,6 @@ public class HandyFarmController extends HttpServlet {
 		
 		HandyFarmCommand command = null;
 		String nextPage = null;
-		
-		// 로그인
-		if (com.equals("/handyfarm/login.do")) {
-			command = new HandyFarmLoginCommand(); // 객체 인스턴스화 ==> 서버 영역에 쓰기 역할
-			command.execute(request, response); // DB 연결
-			nextPage = "login_ui.dart"; // login.dart 페이지로 포워딩
-		}
-		
-		// 회원가입
-		if (com.equals("/handyfarm/signup.do")) {
-			command = new HandyFarmSignupCommand();
-			command.execute(request, response);
-			nextPage = "signup_ui.dart";
-		}
-
-		// 로보 등록
-		if (com.equals("/handyfarm/roboInsert.do")) {
-			command = new HandyFarmRoboInsertCommand();
-			command.execute(request, response);
-			nextPage = "main_ui.dart";
-		}
-		
-		// 로보 수정
-		if (com.equals("/handyfarm/roboUpdate.do")) {
-			command = new HandyFarmRoboUpdateCommand();
-			command.execute(request, response);
-			nextPage = "main_ui.dart";
-		}
-		
-		// 로보 삭제
-		if (com.equals("/handyfarm/roboDelete.do")) {
-			command = new HandyFarmRoboDeleteCommand();
-			command.execute(request, response);
-			nextPage = "main_ui.dart";
-		}
 		
 		// 일정 등록
 		if (com.equals("/handyfarm/calendarInsert.do")) {

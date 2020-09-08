@@ -1,7 +1,6 @@
 package com.handyfarm.entity;
 
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.sql.*;
 
 public class HandyFarmDTO {
 	// 테이블 컬럼에 해당하는 값 선언 (table - attribute)
@@ -16,14 +15,34 @@ public class HandyFarmDTO {
 	String sensor_id;                   // 센서 - 센서 ID
 	String sensor_type;                 // 센서 - 센서 Type
 	float sensor_value;                 // 센서측정값 - 센서측정값
+	Timestamp measure_time;             // 센서측정값 - 측정시각
 	float reading_avg_value;            // 측정평균값 - 측정평균값
-	int total_crops_number;             // 작물 갯수 - 전체 작물 갯수
-	int ripe_crops_number;              // 작물 갯수 - 익은 작물 갯수
+	float harvestable;                  // 수확 가능 비율 - 수확 가능 비율
+	Timestamp upload_time;              // 수확 가능 비율 - 업로드 시각
 	String equipment_id;                // 설비 - 설비 ID
 	String equipment_name;              // 설비 - 설비 이름
-                                        // 설비 제어 event - 미정
+    boolean control_status;             // 설비 제어 이력 - 제어 상태
+    Timestamp control_time;             // 설비 제어 이력 - 제어 시간
 	String cultivar_number;             // 작물 - 품종번호
 	String crops_name;                  // 작물 - 작물 이름
+	float sum_mrn_min_temperature;      // 작물 - 여름 오전 최저 온도
+	float sum_mrn_max_temperature;      // 작물 - 여름 오전 최고 온도
+	float sum_aft_min_temperature;      // 작물 - 여름 오후 최저 온도
+	float sum_aft_max_temperature;      // 작물 - 여름 오후 최고 온도
+	float sum_ngh_min_temperature;      // 작물 - 여름 야간 최저 온도
+	float sum_ngh_max_temperature;      // 작물 - 여름 야간 최고 온도
+	float win_day_min_temperature;      // 작물 - 겨울 주간 최저 온도
+	float win_day_max_temperature;      // 작물 - 겨울 주간 최고 온도
+	float win_ngh_min_temperature;      // 작물 - 겨울 야간 최저 온도
+	float win_ngh_max_temperature;      // 작물 - 겨울 야간 최고 온도
+	float min_humidity;                 // 작물 - 최저 습도
+	float max_humidity;                 // 작물 - 최고 습도
+	float max_co2;                      // 작물 - 최대 이산화탄소
+	float min_soil_moisture;            // 작물 - 최저 토양 수분도
+	float max_soil_moisture;            // 작물 - 최고 토양 수분도
+	float min_sunshine;                 // 작물 - 최저 일조량
+	float min_soil_temperature;         // 작물 - 토양 속 최저 온도
+	float max_soil_temperature;         // 작물 - 토양 속 최고 온도
 	String cal_number;                  // 일정 - 일정번호
 	String cal_title;                   // 일정 - 일정제목
 	Time cal_start;                     // 일정 - 시작 시간
@@ -31,25 +50,13 @@ public class HandyFarmDTO {
 	String cal_memo;                    // 일정 - 메모
 	float cal_yield_kg;                 // 일정 - 수확량 (kg)
 	Timestamp cal_yield_time;           // 일정 - 수확시기
-	float sum_mrn_min_temperature;      // 경작 조건 - 여름 오전 최저 온도
-	float sum_mrn_max_temperature;      // 경작 조건 - 여름 오전 최고 온도
-	float sum_aft_min_temperature;      // 경작 조건 - 여름 오후 최저 온도
-	float sum_aft_max_temperature;      // 경작 조건 - 여름 오후 최고 온도
-	float sum_ngh_min_temperature;      // 경작 조건 - 여름 야간 최저 온도
-	float sum_ngh_max_temperature;      // 경작 조건 - 여름 야간 최고 온도
-	float win_day_min_temperature;      // 경작 조건 - 겨울 주간 최저 온도
-	float win_day_max_temperature;      // 경작 조건 - 겨울 주간 최고 온도
-	float win_ngh_min_temperature;      // 경작 조건 - 겨울 야간 최저 온도
-	float win_ngh_max_temperature;      // 경작 조건 - 겨울 야간 최고 온도
-	float min_humidity;                 // 경작 조건 - 최저 습도
-	float max_humidity;                 // 경작 조건 - 최고 습도
-	float max_co2;                      // 경작 조건 - 최대 이산화탄소
-	float min_soil_moisture;            // 경작 조건 - 최저 토양 수분도
-	float max_soil_moisture;            // 경작 조건 - 최고 토양 수분도
-	float min_sunshine;                 // 경작 조건 - 최저 일조량
-	float min_soil_temperature;         // 경작 조건 - 토양 속 최저 온도
-	float max_soil_temperature;         // 경작 조건 - 토양 속 최고 온도
-	                                    // 외부 event - 미정
+	String category;                    // 실시간 정보 - 카테고리
+	int views;                          // 실시간 정보 - 조회수
+	String title;                       // 실시간 정보 - 제목
+	String content;                     // 실시간 정보 - 내용
+	Date date;                          // 실시간 정보 - 작성일
+	String link;                        // 실시간 정보 - 링크
+	String img;                         // 실시간 정보 - 이미지
 	boolean wish;                       // 찜 - 찜
 	boolean push;                       // 알림 관리 - 메시지 알림
 	boolean sound;                      // 알림 관리 - 소리
@@ -76,26 +83,32 @@ public class HandyFarmDTO {
 	boolean harvestable_70;             // 알림 관리 - 수확 가능 비율 70%
 	boolean harvestable_80;             // 알림 관리 - 수확 가능 비율 80%
 	boolean harvestable_90;             // 알림 관리 - 수확 가능 비율 90%
+	String push_msg;                    // 푸시 알림 이력 - 푸시 알림 메시지
+	Timestamp push_date;                // 푸시 알림 이력 - 푸시 알림 보낸 시각
+	String push_category;               // 푸시 알림 이력 - 푸시 알림 분류
 	
 	// 매개변수 생성자
 	public HandyFarmDTO(String phone_number, String token, String latitude, String longitude, String greenhouse_id,
 			String robo_serial, String img_path, String nickname, String sensor_id, String sensor_type,
-			float sensor_value, float reading_avg_value, int total_crops_number, int ripe_crops_number,
-			String equipment_id, String equipment_name, String cultivar_number, String crops_name, String cal_number,
+			float sensor_value, Timestamp measure_time, float reading_avg_value, float harvestable,
+			Timestamp upload_time, String equipment_id, String equipment_name, boolean control_status,
+			Timestamp control_time, String cultivar_number, String crops_name, float sum_mrn_min_temperature,
+			float sum_mrn_max_temperature, float sum_aft_min_temperature, float sum_aft_max_temperature,
+			float sum_ngh_min_temperature, float sum_ngh_max_temperature, float win_day_min_temperature,
+			float win_day_max_temperature, float win_ngh_min_temperature, float win_ngh_max_temperature,
+			float min_humidity, float max_humidity, float max_co2, float min_soil_moisture, float max_soil_moisture,
+			float min_sunshine, float min_soil_temperature, float max_soil_temperature, String cal_number,
 			String cal_title, Time cal_start, Time cal_end, String cal_memo, float cal_yield_kg,
-			Timestamp cal_yield_time, float sum_mrn_min_temperature, float sum_mrn_max_temperature,
-			float sum_aft_min_temperature, float sum_aft_max_temperature, float sum_ngh_min_temperature,
-			float sum_ngh_max_temperature, float win_day_min_temperature, float win_day_max_temperature,
-			float win_ngh_min_temperature, float win_ngh_max_temperature, float min_humidity, float max_humidity,
-			float max_co2, float min_soil_moisture, float max_soil_moisture, float min_sunshine,
-			float min_soil_temperature, float max_soil_temperature, boolean wish, boolean push, boolean sound,
-			boolean vibration, float push_sum_mrn_min_temperature, float push_sum_mrn_max_temperature,
-			float push_sum_aft_min_temperature, float push_sum_aft_max_temperature, float push_sum_ngh_min_temperature,
-			float push_sum_ngh_max_temperature, float push_win_day_min_temperature, float push_win_day_max_temperature,
-			float push_win_ngh_min_temperature, float push_win_ngh_max_temperature, float push_min_humidity,
-			float push_max_humidity, float push_max_co2, float push_min_soil_moisture, float push_max_soil_moisture,
-			float push_min_sunshine, float push_min_soil_temperature, float push_max_soil_temperature,
-			boolean harvestable_60, boolean harvestable_70, boolean harvestable_80, boolean harvestable_90) {
+			Timestamp cal_yield_time, String category, int views, String title, String content, Date date, String link,
+			String img, boolean wish, boolean push, boolean sound, boolean vibration,
+			float push_sum_mrn_min_temperature, float push_sum_mrn_max_temperature, float push_sum_aft_min_temperature,
+			float push_sum_aft_max_temperature, float push_sum_ngh_min_temperature, float push_sum_ngh_max_temperature,
+			float push_win_day_min_temperature, float push_win_day_max_temperature, float push_win_ngh_min_temperature,
+			float push_win_ngh_max_temperature, float push_min_humidity, float push_max_humidity, float push_max_co2,
+			float push_min_soil_moisture, float push_max_soil_moisture, float push_min_sunshine,
+			float push_min_soil_temperature, float push_max_soil_temperature, boolean harvestable_60,
+			boolean harvestable_70, boolean harvestable_80, boolean harvestable_90, String push_msg,
+			Timestamp push_date, String push_category) {
 		super();
 		this.phone_number = phone_number;
 		this.token = token;
@@ -108,20 +121,16 @@ public class HandyFarmDTO {
 		this.sensor_id = sensor_id;
 		this.sensor_type = sensor_type;
 		this.sensor_value = sensor_value;
+		this.measure_time = measure_time;
 		this.reading_avg_value = reading_avg_value;
-		this.total_crops_number = total_crops_number;
-		this.ripe_crops_number = ripe_crops_number;
+		this.harvestable = harvestable;
+		this.upload_time = upload_time;
 		this.equipment_id = equipment_id;
 		this.equipment_name = equipment_name;
+		this.control_status = control_status;
+		this.control_time = control_time;
 		this.cultivar_number = cultivar_number;
 		this.crops_name = crops_name;
-		this.cal_number = cal_number;
-		this.cal_title = cal_title;
-		this.cal_start = cal_start;
-		this.cal_end = cal_end;
-		this.cal_memo = cal_memo;
-		this.cal_yield_kg = cal_yield_kg;
-		this.cal_yield_time = cal_yield_time;
 		this.sum_mrn_min_temperature = sum_mrn_min_temperature;
 		this.sum_mrn_max_temperature = sum_mrn_max_temperature;
 		this.sum_aft_min_temperature = sum_aft_min_temperature;
@@ -140,6 +149,20 @@ public class HandyFarmDTO {
 		this.min_sunshine = min_sunshine;
 		this.min_soil_temperature = min_soil_temperature;
 		this.max_soil_temperature = max_soil_temperature;
+		this.cal_number = cal_number;
+		this.cal_title = cal_title;
+		this.cal_start = cal_start;
+		this.cal_end = cal_end;
+		this.cal_memo = cal_memo;
+		this.cal_yield_kg = cal_yield_kg;
+		this.cal_yield_time = cal_yield_time;
+		this.category = category;
+		this.views = views;
+		this.title = title;
+		this.content = content;
+		this.date = date;
+		this.link = link;
+		this.img = img;
 		this.wish = wish;
 		this.push = push;
 		this.sound = sound;
@@ -166,6 +189,9 @@ public class HandyFarmDTO {
 		this.harvestable_70 = harvestable_70;
 		this.harvestable_80 = harvestable_80;
 		this.harvestable_90 = harvestable_90;
+		this.push_msg = push_msg;
+		this.push_date = push_date;
+		this.push_category = push_category;
 	}
 
 	// getter/setter
@@ -257,6 +283,14 @@ public class HandyFarmDTO {
 		this.sensor_value = sensor_value;
 	}
 
+	public Timestamp getMeasure_time() {
+		return measure_time;
+	}
+
+	public void setMeasure_time(Timestamp measure_time) {
+		this.measure_time = measure_time;
+	}
+
 	public float getReading_avg_value() {
 		return reading_avg_value;
 	}
@@ -265,20 +299,20 @@ public class HandyFarmDTO {
 		this.reading_avg_value = reading_avg_value;
 	}
 
-	public int getTotal_crops_number() {
-		return total_crops_number;
+	public float getHarvestable() {
+		return harvestable;
 	}
 
-	public void setTotal_crops_number(int total_crops_number) {
-		this.total_crops_number = total_crops_number;
+	public void setHarvestable(float harvestable) {
+		this.harvestable = harvestable;
 	}
 
-	public int getRipe_crops_number() {
-		return ripe_crops_number;
+	public Timestamp getUpload_time() {
+		return upload_time;
 	}
 
-	public void setRipe_crops_number(int ripe_crops_number) {
-		this.ripe_crops_number = ripe_crops_number;
+	public void setUpload_time(Timestamp upload_time) {
+		this.upload_time = upload_time;
 	}
 
 	public String getEquipment_id() {
@@ -297,6 +331,22 @@ public class HandyFarmDTO {
 		this.equipment_name = equipment_name;
 	}
 
+	public boolean isControl_status() {
+		return control_status;
+	}
+
+	public void setControl_status(boolean control_status) {
+		this.control_status = control_status;
+	}
+
+	public Timestamp getControl_time() {
+		return control_time;
+	}
+
+	public void setControl_time(Timestamp control_time) {
+		this.control_time = control_time;
+	}
+
 	public String getCultivar_number() {
 		return cultivar_number;
 	}
@@ -311,62 +361,6 @@ public class HandyFarmDTO {
 
 	public void setCrops_name(String crops_name) {
 		this.crops_name = crops_name;
-	}
-
-	public String getCal_number() {
-		return cal_number;
-	}
-
-	public void setCal_number(String cal_number) {
-		this.cal_number = cal_number;
-	}
-
-	public String getCal_title() {
-		return cal_title;
-	}
-
-	public void setCal_title(String cal_title) {
-		this.cal_title = cal_title;
-	}
-
-	public Time getCal_start() {
-		return cal_start;
-	}
-
-	public void setCal_start(Time cal_start) {
-		this.cal_start = cal_start;
-	}
-
-	public Time getCal_end() {
-		return cal_end;
-	}
-
-	public void setCal_end(Time cal_end) {
-		this.cal_end = cal_end;
-	}
-
-	public String getCal_memo() {
-		return cal_memo;
-	}
-
-	public void setCal_memo(String cal_memo) {
-		this.cal_memo = cal_memo;
-	}
-
-	public float getCal_yield_kg() {
-		return cal_yield_kg;
-	}
-
-	public void setCal_yield_kg(float cal_yield_kg) {
-		this.cal_yield_kg = cal_yield_kg;
-	}
-
-	public Timestamp getCal_yield_time() {
-		return cal_yield_time;
-	}
-
-	public void setCal_yield_time(Timestamp cal_yield_time) {
-		this.cal_yield_time = cal_yield_time;
 	}
 
 	public float getSum_mrn_min_temperature() {
@@ -511,6 +505,118 @@ public class HandyFarmDTO {
 
 	public void setMax_soil_temperature(float max_soil_temperature) {
 		this.max_soil_temperature = max_soil_temperature;
+	}
+
+	public String getCal_number() {
+		return cal_number;
+	}
+
+	public void setCal_number(String cal_number) {
+		this.cal_number = cal_number;
+	}
+
+	public String getCal_title() {
+		return cal_title;
+	}
+
+	public void setCal_title(String cal_title) {
+		this.cal_title = cal_title;
+	}
+
+	public Time getCal_start() {
+		return cal_start;
+	}
+
+	public void setCal_start(Time cal_start) {
+		this.cal_start = cal_start;
+	}
+
+	public Time getCal_end() {
+		return cal_end;
+	}
+
+	public void setCal_end(Time cal_end) {
+		this.cal_end = cal_end;
+	}
+
+	public String getCal_memo() {
+		return cal_memo;
+	}
+
+	public void setCal_memo(String cal_memo) {
+		this.cal_memo = cal_memo;
+	}
+
+	public float getCal_yield_kg() {
+		return cal_yield_kg;
+	}
+
+	public void setCal_yield_kg(float cal_yield_kg) {
+		this.cal_yield_kg = cal_yield_kg;
+	}
+
+	public Timestamp getCal_yield_time() {
+		return cal_yield_time;
+	}
+
+	public void setCal_yield_time(Timestamp cal_yield_time) {
+		this.cal_yield_time = cal_yield_time;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public int getViews() {
+		return views;
+	}
+
+	public void setViews(int views) {
+		this.views = views;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public boolean isWish() {
@@ -719,5 +825,29 @@ public class HandyFarmDTO {
 
 	public void setHarvestable_90(boolean harvestable_90) {
 		this.harvestable_90 = harvestable_90;
+	}
+
+	public String getPush_msg() {
+		return push_msg;
+	}
+
+	public void setPush_msg(String push_msg) {
+		this.push_msg = push_msg;
+	}
+
+	public Timestamp getPush_date() {
+		return push_date;
+	}
+
+	public void setPush_date(Timestamp push_date) {
+		this.push_date = push_date;
+	}
+
+	public String getPush_category() {
+		return push_category;
+	}
+
+	public void setPush_category(String push_category) {
+		this.push_category = push_category;
 	}
 }

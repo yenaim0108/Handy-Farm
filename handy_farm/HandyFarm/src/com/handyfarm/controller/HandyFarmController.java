@@ -9,16 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.handyfarm.service.HandyFarmCalendarDeleteCommand;
-import com.handyfarm.service.HandyFarmCalendarInsertCommand;
-import com.handyfarm.service.HandyFarmCalendarSelectCommand;
-import com.handyfarm.service.HandyFarmCalendarUpdateCommand;
-import com.handyfarm.service.HandyFarmCommand;
+import com.handyfarm.service.*;
 
 /**
  * Servlet implementation class HandyFarmController
  */
-@WebServlet(description = "HandyFarm 서블릿", urlPatterns = { "/handyfarm" })
+@WebServlet(description = "HandyFarm 서블릿", urlPatterns = { "*.do" })
 public class HandyFarmController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,32 +33,16 @@ public class HandyFarmController extends HttpServlet {
 		HandyFarmCommand command = null;
 		String nextPage = null;
 		
-		// 일정 등록
-		if (com.equals("/handyfarm/calendarInsert.do")) {
-			command = new HandyFarmCalendarInsertCommand();
-			command.execute(request, response);
-			nextPage = "calendar_ui.dart";
+		// 앱 권한 동의
+		if (com.equals("/handyfarm/agree.do")) {
+			nextPage = "agree.jsp";
 		}
 		
 		// 일정 조회
 		if (com.equals("/handyfarm/calendarSelect.do")) {
 			command = new HandyFarmCalendarSelectCommand();
 			command.execute(request, response);
-			nextPage = "calendar_ui.dart";
-		}
-		
-		// 일정 수정
-		if (com.equals("/handyfarm/calendarUpdate.do")) {
-			command = new HandyFarmCalendarUpdateCommand();
-			command.execute(request, response);
-			nextPage = "calendar_ui.dart";
-		}
-		
-		// 일정 삭제
-		if (com.equals("/handyfarm/calendarDelete.do")) {
-			command = new HandyFarmCalendarDeleteCommand();
-			command.execute(request, response);
-			nextPage = "calendar_ui.dart";
+			nextPage = "calendar.jsp";
 		}
 		
 		RequestDispatcher dis = request.getRequestDispatcher(nextPage);

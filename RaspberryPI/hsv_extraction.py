@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('.\\tomato\\tomato61.jpg') # 이미지 컬러로 읽어오기
+img = cv2.imread('.\\tomato\\tomato.jpg') # 이미지 컬러로 읽어오기
 img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) # cvtColor 함수를 이용하여 hsv 색공간으로 변환
 
 lower_blue1 = np.array([1-10+180, 30, 30])
@@ -31,8 +31,8 @@ multiplier = float(img_mask.size)/cv2.countNonZero(img_mask)
 mean = tuple([multiplier * x for x in mean])
 print("평균 = ", mean)
 
-# cv2.namedWindow('img', cv2.WINDOW_NORMAL)
-# cv2.namedWindow('img_result', cv2.WINDOW_NORMAL)
+cv2.namedWindow('img', cv2.WINDOW_NORMAL)
+cv2.namedWindow('img_result', cv2.WINDOW_NORMAL)
 
 cv2.imshow('img', img)
 cv2.imshow('img_result', img_result)

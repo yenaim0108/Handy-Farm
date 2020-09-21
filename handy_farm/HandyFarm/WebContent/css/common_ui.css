@@ -35,6 +35,7 @@ body {
 	margin: 0;
 	overflow-x: hidden;
 	overflow-y: scroll;
+	font-size: 18px;
 }
 
 button:focus {
@@ -42,21 +43,23 @@ button:focus {
 }
 
 .title {
-	margin: 30px 0 20px; 0;
-	font-size: 25px;
+	margin: 30px 0 20px 0;
+	font-size: 28px;
 	font-weight: bold;
 }
 
 .shadow {
-	box-shadow: 3px 3px 3px #CECECC;
+	box-shadow: 2px 3px 5px #CECECE;
 }
 
 .sel-pageBtn {
 	background-color: #22AA4D;
 	color: #FFFFFF;
-	font-size: 15px;
+	font-size: 17px;
+	font-weight: bold;
+	width: 140px;
 	border-radius: 15% / 50%;
-	padding: 9px 45px;
+	padding: 8px 0;
 	margin: 0 5px 20px 5px;
 	border: none;
 }
@@ -64,9 +67,11 @@ button:focus {
 .unsel-pageBtn {
 	background-color: #B7B7B7;
 	color: #FFFFFF;
-	font-size: 15px;
+	font-size: 17px;
+	font-weight: bold;
+	width: 140px;
 	border-radius: 15% / 50%;
-	padding: 9px 45px;
+	padding: 8px 0;
 	margin: 0 5px 20px 5px;
 	border: none;
 }
@@ -75,16 +80,24 @@ button:focus {
 	font-weight: bold;
 }
 
+.center {
+	text-align: center;
+}
+
 .va-m {
-	vertical-align:middle;
+	vertical-align: middle !important;
 }
 
 .d-t {
-	display: table;
+	display: table !important;
+}
+
+.d-tr {
+	display: table-row !important;
 }
 
 .d-tc {
-	display: table-cell;
+	display: table-cell !important;
 }
 
 .d-n {
@@ -104,6 +117,10 @@ button:focus {
 }
 
 <!-- margin all -->
+.m-a-0 {
+	margin: 0;
+}
+
 .m-a-s {
 	margin: 5px;
 }
@@ -179,6 +196,10 @@ button:focus {
 }
 
 <!-- margin top -->
+.m-t-0 {
+	margin-top: 0;
+}
+
 .m-t-s {
 	margin-top: 5px;
 }
@@ -204,6 +225,10 @@ button:focus {
 }
 
 <!-- margin bottom -->
+.m-b-0 {
+	margin-bottom: 0;
+}
+
 .m-b-s {
 	margin-bottom: 5px;
 }
@@ -229,6 +254,10 @@ button:focus {
 }
 
 <!-- margin right -->
+.m-r-0 {
+	margin-right: 0;
+}
+
 .m-r-s {
 	margin-right: 5px;
 }
@@ -254,6 +283,10 @@ button:focus {
 }
 
 <!-- margin left -->
+.m-l-0 {
+	margin-left: 0;
+}
+
 .m-l-s {
 	margin-left: 5px;
 }
@@ -279,6 +312,10 @@ button:focus {
 }
 
 <!-- padding all -->
+.p-a-0 {
+	padding: 0;	
+}
+
 .p-a-s {
 	padding: 5px;
 }
@@ -354,6 +391,10 @@ button:focus {
 }
 
 <!-- padding top -->
+.p-t-0 {
+	padding-top: 0;	
+}
+
 .p-t-s {
 	padding-top: 5px;
 }
@@ -379,6 +420,10 @@ button:focus {
 }
 
 <!-- padding bottom -->
+.p-b-0 {
+	padding-bottom: 0;	
+}
+
 .p-b-s {
 	padding-bottom: 5px;
 }
@@ -404,6 +449,10 @@ button:focus {
 }
 
 <!-- padding right -->
+.p-r-0 {
+	padding-right: 0;	
+}
+
 .p-r-s {
 	padding-right: 5px;
 }
@@ -429,6 +478,10 @@ button:focus {
 }
 
 <!-- padding left -->
+.p-l-0 {
+	padding-left: 0;	
+}
+
 .p-l-s {
 	padding-left: 5px;
 }

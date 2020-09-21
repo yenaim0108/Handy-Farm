@@ -5,8 +5,8 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 		<title>생장 정보</title>
-		<link rel="stylesheet" type="text/css" href="../css/common_ui.css">
-		<link rel="stylesheet" type="text/css" href="../css/main_tab.css">
+		<link rel="stylesheet" type="text/css" href="../css/common_ui.css?after">
+		<link rel="stylesheet" type="text/css" href="../css/main_tab.css?after">
 	</head>
 	<body>
 		<!-- title -->
@@ -20,46 +20,52 @@
 		
 		<!-- contents -->
 		<div>
-			<div class="growthBox shadow d-ib">
-				<div class="bold m-b-sl">온도</div>
-				<img src="../icon/temperature.png" alt="temperature">
-				<hr class="HF-DarkGray">
-				<div class="HF-DarkGray">30℃</div>
+			<div class="growthBox d-ib shadow">
+				온도
+				<div class="d-t m-t">
+					<img class="d-tc p-r-sl" src="../icon/temperature.png" alt="temperature">
+					<div class="HF-DarkGray d-tc va-m value">30℃</div>
+				</div>
 			</div>
 			
-			<div class="growthBox shadow d-ib">
-				<div class="bold m-b-sl">습도</div>
-				<img src="../icon/humidity.png" alt="humidity">
-				<hr>
-				<div class="HF-DarkGray">60%</div>
+			<div class="growthBox d-ib shadow">
+				습도
+				<div class="d-t m-t">
+					<img class="d-tc p-r-sl" src="../icon/humidity.png" alt="humidity">
+					<div class="HF-DarkGray d-tc va-m value">60%</div>
+				</div>
 			</div>
 			
-			<div class="growthBox shadow d-ib">
-				<div class="bold m-b-sl">이산화탄소</div>
-				<img src="../icon/co2.png" alt="co2">
-				<hr>
-				<div class="HF-DarkGray">10%</div>
+			<div class="growthBox d-ib shadow">
+				이산화탄소
+				<div class="d-t m-t">
+					<img class="d-tc p-r-sl" src="../icon/co2.png" alt="co2">
+					<div class="HF-DarkGray d-tc va-m value">10%</div>
+				</div>
 			</div>
 			
-			<div class="growthBox shadow d-ib">
-				<div class="bold m-b-sl">토양 수분도</div>
-				<img src="../icon/soil-moisture.png" alt="soil-moisture">
-				<hr>
-				<div class="HF-DarkGray">67%</div>
+			<div class="growthBox d-ib shadow">
+				토양수분도
+				<div class="d-t m-t">
+					<img class="d-tc p-r-sl" src="../icon/soil-moisture.png" alt="soil-moisture">
+					<div class="HF-DarkGray d-tc va-m value">40%</div>
+				</div>
 			</div>
 			
-			<div class="growthBox shadow d-ib">
-				<div class="bold m-b-sl">일조량</div>
-				<img src="../icon/sunshine.png" alt="sunshine">
-				<hr>
-				<div class="HF-DarkGray">33%</div>
+			<div class="growthBox d-ib shadow">
+				일조량
+				<div class="d-t m-t">
+					<img class="d-tc p-r-sl" src="../icon/sunshine.png" alt="sunshine">
+					<div class="HF-DarkGray d-tc va-m value">67%</div>
+				</div>
 			</div>
 			
-			<div class="growthBox shadow d-ib">
-				<div class="bold m-b-sl">수확 가능 비율</div>
-				<img src="../icon/harvestable.png" alt="harvestable">
-				<hr>
-				<div class="HF-DarkGray">0%</div>
+			<div class="growthBox d-ib shadow">
+				수확 가능 비율
+				<div class="d-t m-t">
+					<img class="d-tc p-r-sl" src="../icon/harvestable.png" alt="harvestable">
+					<div class="HF-DarkGray d-tc va-m value">33%</div>
+				</div>
 			</div>
 		</div>
 		<!-- // contents -->

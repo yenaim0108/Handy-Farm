@@ -1,16 +1,20 @@
 @charset "UTF-8";
 
 .growthBox {
-	width: 130px;
-	height: 130px;
+	width: 160px;
+	height: 100px;
 	background-color: #FFFFFF;
-	border-radius: 15% / 15%;
-	font-size: 15px;
+	border-radius: 10% / 15%;
 	margin: 5px;
-	padding: 10px;
+	padding: 15px 10px 10px 10px;
+}
+
+.growthBox div {
+	color: #707070;
+	font-size: 40px;
 }
 
 .growthBox img {
-	width: 64px;
-	height: 64px;
+	width: 45px;
+	height: auto;
 }

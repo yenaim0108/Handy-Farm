@@ -7,8 +7,14 @@
 		<title>설정_알림 관리</title>
 		<link rel="stylesheet" href="css/common_ui.css">
 		<link rel="stylesheet" href="../css/setting_tab.css">
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
 	<body>
-		
+		<div class="wrap">
+			
+		</div>
+		<!-- footer -->
+		<%@ include file="../include/bottonTabBar.inc" %>
+		<!-- //footer -->
 	</body>
 </html>

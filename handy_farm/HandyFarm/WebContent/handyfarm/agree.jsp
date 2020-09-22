@@ -7,8 +7,11 @@
 		<title>앱 권한 동의</title>
 		<link rel="stylesheet" href="../css/common_ui.css">
 		<link rel="stylesheet" href="../css/loginSignUp.css">
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
 	<body>
-		
+		<div class="wrap">
+			
+		</div>
 	</body>
 </html>

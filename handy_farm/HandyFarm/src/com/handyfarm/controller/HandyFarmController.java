@@ -38,11 +38,37 @@ public class HandyFarmController extends HttpServlet {
 			nextPage = "agree.jsp";
 		}
 		
+		// 메인 페이지
+		if (com.equals("/handyfarm/main.do")) {
+			command = new HandyFarmGHSelectCommand();
+			command.execute(request, response);
+			nextPage = "main.jsp";
+		}
+		
+		// 캘린더 페이지
+		if (com.equals("/handyfarm/calendar.do")) {
+			command = new HandyFarmCalendarSelectCommand();
+			command.execute(request, response);
+			nextPage = "calendar.jsp";
+		}
+		
 		// 일정 조회
 		if (com.equals("/handyfarm/calendarSelect.do")) {
 			command = new HandyFarmCalendarSelectCommand();
 			command.execute(request, response);
 			nextPage = "calendar.jsp";
+		}
+		
+		// Tip 페이지
+		if (com.equals("/handyfarm/tip.do")) {
+			command = new HandyFarmInfoAllCommand();
+			command.execute(request, response);
+			nextPage = "real_info.jsp";
+		}
+		
+		// 설정 페이지
+		if (com.equals("/handyfarm/setting.do")) {
+			nextPage = "setting.jsp";
 		}
 		
 		RequestDispatcher dis = request.getRequestDispatcher(nextPage);

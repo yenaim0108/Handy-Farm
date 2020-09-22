@@ -7,6 +7,7 @@
 		<title>로그인</title>
 		<link rel="stylesheet" href="../css/common_ui.css">
 		<link rel="stylesheet" href="../css/loginSignUp.css">
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
 	<body>
 		

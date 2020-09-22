@@ -10,7 +10,7 @@
 	<body class="d-t">
 		<div class="d-tc va-m">
 			<div class="m-b-lg p-b-sl">
-				<img src="../icon/handyfarm_logo.png" alt="handyfarm_logo"">
+				<img src="../icon/handyfarm_logo.png" alt="handyfarm_logo">
 			</div>
 			<div>
 				<img src="../icon/handyfarm_big.png" alt="handyfarm">

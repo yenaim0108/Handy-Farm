@@ -1,4 +1,4 @@
-!SESSION 2020-09-21 04:36:55.060 -----------------------------------------------
+!SESSION 2020-09-22 16:32:34.376 -----------------------------------------------
 eclipse.buildId=4.15.0.I20200305-0155
 java.version=1.8.0_261
 java.vendor=Oracle Corporation
@@ -6,10 +6,10 @@ BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
 Framework arguments:  -product org.eclipse.epp.package.jee.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
 
-This is a continuation of log file D:\document\hywu\graduation portfolio\04. development\handy_farm\.metadata\.bak_1.log
-Created Time: 2020-09-21 14:01:02.998
+This is a continuation of log file D:\document\hywu\graduation portfolio\04. development\handy_farm\.metadata\.bak_0.log
+Created Time: 2020-09-22 17:44:31.548
 
-!ENTRY org.eclipse.lsp4e 4 0 2020-09-21 14:01:03.003
+!ENTRY org.eclipse.lsp4e 4 0 2020-09-22 17:44:31.553
 !MESSAGE Unable to start language server: CSS Language Server: ProcessStreamConnectionProvider [commands=[null, C:\Users\yenai\eclipse\jee-2020-03\eclipse\..\..\..\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.5.202002262342\language-servers\node_modules\vscode-css-languageserver\dist\cssServerMain.js, --stdio], workingDir=C:\Users\yenai\eclipse\jee-2020-03\eclipse]
 !STACK 0
 java.io.IOException: Unable to start language server: CSS Language Server: ProcessStreamConnectionProvider [commands=[null, C:\Users\yenai\eclipse\jee-2020-03\eclipse\..\..\..\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.5.202002262342\language-servers\node_modules\vscode-css-languageserver\dist\cssServerMain.js, --stdio], workingDir=C:\Users\yenai\eclipse\jee-2020-03\eclipse]
@@ -29,6 +29,7 @@ java.io.IOException: Unable to start language server: CSS Language Server: Proce
 	at org.eclipse.lsp4e.operations.rename.LSPRenameHandler.isEnabled(LSPRenameHandler.java:117)
 	at org.eclipse.ui.internal.handlers.HandlerProxy.isEnabled(HandlerProxy.java:300)
 	at org.eclipse.ui.internal.handlers.E4HandlerProxy.canExecute(E4HandlerProxy.java:78)
+<<<<<<< HEAD
 	at sun.reflect.GeneratedMethodAccessor3.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 	at java.lang.reflect.Method.invoke(Unknown Source)
@@ -6838,6 +6839,9 @@ java.io.IOException: Unable to start language server: CSS Language Server: Proce
 	at org.eclipse.ui.internal.handlers.HandlerProxy.isEnabled(HandlerProxy.java:300)
 	at org.eclipse.ui.internal.handlers.E4HandlerProxy.canExecute(E4HandlerProxy.java:78)
 	at sun.reflect.GeneratedMethodAccessor3.invoke(Unknown Source)
+=======
+	at sun.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
+>>>>>>> 42764c06c7372a6001fd453a0fdf82d2118beec4
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 	at java.lang.reflect.Method.invoke(Unknown Source)
 	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
@@ -6885,7 +6889,7 @@ java.io.IOException: Unable to start language server: CSS Language Server: Proce
 	at org.eclipse.ui.texteditor.AbstractTextEditor.setFocus(AbstractTextEditor.java:6235)
 	at org.eclipse.ui.texteditor.StatusTextEditor.setFocus(StatusTextEditor.java:147)
 	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.delegateSetFocus(CompatibilityPart.java:222)
-	at sun.reflect.GeneratedMethodAccessor44.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor52.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 	at java.lang.reflect.Method.invoke(Unknown Source)
 	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
@@ -6930,7 +6934,7 @@ java.io.IOException: Unable to start language server: CSS Language Server: Proce
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
 
-!ENTRY org.eclipse.lsp4e 4 0 2020-09-21 14:56:11.713
+!ENTRY org.eclipse.lsp4e 4 0 2020-09-22 17:51:18.572
 !MESSAGE Unable to start language server: CSS Language Server: ProcessStreamConnectionProvider [commands=[null, C:\Users\yenai\eclipse\jee-2020-03\eclipse\..\..\..\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.5.202002262342\language-servers\node_modules\vscode-css-languageserver\dist\cssServerMain.js, --stdio], workingDir=C:\Users\yenai\eclipse\jee-2020-03\eclipse]
 !STACK 0
 java.io.IOException: Unable to start language server: CSS Language Server: ProcessStreamConnectionProvider [commands=[null, C:\Users\yenai\eclipse\jee-2020-03\eclipse\..\..\..\.p2\pool\plugins\org.eclipse.wildwebdeveloper_0.5.5.202002262342\language-servers\node_modules\vscode-css-languageserver\dist\cssServerMain.js, --stdio], workingDir=C:\Users\yenai\eclipse\jee-2020-03\eclipse]
@@ -6950,7 +6954,7 @@ java.io.IOException: Unable to start language server: CSS Language Server: Proce
 	at org.eclipse.lsp4e.operations.rename.LSPRenameHandler.isEnabled(LSPRenameHandler.java:117)
 	at org.eclipse.ui.internal.handlers.HandlerProxy.isEnabled(HandlerProxy.java:300)
 	at org.eclipse.ui.internal.handlers.E4HandlerProxy.canExecute(E4HandlerProxy.java:78)
-	at sun.reflect.GeneratedMethodAccessor3.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor2.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 	at java.lang.reflect.Method.invoke(Unknown Source)
 	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
@@ -6998,7 +7002,7 @@ java.io.IOException: Unable to start language server: CSS Language Server: Proce
 	at org.eclipse.ui.texteditor.AbstractTextEditor.setFocus(AbstractTextEditor.java:6235)
 	at org.eclipse.ui.texteditor.StatusTextEditor.setFocus(StatusTextEditor.java:147)
 	at org.eclipse.ui.internal.e4.compatibility.CompatibilityPart.delegateSetFocus(CompatibilityPart.java:222)
-	at sun.reflect.GeneratedMethodAccessor44.invoke(Unknown Source)
+	at sun.reflect.GeneratedMethodAccessor52.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
 	at java.lang.reflect.Method.invoke(Unknown Source)
 	at org.eclipse.e4.core.internal.di.MethodRequestor.execute(MethodRequestor.java:58)
@@ -7042,7 +7046,7 @@ java.io.IOException: Unable to start language server: CSS Language Server: Proce
 	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
 	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
-!SESSION 2020-09-21 15:07:36.429 -----------------------------------------------
+!SESSION 2020-09-22 17:52:12.260 -----------------------------------------------
 eclipse.buildId=4.15.0.I20200305-0155
 java.version=1.8.0_261
 =======
@@ -7055,16 +7059,20 @@ BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
 Framework arguments:  -product org.eclipse.epp.package.jee.product
 Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 !ENTRY org.eclipse.jface 2 0 2020-09-21 15:07:43.742
+=======
+!ENTRY org.eclipse.jface 2 0 2020-09-22 17:52:17.996
+>>>>>>> 42764c06c7372a6001fd453a0fdf82d2118beec4
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
-!SUBENTRY 1 org.eclipse.jface 2 0 2020-09-21 15:07:43.742
+!SUBENTRY 1 org.eclipse.jface 2 0 2020-09-22 17:52:17.996
 !MESSAGE A conflict occurred for CTRL+SHIFT+T:
 Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
 		Open a type in a Java editor,
 		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3163e03b,
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@7be6dabb,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
@@ -7072,20 +7080,21 @@ Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.lsp4e.symbolinworkspace,Go to Symbol in Workspace,
 		,
 		Category(org.eclipse.lsp4e.category,Language Servers,null,true),
-		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@6aa18912,
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@68fc636a,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
 
-!ENTRY org.eclipse.ui 4 4 2020-09-21 15:07:46.085
+!ENTRY org.eclipse.ui 4 4 2020-09-22 17:52:21.074
 !MESSAGE Plug-in 'org.eclipse.egit.ui' contributed an invalid Menu Extension (Path: 'org.eclipse.search.menu' is invalid): org.eclipse.egit.ui.actions.OpenCommitSearchPage
 
-!ENTRY org.eclipse.egit.ui 2 0 2020-09-21 15:07:53.216
+!ENTRY org.eclipse.egit.ui 2 0 2020-09-22 17:52:27.796
 !MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
 user global configuration and to define the default location to store repositories: 'C:\Users\yenai'. If this is
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+<<<<<<< HEAD
 =======
 !ENTRY org.eclipse.egit.core 1 0 2020-09-21 15:11:41.125
 !MESSAGE Using Apache MINA sshd as ssh client.
@@ -7410,4 +7419,188 @@ java.net.UnknownHostException: jope.ow2.org
 	at org.eclipse.ecf.provider.filetransfer.httpclient45.HttpClientRetrieveFileTransfer.access$0(HttpClientRetrieveFileTransfer.java:992)
 	at org.eclipse.ecf.provider.filetransfer.httpclient45.HttpClientRetrieveFileTransfer$1.performFileTransfer(HttpClientRetrieveFileTransfer.java:988)
 	at org.eclipse.ecf.filetransfer.FileTransferJob.run(FileTransferJob.java:74)
+=======
+
+!ENTRY org.eclipse.jst.jsp.core 4 4 2020-09-22 17:54:01.557
+!MESSAGE Resource is out of sync with the file system: '/HandyFarm/WebContent/include/bottonTabBar.inc'.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/HandyFarm/WebContent/include/bottonTabBar.inc)[274]: java.lang.Exception: Resource is out of sync with the file system: '/HandyFarm/WebContent/include/bottonTabBar.inc'.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:844)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:275)
+	at org.eclipse.wst.sse.core.internal.modelhandler.ModelHandlerRegistry.getHandlerFor(ModelHandlerRegistry.java:141)
+	at org.eclipse.jst.jsp.core.internal.java.XMLJSPRegionHelper.parse(XMLJSPRegionHelper.java:141)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.handleIncludeFile(JSPTranslator.java:2391)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.translateDirective(JSPTranslator.java:2114)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.translateJSPNode(JSPTranslator.java:1837)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.translateRegionContainer(JSPTranslator.java:1426)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.translate(JSPTranslator.java:1206)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslationAdapter.getJSPTranslation(JSPTranslationAdapter.java:154)
+	at org.eclipse.jst.jsp.core.internal.validation.JSPJavaValidator.performValidation(JSPJavaValidator.java:329)
+	at org.eclipse.jst.jsp.core.internal.validation.JSPBatchValidator.performValidation(JSPBatchValidator.java:355)
+	at org.eclipse.jst.jsp.core.internal.validation.JSPBatchValidator.validateFile(JSPBatchValidator.java:405)
+	at org.eclipse.jst.jsp.core.internal.validation.JSPBatchValidator$2.run(JSPBatchValidator.java:483)
+	at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:41)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:5890)
+	at org.eclipse.jst.jsp.core.internal.validation.JSPBatchValidator.validate(JSPBatchValidator.java:496)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1178)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:327)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:67)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:51)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.deltaBuild(ValBuilderJob.java:211)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:179)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SUBENTRY 1 org.eclipse.core.resources 4 274 2020-09-22 17:54:01.558
+!MESSAGE Resource is out of sync with the file system: '/HandyFarm/WebContent/include/bottonTabBar.inc'.
+!STACK 0
+java.lang.Exception: Resource is out of sync with the file system: '/HandyFarm/WebContent/include/bottonTabBar.inc'.
+	at org.eclipse.core.internal.resources.ResourceException.provideStackTrace(ResourceException.java:42)
+	at org.eclipse.core.internal.resources.ResourceException.<init>(ResourceException.java:38)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:844)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:275)
+	at org.eclipse.wst.sse.core.internal.modelhandler.ModelHandlerRegistry.getHandlerFor(ModelHandlerRegistry.java:141)
+	at org.eclipse.jst.jsp.core.internal.java.XMLJSPRegionHelper.parse(XMLJSPRegionHelper.java:141)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.handleIncludeFile(JSPTranslator.java:2391)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.translateDirective(JSPTranslator.java:2114)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.translateJSPNode(JSPTranslator.java:1837)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.translateRegionContainer(JSPTranslator.java:1426)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslator.translate(JSPTranslator.java:1206)
+	at org.eclipse.jst.jsp.core.internal.java.JSPTranslationAdapter.getJSPTranslation(JSPTranslationAdapter.java:154)
+	at org.eclipse.jst.jsp.core.internal.validation.JSPJavaValidator.performValidation(JSPJavaValidator.java:329)
+	at org.eclipse.jst.jsp.core.internal.validation.JSPBatchValidator.performValidation(JSPBatchValidator.java:355)
+	at org.eclipse.jst.jsp.core.internal.validation.JSPBatchValidator.validateFile(JSPBatchValidator.java:405)
+	at org.eclipse.jst.jsp.core.internal.validation.JSPBatchValidator$2.run(JSPBatchValidator.java:483)
+	at org.eclipse.jdt.internal.core.BatchOperation.executeOperation(BatchOperation.java:41)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:736)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2317)
+	at org.eclipse.jdt.core.JavaCore.run(JavaCore.java:5890)
+	at org.eclipse.jst.jsp.core.internal.validation.JSPBatchValidator.validate(JSPBatchValidator.java:496)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1178)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:783)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:327)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:67)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:77)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:51)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.deltaBuild(ValBuilderJob.java:211)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:179)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+>>>>>>> 42764c06c7372a6001fd453a0fdf82d2118beec4
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2020-09-23 21:24:13.023 -----------------------------------------------
+eclipse.buildId=4.12.0.I20190605-1800
+java.version=1.8.0_201
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=ko_KR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2020-09-23 21:24:20.128
+!MESSAGE Unable to load resource file:/C:/Handy-Farm/handy_farm/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+!STACK 0
+org.eclipse.emf.ecore.resource.impl.ResourceSetImpl$1DiagnosticWrappedException: org.xml.sax.SAXParseExceptionpublicId: file:/C:/Handy-Farm/handy_farm/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/C:/Handy-Farm/handy_farm/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; 문서에서 루트 요소 앞에 오는 마크업은 올바른 형식이어야 합니다.
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.handleDemandLoadException(ResourceSetImpl.java:319)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:278)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.getResource(ResourceSetImpl.java:406)
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.getResource(ResourceHandler.java:285)
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.loadResource(ResourceHandler.java:261)
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.loadMostRecentModel(ResourceHandler.java:168)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application.loadApplicationModel(E4Application.java:385)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application.createE4Workbench(E4Application.java:260)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:581)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:559)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:660)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:597)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1468)
+Caused by: org.xml.sax.SAXParseExceptionpublicId: file:/C:/Handy-Farm/handy_farm/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; systemId: file:/C:/Handy-Farm/handy_farm/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi; lineNumber: 2; columnNumber: 2; 문서에서 루트 요소 앞에 오는 마크업은 올바른 형식이어야 합니다.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(Unknown Source)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLScanner.reportFatalError(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl$PrologDriver.next(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(Unknown Source)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(Unknown Source)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl.parse(Unknown Source)
+	at org.eclipse.emf.ecore.xmi.impl.XMLLoadImpl.load(XMLLoadImpl.java:175)
+	at org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl.doLoad(XMLResourceImpl.java:261)
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1563)
+	at org.eclipse.emf.ecore.resource.impl.ResourceImpl.load(ResourceImpl.java:1342)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoad(ResourceSetImpl.java:259)
+	at org.eclipse.emf.ecore.resource.impl.ResourceSetImpl.demandLoadHelper(ResourceSetImpl.java:274)
+	... 23 more
+
+!ENTRY org.eclipse.e4.ui.workbench 4 0 2020-09-23 21:24:20.136
+!MESSAGE The persisted application model has no top-level window. Reinitializing with the default application model.
+!STACK 0
+java.lang.Exception
+	at org.eclipse.e4.ui.internal.workbench.ResourceHandler.loadMostRecentModel(ResourceHandler.java:173)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application.loadApplicationModel(E4Application.java:385)
+	at org.eclipse.e4.ui.internal.workbench.swt.E4Application.createE4Workbench(E4Application.java:260)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:581)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:559)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:155)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:660)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:597)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1468)
+
+!ENTRY org.eclipse.egit.core 1 0 2020-09-23 21:24:21.812
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2020-09-23 21:24:33.711
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\MJ'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.jst.server.tomcat.core 4 0 2020-09-23 21:44:45.585
+!MESSAGE Several ports (8005, 8081, 8009) required by Tomcat v9.0 Server at localhost are already in use. The server may already be running in another process, or a system process may be using the port. To start this server you will need to stop the other process or change the port number(s).

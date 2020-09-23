@@ -65,7 +65,7 @@ cv2.namedWindow('img_color')
 cv2.setMouseCallback('img_color', mouse_callback)
 
 while(True):
-    img_color = cv2.imread('.\\tomato\\tomato2.jpg')
+    img_color = cv2.imread('.\\tomato\\tomato81.jpg')
     height, width = img_color.shape[:2]
 
     # 원본 영상을 HSV 영상으로 변환합니다.

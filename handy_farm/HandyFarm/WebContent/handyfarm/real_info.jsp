@@ -11,7 +11,16 @@
 	</head>
 	<body>
 		<div class="wrap">
+		<!-- title -->
+			<div class="title">정보 Talk</div>
+			<!-- // title -->
 			
+			<!-- pageBtn -->
+			<button class="sel-pageBtn shadow d-ib">실시간정보</button>
+			<button class="unsel-pageBtn shadow d-ib">작물별 경작조건</button>
+			<!-- // pageBtn -->
+			
+			<!-- contents -->
 		</div>
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>

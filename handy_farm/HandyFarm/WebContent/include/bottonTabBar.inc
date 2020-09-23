@@ -1,37 +1,40 @@
 <script>
 	$(document).ready(function(){
-	    $("#bottomTabBar li").click(function()
-	     {
-	    	var id = main;
-	    	var img = document.getElementByName(id);
-	        	var change_img = "../icon/green_" + id + ".png";
-	        
-	       	img.src = change_img;
-	        
-	     });
+		tmp = location.href.split("?");
+		i = tmp[1];
+		var imgTag = document.getElementsByName("page")[i];	
+		var current = imgTag.getAttribute("value");
+		
+		imgTag.setAttribute("src", "../icon/green_" + current + ".png");
 	});
+	
+	function sendPage(i) {
+		var current = document.getElementsByName("page")[i].getAttribute("value");
+		
+		location.href = current + ".do?" + i;
+	}
 </script>		
 	
 <footer>
 	<ul id="bottomTabBar">
-		<li id="main">
-			<a href="main.do">
-				<img class="d-ib m-x-md" src="../icon/gray_main.png" alt="main" name="main">
+		<li class="d-ib">
+			<a onclick="sendPage(0);">
+				<img class="d-ib m-x-md" src="../icon/gray_main.png" alt="main" name="page" value="main">
 			</a>
 		</li>
-		<li id="calendar">
-			<a href="calendar.do">
-				<img class="d-ib m-x-md" src="../icon/gray_calendar.png" alt="calendar" name="calendar">
+		<li class="d-ib">
+			<a onclick="sendPage(1);">
+				<img class="d-ib m-x-md" src="../icon/gray_calendar.png" alt="calendar" name="page" value="calendar">
 			</a>
 		</li>
-		<li id="tip">
-			<a href="tip.do">
-				<img class="d-ib m-x-md" src="../icon/gray_tip.png" alt="Tip" name="tip">
+		<li class="d-ib">
+			<a onclick="sendPage(2);">
+				<img class="d-ib m-x-md" src="../icon/gray_tip.png" alt="Tip" name="page" value="tip">
 			</a>
 		</li>
-		<li id="setting">
-			<a href="setting.do">
-				<img class="d-ib m-x-md" src="../icon/gray_setting.png" alt="setting" name="setting">
+		<li class="d-ib">
+			<a onclick="sendPage(3);">
+				<img class="d-ib m-x-md" src="../icon/gray_setting.png" alt="setting" name="page" value="setting">
 			</a>
 		</li>
 	</ul>

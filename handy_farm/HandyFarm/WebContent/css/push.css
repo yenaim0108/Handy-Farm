@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+.f-l {
+	float: left;
+	align: left;
+}
+
+.pushBox{
+	width: 330px;
+	height: 60px;
+	background-color: #FFFFFF;
+	border-radius: 20px 20px;
+	margin: 0 auto;
+}
+
+.pushintitle {
+	font-size: 14px;
+	width: 220px;
+}
+
+.pushinctg {
+	font-size: 14px;
+	height: 25px;
+	width: 80px;
+	color: #FFFFFF;
+	border: 2px solid #B7B7B7;
+	text-align: center;
+	line-height: 25px;
+}
+
+.pushinctgBox {
+	width:90px;
+}
+
+.pushindate {
+	font-size: 14px;
+	width: 220px;
+}
+
+.growthinfo {
+	background-color: #f5aa00;
+}
+
+.infonotifi {
+	background-color: #aacc03;
+}
+
+.weathernotifi {
+	background-color: #91ce41;
+}
+
+.pests {
+	background-color: #ff3640;
+}

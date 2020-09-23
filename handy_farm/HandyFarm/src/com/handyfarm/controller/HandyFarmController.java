@@ -71,6 +71,21 @@ public class HandyFarmController extends HttpServlet {
 			nextPage = "setting.jsp";
 		}
 		
+		// 로보 추가
+		if (com.equals("/handyfarm/robo_insert.do")) {
+			command = new HandyFarmCalendarSelectCommand();
+			command.execute(request, response);
+			nextPage = "robo_insert.jsp";
+		}
+		
+		// 로보 수정
+		if (com.equals("/handyfarm/robo_update.do")) {
+			command = new HandyFarmCalendarSelectCommand();
+			command.execute(request, response);
+			nextPage = "robo_update.jsp";
+		}
+				
+				
 		RequestDispatcher dis = request.getRequestDispatcher(nextPage);
 		dis.forward(request, response);
 	}

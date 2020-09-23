@@ -26,6 +26,13 @@
 	color: #707070;
 }
 
+.HF-back {
+	background-color: #F5F5F3;
+}
+
+.HF-backGreen{
+	background-color: #22AA4D;
+}
 body {
 	width: 100%;
 	height: -webkit-fill-available;
@@ -115,6 +122,19 @@ footer {
 	border: none;
 }
 
+.cancel-b-Btn {
+	background-color: #F5F5F3;
+	color: #22AA4D;
+	font-size: 17px;
+	font-weight: bold;
+	width: 127px;
+	height: 45px;
+	border: 2px solid #22AA4D;
+	border-radius: 17% / 50%;
+	margin-top:10px;
+	margin: 0 auto;
+}
+
 .bold {
 	font-weight: bold;
 }
@@ -123,6 +143,9 @@ footer {
 	text-align: center;
 }
 
+.f-s {
+	font-size:18px;
+}
 .va-m {
 	vertical-align: middle !important;
 }
@@ -157,6 +180,11 @@ footer {
 }
 
 <!-- margin all -->
+
+.m-0-a{
+	margin: 0 auto;
+}
+
 .m-a-0 {
 	margin: 0;
 }
@@ -544,4 +572,25 @@ footer {
 
 .p-l-lg {
 	padding-left: 30px;
+}
+
+<!-- camera -->
+
+.cameraBox {
+	width: 190px;
+	height: 190px;
+	background-color: #FFFFFF;
+	border-radius: 50%;
+	margin: 0 auto;
+}
+
+.camera-img {
+	margin-top:65px;
+	width: 80px;
+	height: auto;
+}
+
+<!-- border -->
+.b-n {
+	border: none;
 }

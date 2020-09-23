@@ -11,7 +11,7 @@
 	</head>
 	<body>
 		<div class="wrap">
-			
+			<a href="tip.do">df</a>
 		</div>
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>

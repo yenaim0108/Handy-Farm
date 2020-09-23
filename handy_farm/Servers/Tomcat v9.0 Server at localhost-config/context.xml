@@ -21,18 +21,6 @@
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
     <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
     <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
-    
-    <Resource
-    	name="jdbc/mariadb"
-    	auth="Container"
-    	type="javax.sql.DataSource"
-    	driverClassName="org.mariadb.jdbc.Driver"
-    	url="jdbc:mariadb://localhost:3306/handyfarm"
-    	username="farmplant"
-    	password="handyfarm"
-    	maxActive="50"
-    	maxWait="1000"
-    />
 
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--

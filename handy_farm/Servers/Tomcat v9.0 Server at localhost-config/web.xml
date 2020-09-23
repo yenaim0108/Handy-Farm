@@ -118,22 +118,7 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    
-    <!-- <servlet>
-    	<servlet-name>HandyFarm</servlet-name>
-    	<servlet-class>com.handyfarm.controller.HandyFarmController</servlet-class>
-    </servlet>
-    <servlet-mapping>
-    	<servlet-name>HandyFarm</servlet-name>
-    	<url-pattern>/handyfarm</url-pattern>
-    </servlet-mapping> -->
-    
-    <resource-ref>
-    	<description>connection</description>
-    	<res-ref-name>jdbc/mariadb</res-ref-name>
-    	<res-type>javax.sql.DataSource</res-type>
-    	<res-auth>Container</res-auth>
-    </resource-ref>
+
 
   <!-- The JSP page compiler and execution servlet, which is the mechanism  -->
   <!-- used by Tomcat to support JSP pages.  Traditionally, this servlet    -->

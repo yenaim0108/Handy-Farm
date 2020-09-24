@@ -14,7 +14,7 @@
 				<img src="../icon/handyfarm_logo.png" alt="handyfarm_logo">
 			</div>
 			<div>
-				<img src="../icon/handyfarm_big.png" alt="handyfarm">
+				<img src="../icon/handyfarm_big.png" style="width: 200px; height: auto;" alt="handyfarm">
 			</div>
 		</div>
 	</body>

@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 		<title>온실 개설</title>
 		<link rel="stylesheet" href="../css/common_ui.css">
-		<link rel="stylesheet" href="../css/gh.css">
+		<link rel="stylesheet" href="../css/main_tab.css">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		
 	</head>
@@ -35,7 +35,7 @@
 		<!-- Nickname -->
 		<!-- textBox Nickname -->
 		<div>
-			<input class ="textBox p-a-sl f-s shadow" type="text" placeholder="수정할 로보 이름" maxlength="5" id="Nickname" alt="Nickname"/>
+			<input class ="textBox p-a-sl f-s b-n shadow" type="text" placeholder="수정할 로보 이름" maxlength="5" id="Nickname" alt="Nickname"/>
 		</div>
 		<!-- textBox Nickname -->
 		
@@ -54,7 +54,7 @@
 		<!-- roboBox -->
 		<!-- DropBox robo : labelBox을 한 이유: 로보 라는 글자가 width가 줄여져도 TextBox 위 왼쪽에 위치 -->
 		<div class="labelBox d-ib">
-		<select class="roboBox p-a-sl f-s d-ib shadow">
+		<select class="roboBox p-a-sl f-s d-ib b-n shadow">
 			<option selected>토마로보</option>
 			<!-- for문 돌릴 부분 -->
 			<option>DB에서 가져온 값</option>

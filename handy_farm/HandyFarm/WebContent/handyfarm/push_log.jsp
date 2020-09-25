@@ -6,8 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
 		<title>알림센터</title>
 		<link rel="stylesheet" href="../css/common_ui.css">
-		<link rel="stylesheet" href="../css/gh.css">
-		<link rel="stylesheet" href="../css/push.css">
+		<link rel="stylesheet" href="../css/main_tab.css">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 		
@@ -27,7 +26,7 @@
 		</div>
 		<!-- title -->
 		<%
-			int count = 4;
+			int count = 3;
 			String[] ctgword = {"growthinfo", "infonotifi", "weathernotifi", "pests"};
 			String ctgname = "";
 			

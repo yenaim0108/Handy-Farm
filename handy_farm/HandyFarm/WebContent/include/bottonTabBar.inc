@@ -1,17 +1,22 @@
 <script>
 	$(document).ready(function(){
-		tmp = location.href.split("?");
-		i = tmp[1];
-		var imgTag = document.getElementsByName("page")[i];	
-		var current = imgTag.getAttribute("value");
+		i = sessionStorage.getItem("current");
 		
-		imgTag.setAttribute("src", "../icon/green_" + current + ".png");
+		if(i != null) {
+			document.getElementsByName("page")[0].setAttribute("src", "../icon/gray_main.png");
+			
+			var imgTag = document.getElementsByName("page")[i];	
+			var current = imgTag.getAttribute("value");
+			
+			imgTag.setAttribute("src", "../icon/green_" + current + ".png");
+		}
 	});
 	
 	function sendPage(i) {
 		var current = document.getElementsByName("page")[i].getAttribute("value");
 		
 		location.href = current + ".do?" + i;
+		sessionStorage.setItem("current", i)
 	}
 </script>		
 	
@@ -19,7 +24,7 @@
 	<ul id="bottomTabBar">
 		<li class="d-ib">
 			<a onclick="sendPage(0);">
-				<img class="d-ib m-x-md" src="../icon/gray_main.png" alt="main" name="page" value="main">
+				<img class="d-ib m-x-md" src="../icon/green_main.png" alt="main" name="page" value="main">
 			</a>
 		</li>
 		<li class="d-ib">

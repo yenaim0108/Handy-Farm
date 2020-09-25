@@ -45,7 +45,7 @@ body {
 
 .wrap {
 	width: 100%;
-	height: -webkit-fill-available;
+	height: 100%;
 	margin: 0;
 	font-size: 18px;
 	overflow-x: hidden;
@@ -80,7 +80,7 @@ footer {
 	height: 80px;
 	background-color: #FFFFFF;
 	border: 1px solid #FFFFFF;
-	border-radius: 5% 5% 0 0 / 25% 25% 0 0;
+	border-radius: 25px 25px 0 0 / 30px 30px 0 0;
 	box-shadow: 0 -5px 15px #CECECE;
 	padding: 0 !important;
 	margin: 0 !important;
@@ -105,7 +105,7 @@ footer {
 	font-weight: bold;
 	width: 150px;
 	height: 45px;
-	border-radius: 15% / 50%;
+	border-radius: 35px / 30px;
 	margin: 0 5px 30px 5px;
 	border: none;
 }
@@ -117,7 +117,7 @@ footer {
 	font-weight: bold;
 	width: 150px;
 	height: 45px;
-	border-radius: 15% / 50%;
+	border-radius: 35px / 30px;
 	margin: 0 5px 30px 5px;
 	border: none;
 }
@@ -139,13 +139,26 @@ footer {
 	font-weight: bold;
 }
 
-.center {
-	text-align: center;
-}
-
 .f-s {
 	font-size:18px;
 }
+
+.t-a-c {
+	text-align: center;
+}
+
+.t-a-l {
+	text-align: left;
+}
+
+.t-a-r {
+	text-align: right;
+}
+
+.b-n {
+	border: none;
+}
+
 .va-m {
 	vertical-align: middle !important;
 }

@@ -34,7 +34,7 @@
 		</li>
 		<li class="d-ib">
 			<a onclick="sendPage(2);">
-				<img class="d-ib m-x-md" src="../icon/gray_tip.png" alt="Tip" name="page" value="tip">
+				<img class="d-ib m-x-md" src="../icon/gray_tip.png" alt="Tip" name="page" value="realInfo">
 			</a>
 		</li>
 		<li class="d-ib">

@@ -42,7 +42,7 @@
 					이산화탄소
 					<div class="d-t m-t">
 						<img class="d-tc" src="../icon/co2.png" alt="co2">
-						<div class="HF-DarkGray d-tc va-m value">123%</div>
+						<div class="HF-DarkGray d-tc va-m value">2단계</div>
 					</div>
 				</div>
 				
@@ -58,7 +58,7 @@
 					일조량
 					<div class="d-t m-t">
 						<img class="d-tc" src="../icon/sunshine.png" alt="sunshine">
-						<div class="HF-DarkGray d-tc va-m value">67%</div>
+						<div class="HF-DarkGray d-tc va-m value">67lx</div>
 					</div>
 				</div>
 				

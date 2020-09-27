@@ -31,7 +31,6 @@ public class HandyFarmController extends HttpServlet {
 		String com = requestURI.substring(contextPath.length()); // 프로젝트와 파일명 출력
 		
 		HandyFarmCommand command = null;
-		HandyFarmCommand command2 = null;
 		String nextPage = null;
 		
 		// 스플래시
@@ -44,6 +43,11 @@ public class HandyFarmController extends HttpServlet {
 			nextPage = "agree.jsp";
 		}
 		
+		// 로그인 화면
+		if (com.equals("/handyfarm/loginUI.do")) {
+			nextPage = "login.jsp";
+		}
+		
 		// 로그인
 		if (com.equals("/handyfarm/login.do")) {
 			command = new HandyFarmLoginCommand();
@@ -51,76 +55,102 @@ public class HandyFarmController extends HttpServlet {
 			nextPage = "login.jsp";
 		}
 		
+		// 회원가입 화면
+		if (com.equals("/handyfarm/signupUI.do")) {
+			nextPage = "signup.jsp";
+		}
+		
 		// 회원가입
 		if (com.equals("/handyfarm/signup.do")) {
 			command = new HandyFarmSignUpCommand();
 			command.execute(request, response);
-			nextPage = "siignup.jsp";
+			nextPage = "signup.jsp";
 		}
 		
-		// 온실 개설
-		if (com.equals("/handyfarm/ghInsert.do")) {
-			command = new HandyFarmGHInsertCommand();
-			command.execute(request, response);
+		// 온실 개설 화면
+		if (com.equals("/handyfarm/ghInsertUI.do")) {
 			nextPage = "gh_insert.jsp";
 		}
 		
-		// 온실 수정
-		if (com.equals("/handyfarm/ghUpdate.do")) {
-			command = new HandyFarmGHUpdateCommand();
-			command.execute(request, response);
-			nextPage = "gh_update.jsp";
-		}
-		
-		// 온실 삭제
-		if (com.equals("/handyfarm/ghDelete.do")) {
-			command = new HandyFarmGHDeleteCommand();
-			command.execute(request, response);
-			nextPage = "gh_delete.jsp";
-		}
-		
-		// 로보 연동_시리얼
-		if (com.equals("/handyfarm/roboSerial.do")) {
-			command = new HandyFarmRoboConnectionCommand();
+		// 온실 개설_회원가입
+		if (com.equals("/handyfarm/ghInsertSignup.do")) {
+			command = new HandyFarmGHInsertCommand();
 			command.execute(request, response);
 			nextPage = "robo_serial.jsp";
 		}
 		
-		// 로보 연동_QR
+		// 로보 연동_시리얼 화면
+		if (com.equals("/handyfarm/roboSerial.do")) {
+			nextPage = "robo_serial.jsp";
+		}
+		
+		// 로보 연동_QR 화면
 		if (com.equals("/handyfarm/roboQR.do")) {
-			command = new HandyFarmRoboConnectionCommand();
-			command.execute(request, response);
 			nextPage = "robo_qr.jsp";
+		}
+		
+		// 로보 등록 화면
+		if (com.equals("/handyfarm/roboInsertUI.do")) {
+			nextPage = "robo_sign_insert.jsp";
 		}
 		
 		// 로보 등록_회원가입
 		if (com.equals("/handyfarm/roboSignInsert.do")) {
 			command = new HandyFarmRoboInsertCommand();
 			command.execute(request, response);
-			nextPage = "robo_sign_insert.jsp";
+			nextPage = "mian.jsp";
+		}
+		
+		// 메인 페이지
+		if (com.equals("/handyfarm/main.do")) {
+			command = new HandyFarmGHSelectAllCommand();
+			command.execute(request, response);
+			nextPage = "main.jsp";
+		}
+		
+		// 온실 수정 화면
+		if (com.equals("/handyfarm/ghUpdateUI.do")) {
+			command = new HandyFarmGHSelectCommand();
+			command.execute(request, response);
+			nextPage = "gh_update.jsp";
+		}
+		
+		// 온실 수정하기
+		if (com.equals("/handyfarm/ghUpdate.do")) {
+			command = new HandyFarmGHUpdateCommand();
+			command.execute(request, response);
+			nextPage = "main.jsp";
+		}
+		
+		// 온실 삭제하기
+		if (com.equals("/handyfarm/ghDelete.do")) {
+			command = new HandyFarmGHDeleteCommand();
+			command.execute(request, response);
+			nextPage = "main.jsp";
+		}
+		
+		// 로보 등록 화면
+		if (com.equals("/handyfarm/roboInsertUI.do")) {
+			nextPage = "robo_insert.jsp";
 		}
 		
 		// 로보 등록
 		if (com.equals("/handyfarm/roboInsert.do")) {
 			command = new HandyFarmRoboInsertCommand();
 			command.execute(request, response);
-			nextPage = "robo_insert.jsp";
+			nextPage = "gh_update.jsp";
+		}
+		
+		// 로보 수정 화면
+		if (com.equals("/handyfarm/roboUpdateUI.do")) {
+			nextPage = "robo_update.jsp";
 		}
 		
 		// 로보 수정
 		if (com.equals("/handyfarm/roboUpdate.do")) {
 			command = new HandyFarmRoboUpdateCommand();
 			command.execute(request, response);
-			nextPage = "robo_update.jsp";
-		}
-		
-		// 메인 페이지
-		if (com.equals("/handyfarm/main.do")) {
-			command = new HandyFarmWeatherCommand();
-			command.execute(request, response);
-			command2 = new HandyFarmGHSelectCommand();
-			command2.execute(request, response);
-			nextPage = "main.jsp";
+			nextPage = "gh_update.jsp";
 		}
 		
 		// 알림 센터
@@ -170,11 +200,16 @@ public class HandyFarmController extends HttpServlet {
 			nextPage = "calendar_who.jsp";
 		}
 		
+		// 일정 등록 화면
+		if (com.equals("/handyfarm/calendarInsertUI.do")) {
+			nextPage = "calendar_insert.jsp";
+		}
+		
 		// 일정 등록
 		if (com.equals("/handyfarm/calendarInsert.do")) {
 			command = new HandyFarmCalendarInsertCommand();
 			command.execute(request, response);
-			nextPage = "calendar_insert.jsp";
+			nextPage = "calendar.jsp";
 		}
 		
 		// 로보일정_온실선택
@@ -191,17 +226,13 @@ public class HandyFarmController extends HttpServlet {
 			nextPage = "calendar_crop.jsp";
 		}
 		
-		// 어떤 일정?
-		if (com.equals("/handyfarm/calendarWhat.do")) {
-			command = new HandyFarmCalendarInsertCommand();
-			command.execute(request, response);
+		// 어떤 일정? 화면
+		if (com.equals("/handyfarm/calendarWhatUI.do")) {
 			nextPage = "calendar_what.jsp";
 		}
 		
-		// 수확량 등록
-		if (com.equals("/handyfarm/calendarYield.do")) {
-			command = new HandyFarmCalendarInsertCommand();
-			command.execute(request, response);
+		// 수확량 등록 화면
+		if (com.equals("/handyfarm/calendarYieldUI.do")) {
 			nextPage = "calendar_yield.jsp";
 		}
 		
@@ -265,9 +296,15 @@ public class HandyFarmController extends HttpServlet {
 			command.execute(request, response);
 			nextPage = "push.jsp";
 		}
+		
+		// 알림 관리 수정
+		if (com.equals("/handyfarm/pushUpdate.do")) {
+			command = new HandyFarmPushUpdateCommand();
+			command.execute(request, response);
+			nextPage = "setting.jsp";
+		}
 				
 		RequestDispatcher dis = request.getRequestDispatcher(nextPage);
 		dis.forward(request, response);
 	}
-
 }

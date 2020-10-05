@@ -7,6 +7,6 @@ public class HandyFarmAgreeCommand implements HandyFarmCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("Java Network Programming");
+		
 	}
 }

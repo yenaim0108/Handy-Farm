@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 
 import com.handyfarm.entity.HandyFarmDTO;
 
-
 public class HandyFarmDAO {
 	// 데이터베이스 연결 정보
 	DataSource ds;
@@ -28,7 +27,7 @@ public class HandyFarmDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
 	//roboinsert
 	
 	public void roboinsert(String _robo_serial, String _robo_img, String _robo_nickname, String _cultivar_number, String _gh_id, String _phone_number) {
@@ -59,17 +58,15 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		}
-	}
-	//roboinsert end
+	}//roboinsert end
 	
 	//cultivar_select
-	public ArrayList<HandyFarmDTO> cultivar_list() {
-	
+	public ArrayList<HandyFarmDTO> cultivar_list(){
 		ArrayList<HandyFarmDTO> cultivar_list = new ArrayList<HandyFarmDTO> ();
 		
 		try {
 			con = ds.getConnection();
-			
+			System.out.println("con = " + con);
 			String query = "SELECT crops_name FROM crops";
 			pstmt = con.prepareStatement(query);
 			rs = pstmt.executeQuery();
@@ -97,6 +94,28 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		}
+		System.out.println(cultivar_list);
+		return cultivar_list;
 	}
-	//cultivar_select
+	//cultivar_select end
+
+	// 생장 정보 가져오기
+	public  HandyFarmDTO growth(String _gh_id, String _cultivar_number) {
+		HandyFarmDTO data = new HandyFarmDTO();
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		return data;
+	} // end growth
 }

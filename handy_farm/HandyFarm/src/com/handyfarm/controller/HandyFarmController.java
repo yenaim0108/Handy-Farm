@@ -131,9 +131,11 @@ public class HandyFarmController extends HttpServlet {
 		
 		// 로보 등록 화면
 		if (com.equals("/handyfarm/roboInsertUI.do")) {
+			command = new HandyFarmRoboInsertUICommand();
+			command.execute(request, response);
 			nextPage = "robo_insert.jsp";
 		}
-		
+				
 		// 로보 등록
 		if (com.equals("/handyfarm/roboInsert.do")) {
 			command = new HandyFarmRoboInsertCommand();

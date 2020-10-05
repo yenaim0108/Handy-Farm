@@ -1,5 +1,6 @@
 package com.handyfarm.service;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,5 +19,6 @@ public class HandyFarmRoboInsertCommand implements HandyFarmCommand {
 		
 		HandyFarmDAO dao = new HandyFarmDAO();
 		dao.roboinsert(robo_serial, robo_img, robo_nickname, cultivar_number, gh_id, phone_number);
+		
 	}
 }

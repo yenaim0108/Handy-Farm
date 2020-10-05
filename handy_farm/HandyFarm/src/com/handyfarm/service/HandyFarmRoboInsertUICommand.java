@@ -1,21 +1,23 @@
 package com.handyfarm.service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.handyfarm.dao.HandyFarmDAO;
 import com.handyfarm.entity.HandyFarmDTO;
 
-public class HandyFarmGrowthCommand implements HandyFarmCommand {
+public class HandyFarmRoboInsertUICommand implements HandyFarmCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		String gh_id = request.getParameter("gh_id");
-		String cultivar_number = request.getParameter("cultivar_number");
-		
 		HandyFarmDAO dao = new HandyFarmDAO();
-		HandyFarmDTO data = dao.growth(gh_id, cultivar_number);
+
+		//DB에 접근해서 list 메서드 호출
+		ArrayList<HandyFarmDTO> cultivar_list = dao.cultivar_list();
 		
-		request.setAttribute("growth", data);
+		request.setAttribute("cultivar_list", cultivar_list);
+		System.out.println(cultivar_list);
 	}
 }

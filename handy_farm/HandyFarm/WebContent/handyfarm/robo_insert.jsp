@@ -21,10 +21,11 @@
 			<select class="roboBox p-a-sl f-s d-ib b-n shadow" name="cultivar_number">
 				<option selected>-</option>
 				<!-- cultivar list 출력 -->
-				<c:forEach var="cultivar" items="${cultivarlist}" varStatus="status">
-					<option value="<c:out value = "${crops_name}"/>"> </option>
+				<c:forEach var="cultivar" items="${cultivar_list}" varStatus="status">
+					<option value="<c:out value = "${cultivar_list}"/>"> </option>
 				</c:forEach>
 				<!-- cultivar list 출력 -->
+				
 			</select>
 			온실: <input type="text" name="gh_id">
 			<!-- 일단 휴대폰 번호 입력으로 했고 나중에 세션으로 받을 예정 -->

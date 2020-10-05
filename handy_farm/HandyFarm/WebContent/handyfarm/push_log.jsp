@@ -25,6 +25,7 @@
 			알림센터
 		</div>
 		<!-- title -->
+		<!-- push_list -->
 		<%
 			int count = 3;
 			String[] ctgword = {"growthinfo", "infonotifi", "weathernotifi", "pests"};
@@ -34,7 +35,7 @@
 			for(int i=0; i<count; i++ ) {
 		
 		%>
-		<!-- push_list -->
+		
 		<div class="pushBox p-a-sl shadow t-a-l">
 			<div class="d-ib pushintitle p-t-sl p-l-sl">
 			토마토 내부 온도가 올라갔어요!!<br>2020-03-01

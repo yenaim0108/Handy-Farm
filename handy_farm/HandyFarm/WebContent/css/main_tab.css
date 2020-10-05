@@ -21,7 +21,12 @@
 
 .LogoBox {
 	width:230px;
-	margin-left:70px;
+	height: auto;
+}
+
+.Logo-img-m-l{
+	margin-left: 90px;
+	display: inline-block;
 }
 
 .Logo-img {
@@ -108,15 +113,12 @@
 	margin-top:40px;
 }
 
-<!-- push -->
-
-
 .f-l {
 	float: left;
 	align: left;
 }
 
-.pushBox{
+.pushBox {
 	width: 330px;
 	height: 60px;
 	background-color: #FFFFFF;
@@ -162,4 +164,11 @@
 
 .pests {
 	background-color: #ff3640;
+}
+
+.mainlist {
+	width: 410px;
+	height : (100%-200px);
+	overflow-y: auto;
+	background-color: #ffffff;
 }

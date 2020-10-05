@@ -4,4 +4,6 @@
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
+<fullyQualifiedTypeName name="com.handyfarm.dao.HandyFarmDAO"/>
+<fullyQualifiedTypeName name="com.handyfarm.entity.HandyFarmDTO"/>
 </qualifiedTypeNameHistroy>

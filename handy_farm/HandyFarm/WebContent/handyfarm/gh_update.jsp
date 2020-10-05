@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-		<title>온실 개설</title>
+		<title>온실 수정</title>
 		<link rel="stylesheet" href="../css/common_ui.css">
 		<link rel="stylesheet" href="../css/main_tab.css">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>

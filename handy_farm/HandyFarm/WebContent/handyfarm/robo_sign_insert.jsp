@@ -11,7 +11,10 @@
 	</head>
 	<body>
 		<div class="wrap">
+
+			<!-- 값 받아오기 -->
 			
+			<!-- 값 받아오기 -->
 		</div>
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>

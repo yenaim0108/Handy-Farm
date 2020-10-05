@@ -13,16 +13,24 @@
 		<div class="wrap">
 			
 			<!-- 로고 -->
-			<div class="LogoBox d-ib">
-				<img class="Logo-img d-ib" src="../icon/handyfarm_white.png" alt="Logo" >
+			<div class="Logo-img-m-l">
+				<img class="Logo-img LogoBox d-ib" src="../icon/handyfarm_white.png" alt="Logo" >
 			</div>
 			<!-- 로고 -->
 			
 			<!-- push_log_icon -->
 			<div class="d-ib push_log" onclick="location.href='push_log.jsp'">
-				<img class="ud-img p-b-s m-l-sl" src="../icon/notification.png" alt="push_log"/>
+				<img class="ud-img p-b-sl m-l-lg" src="../icon/notification.png" alt="push_log"/>
 			</div>
 			<!-- push_log_icon -->
+			
+			<!-- mainlist -->
+			<div class="mainlist">
+				
+			
+			
+			</div>
+			<!-- mainlist -->
 			
 		</div>
 		<!-- footer -->

@@ -12,8 +12,8 @@ import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 public class Subscriber {
 
 	private static String userName = "PahoExample_Subcriber";
-	private static String brokerUrl = "tcp://localhost:1883";
-	private static String topicName = "mood";
+	private static String brokerUrl = "tcp://192.168.0.2:1883";
+	private static String topicName = "rx9simple";
 	
 	
 	public static void main(String[] args) throws Exception{

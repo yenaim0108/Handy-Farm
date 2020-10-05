@@ -124,6 +124,11 @@ public class HandyFarmDTO {
 	String push_category;               // 푸시 알림 이력 - 푸시 알림 분류
 	boolean read_status;                // 푸시 알림 이력 - 읽음 상태
 	
+	// 기본생성자
+	public HandyFarmDTO() {
+		super();
+	}
+	
 	// 매개변수 생성자
 	public HandyFarmDTO(String phone_number, String token, String latitude, String longitude, String gh_id,
 			String gh_img, String gh_nickname, String robo_serial, String robo_img, String robo_nickname,

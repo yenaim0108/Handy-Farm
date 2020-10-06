@@ -34,7 +34,7 @@ public class HandyFarmDAO {
 		try {
 			con = ds.getConnection();
 			String query="insert into board(robo_serial, robo_img, robo_nickname, cultivar_number, gh_id, phone_number)" +
-			"values(?,?,?,?,?,?)";
+			"values (?,?,?,?,?,?)";
 			
 			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, _robo_serial);
@@ -66,13 +66,12 @@ public class HandyFarmDAO {
 		
 		try {
 			con = ds.getConnection();
-			System.out.println("con = " + con);
 			String query = "SELECT crops_name FROM crops";
 			pstmt = con.prepareStatement(query);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String crops_name = rs.getString("crops_name");
+				String crops_name = rs.getString(0);
 				
 				//데이터 객체 생성
 				HandyFarmDTO data = new HandyFarmDTO();

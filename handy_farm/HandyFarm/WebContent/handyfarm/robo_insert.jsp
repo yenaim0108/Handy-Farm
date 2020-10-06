@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.handyfarm.dao.HandyFarmDAO" %>
+<%@ page import="com.handyfarm.entity.HandyFarmDTO" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,17 +16,25 @@
 	<body>
 		<div class="wrap">
 			<!-- 값 -->
-			<form action="write.do" method="post">
+			<form action="roboinsert.do" method="post">
 			시리얼번호: <input type="text" name="robo_serial">
 			이미지 경로:<input type="text" name="robo_img">
 			별명: <input type="text" name="robo_nickname">
-			농작물:
-			<select class="roboBox p-a-sl f-s d-ib b-n shadow" name="cultivar_number">
-				<option selected>-</option>
+			농작물:<input type="text" name="crops_name">
+<!-- 			<select class="roboBox p-a-sl f-s d-ib b-n shadow" name="cultivar_number">
+				<option selected>-</option> -->
 				<!-- cultivar list 출력 -->
+<%-- 				<%
+				HandyFarmDAO dao = new HandyFarmDAO();
+				ArrayList<HandyFarmDTO> cultivar_list = dao.cultivar_list();
+				
+				request.setAttribute("cultivar_list", cultivar_list);
+				System.out.println(cultivar_list);
+				%>
 				<c:forEach var="cultivar" items="${cultivar_list}" varStatus="status">
-					<option value="<c:out value = "${cultivar_list}"/>"> </option>
-				</c:forEach>
+					<option value="<c:out value = "${cultivar_list}"/>">${cultivar_list} </option>
+				</c:forEach> --%>
+				
 				<!-- cultivar list 출력 -->
 				
 			</select>

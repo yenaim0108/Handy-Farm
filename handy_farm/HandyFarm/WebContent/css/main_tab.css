@@ -68,9 +68,34 @@
 }
 
 .textBox {
-	width: 245px;
-	height: 26px;
+	width: 235px;
+	height: 46px;
 	border-radius: 30px 30px;
+	color: #707070;
+}
+
+select {
+	width: 285px;
+	height: 46px;
+	border-radius: 30px 30px;	
+	background: url('../icon/dropbox_arrow.png') no-repeat 90% 50%;
+	background-size: 18px auto;
+	background-color: #FFFFFF;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	margin: 0 auto;
+	color: #707070;
+	font-size: 17px;
+	font-weight: bold;
+}
+
+select::-ms-expand {
+	display: none;
+}
+
+select:focus {
+	outline: none;
 }
 
 .labelBox {
@@ -90,9 +115,17 @@
 
 .okBox {
 	width: 127px;
-	height: 45px;
-	border-radius: 17% / 50%;
+	height: 46px;
+	border-radius: 30px / 30px;
 	margin: 0 5px 0px 10px;
+}
+
+.signup-complete {
+	width: 285px;
+	height: 46px;
+	border-radius: 30px / 30px;
+	background-color: #22AA4D;
+	color: #FFFFFF;
 }
 
 .ud-img {

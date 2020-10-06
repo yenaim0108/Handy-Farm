@@ -1,11 +1,13 @@
 import urllib.request
 from bs4 import BeautifulSoup
 import time
-import datetime
+from datetime import date
+import sys
 
 # 페이지 종료 처리를 위한 마지막 내용 클래스 초기화
 oldmsg = BeautifulSoup("", 'html.parser')
 
+today = date.today()
 item = 1
 # item = 180
 while True:
@@ -14,11 +16,9 @@ while True:
         # url = 'https://search.naver.com/search.naver?where=article&ie=utf8&query=%ED%86%A0%EB%A7%88%ED%86%A0+%EB%B3%91%EC%B6%A9%ED%95%B4&prdtype=0&t=0&st=date&date_option=4&date_from=20200628000000&date_to=20200924235959&srchby=text&dup_remove=1&cafe_url=&without_cafe_url=&board=&sm=tab_pge&nso=so:dd,p:6m,a:all&start='
 
         # 검색 시작일과 종료일을 주고 검색, 출력은 최신순으로 Naver에서 하므로, 별도의 sort 필요없음.
-        today = datetime.datetime.now()
-        start = today - datetime.timedelta(days=60)
-
-        Start_date = (str(start.year) + '.' + str(start.month) + '.' + str(start.day));
-        End_date = (str(today.year) + '.' + str(today.month) + '.' + str(today.day));
+        now = datetime.now()
+        Start_date = '2020.07.01'
+        End_date = (str(today.year) + '.' + str(today.month) + '.' + str(today.day))
 
         url = 'https://search.naver.com/search.naver?sm=tab_hty.top&where=article&query=%ED%86%A0%EB%A7%88%ED%86%A0+%EB%B3%91%EC%B6%A9%ED%95%B4&oquery=%ED%86%A0%EB%A7%88%ED%86%A0+%EB%B3%91%EC%B6%A9%ED%95%B4&tqi=U2XLvdp0YidssKp64UlssssstXZ-520687&nso=so%3Add%2Cp%3Afrom20200701to20200924%2Ca%3Aall&date_from=' \
               + Start_date + '&date_option=6&date_to=' + End_date + '&dup_remove=1&prdtype=0&srchby=text&st=date&start='

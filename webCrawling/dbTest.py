@@ -1,17 +1,17 @@
  # -*- coding:utf-8 -*-
-import   MySQLdb
+import MySQLdb
 
 try :
     
-    db = MySQLdb.connect(db="test", host="127.0.0.1", user="root", passwd="s218210050")
+    db = MySQLdb.connect(db="handyfarm", host="127.0.0.1", user="root", passwd="s218210050", charset="utf8")
+    cur = db.cursor()
 
-    cs = db.cursor()
 
-    cs.execute("select count(*) from tbl")
+    query = "select * from real_time_info"
+    cur.execute(query)
+    data = cur.fetchall()
 
-    data = cs.fetchall()
-
-    print (data)
+    print(data)
 
 except  MySQLdb.Error as err :
-    print (err)
+    print(err)

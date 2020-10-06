@@ -12,12 +12,18 @@
 	<body>
 		<div class="wrap">
 			<!-- title -->
-			<div class="title">토마온실</div>
+			<div class="title">
+			 	토마온실
+			</div>
 			<!-- // title -->
 			
 			<!-- pageBtn -->
-			<button class="sel-pageBtn shadow d-ib">생장</button>
-			<button class="unsel-pageBtn shadow d-ib">분석</button>
+			<button class="sel-pageBtn shadow d-ib">
+				생장
+			</button>
+			<button class="unsel-pageBtn shadow d-ib">
+				분석
+			</button>
 			<!-- // pageBtn -->
 			
 			<!-- contents -->

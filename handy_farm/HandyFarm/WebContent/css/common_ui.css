@@ -57,6 +57,10 @@ button:focus {
 	outline: none;
 }
 
+input:focus {
+	outline: none;
+}
+
 footer ul li {
 	list-style: none;
 }
@@ -73,6 +77,12 @@ footer {
     right: 0;
     bottom: 0;
     height:80px;
+}
+
+input::placeholder {
+	font-size: 17px;
+	font-weight: bold;
+	color: #D1D1D1;
 }
 
 #bottomTabBar {
@@ -129,9 +139,9 @@ footer {
 	font-size: 17px;
 	font-weight: bold;
 	width: 127px;
-	height: 45px;
+	height: 46px;
 	border: 2px solid #22AA4D;
-	border-radius: 17% / 50%;
+	border-radius: 30px / 30px;
 	margin-top:10px;
 	margin: 0 auto;
 }

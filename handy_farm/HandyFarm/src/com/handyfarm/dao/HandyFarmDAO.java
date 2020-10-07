@@ -33,8 +33,8 @@ public class HandyFarmDAO {
 	public void roboinsert(String _robo_serial, String _robo_img, String _robo_nickname, String _cultivar_number, String _gh_id, String _phone_number) {
 		try {
 			con = ds.getConnection();
-			String query="insert into board(robo_serial, robo_img, robo_nickname, cultivar_number, gh_id, phone_number)" +
-			"values (?,?,?,?,?,?)";
+			String query="INSERT INTO robo(robo_serial, robo_img, robo_nickname, cultivar_number, gh_id, phone_number)" +
+			"VALUES (?,?,?,?,?,?)";
 			
 			pstmt=con.prepareStatement(query);
 			pstmt.setString(1, _robo_serial);
@@ -66,16 +66,19 @@ public class HandyFarmDAO {
 		
 		try {
 			con = ds.getConnection();
-			String query = "SELECT crops_name FROM crops";
+			
+			
+			String query = "SELECT crops_name, cultivar_number FROM crops";
 			pstmt = con.prepareStatement(query);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				String crops_name = rs.getString(0);
-				
+				String crops_name = rs.getString("crops_name");
+				String cultivar_number = rs.getString("cultivar_number");
 				//데이터 객체 생성
 				HandyFarmDTO data = new HandyFarmDTO();
 				data.setCrops_name(crops_name);
+				data.setCultivar_number(cultivar_number);
 				//리스트 값 추가
 				cultivar_list.add(data);
 			}

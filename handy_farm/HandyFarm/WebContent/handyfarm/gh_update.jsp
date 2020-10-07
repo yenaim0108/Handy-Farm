@@ -11,6 +11,11 @@
 		
 	</head>
 	<body>
+	<form method="post" name="form">
+	<!-- 온실 아이디만 넘길 겸 쓴다 -->
+	<input type="hidden" name="gh_id" value="gh-12345678-001"/>
+	<!-- 온실 아이디만 넘길 겸 쓴다 -->
+	
 		<div class="wrap">
 		<!-- title -->
 		<div class="title_gh_rb">
@@ -44,7 +49,7 @@
 		로보
 		</div>
 		<div class="labelsetting d-ib">
-		<button class="HF-Green b-n f-s HF-back" value="robo_insert" onclick="location.href='robo_insert.do'" >로보 등록</button>
+		<input type="submit" class="HF-Green b-n f-s HF-back" value="로보 등록" formaction=roboInsertUI.do >
 		</div>
 		
 		<!-- 한칸 띄우기 -->
@@ -57,7 +62,7 @@
 		<select class="roboBox p-a-sl f-s d-ib b-n shadow">
 			<option selected>토마로보</option>
 			<!-- for문 돌릴 부분 -->
-			<option>DB에서 가져온 값</option>
+			<option>토마온실</option>
 			<!-- for문 돌릴 부분 -->
 		</select>
 		</div>
@@ -88,7 +93,7 @@
 		확인
 		</button>
 		<!-- ok button -->
-		
+	</form>
 		
 		
 		</div>

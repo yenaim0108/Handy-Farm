@@ -140,7 +140,7 @@ public class HandyFarmController extends HttpServlet {
 		if (com.equals("/handyfarm/roboInsert.do")) {
 			command = new HandyFarmRoboInsertCommand();
 			command.execute(request, response);
-			nextPage = "gh_update.jsp";
+			nextPage = "main.jsp";
 		}
 		
 		// 로보 수정 화면

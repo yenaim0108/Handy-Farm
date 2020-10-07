@@ -12,8 +12,8 @@ public class HandyFarmRoboInsertUICommand implements HandyFarmCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
+		
 		HandyFarmDAO dao = new HandyFarmDAO();
-
 		//DB에 접근해서 list 메서드 호출
 		ArrayList<HandyFarmDTO> cultivar_list = dao.cultivar_list();
 		

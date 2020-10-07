@@ -11,6 +11,10 @@
 	</head>
 	<body>
 		<div class="wrap">
+		<%
+			session.setAttribute("sign_up","0");
+			String phone_number = (String)session.getAttribute("sign_up");
+		%>
 			
 		</div>
 	</body>

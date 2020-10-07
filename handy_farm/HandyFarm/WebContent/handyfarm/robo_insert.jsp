@@ -16,34 +16,25 @@
 	<body>
 		<div class="wrap">
 			<!-- 값 -->
-			<form action="roboinsert.do" method="post">
+			<form method="post">
+			<%
+			session.setAttribute("phone_number","01012345678");
+			String phone_number = (String)session.getAttribute("phone_number");
+			System.out.println(phone_number);
+			 %>
+			<%
+			String robo_serial = request.getParameter("robo_serial");
+			%>
 			시리얼번호: <input type="text" name="robo_serial">
 			이미지 경로:<input type="text" name="robo_img">
-			별명: <input type="text" name="robo_nickname">
-			농작물:<input type="text" name="crops_name">
-<!-- 			<select class="roboBox p-a-sl f-s d-ib b-n shadow" name="cultivar_number">
-				<option selected>-</option> -->
-				<!-- cultivar list 출력 -->
-<%-- 				<%
-				HandyFarmDAO dao = new HandyFarmDAO();
-				ArrayList<HandyFarmDTO> cultivar_list = dao.cultivar_list();
-				
-				request.setAttribute("cultivar_list", cultivar_list);
-				System.out.println(cultivar_list);
-				%>
-				<c:forEach var="cultivar" items="${cultivar_list}" varStatus="status">
-					<option value="<c:out value = "${cultivar_list}"/>">${cultivar_list} </option>
-				</c:forEach> --%>
-				
-				<!-- cultivar list 출력 -->
-				
-			</select>
-			온실: <input type="text" name="gh_id">
-			<!-- 일단 휴대폰 번호 입력으로 했고 나중에 세션으로 받을 예정 -->
-			휴대폰번호: <input type="text" name="phone_number">
+			<%
+			String gh_id = request.getParameter("gh_id");
+			System.out.println(gh_id);
+			%>
+			<input type="hidden" name="gh_id" value=<%=gh_id%>>
+			<input type="hidden" name="phone_number" value=<%=phone_number%>>
 			<br>
-			<input type="submit" value="확인">
-			</form>
+			
 			<!-- 값 -->
 			<!-- title -->
 			<div class="title_gh_rb">
@@ -68,7 +59,7 @@
 			<!-- Nickname -->
 			<!-- textBox Nickname -->
 			<div class="m-0-a">
-				<input class ="textBox b-n shadow p-x-ml" type="text" maxlength="8" id="Nickname" placeholder="별명을 입력해주세요."/>
+				<input class ="textBox b-n shadow p-x-ml" type="text" maxlength="8" id="Nickname" placeholder="별명을 입력해주세요." name="robo_nickname"/>
 			</div>
 			<!-- textBox Nickname -->
 			<!-- Crops -->
@@ -77,9 +68,18 @@
 			</div>
 			<!-- Crops -->
 			<!-- DropBox Crops-->
-			<select class="p-x-ml d-b b-n shadow">
+			<select name="cultivar_number" class="p-x-ml d-b b-n shadow">
 				<option value="">농작물을 선택해주세요.</option>
-				<option value="tomato">토마토</option>
+				<%
+				HandyFarmDAO dao = new HandyFarmDAO();
+				ArrayList<HandyFarmDTO> cultivar_list = dao.cultivar_list();
+				
+				request.setAttribute("cultivar_list", cultivar_list);
+				System.out.println(cultivar_list);
+				%>
+				<c:forEach var="cultivar" items="${cultivar_list}" varStatus="status">
+					<option value="${cultivar.cultivar_number}"> ${cultivar.crops_name} </option>
+				</c:forEach>
 			</select>
 			<!-- DropBox Crops -->
 			<!-- cancel button -->
@@ -88,13 +88,13 @@
 			</button>
 			<!-- cancel button -->
 			<!-- ok button -->
-			<button class="d-ib sel-pageBtn okBox m-t-40">
-				확인
-			</button>
+			<input type="submit" class="d-ib sel-pageBtn okBox m-t-40"  value="확인" formaction=roboInsert.do>
 			<!-- ok button -->
+			</form>
 		</div>
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>
 		<!-- //footer -->
+		
 	</body>
 </html>

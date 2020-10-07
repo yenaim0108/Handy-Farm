@@ -11,7 +11,20 @@
 	</head>
 	<body>
 		<div class="wrap">
+			<!-- title -->
+			<div class="title">
+			 	토마온실
+			</div>
+			<!-- // title -->
 			
+			<!-- pageBtn -->
+			<button class="unsel-pageBtn shadow d-ib" onclick="location.href='growth.do'">
+				생장
+			</button>
+			<button class="sel-pageBtn shadow d-ib" onclick="location.href='analysis.do'">
+				분석
+			</button>
+			<!-- // pageBtn -->
 		</div>
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>

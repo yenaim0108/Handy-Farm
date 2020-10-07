@@ -124,6 +124,10 @@ public class HandyFarmDTO {
 	String push_category;               // 푸시 알림 이력 - 푸시 알림 분류
 	boolean read_status;                // 푸시 알림 이력 - 읽음 상태
 	
+	// 기타
+	String sensor_name;
+	String sensor_unit;
+	
 	// 기본생성자
 	public HandyFarmDTO() {
 		super();
@@ -964,5 +968,21 @@ public class HandyFarmDTO {
 
 	public void setRead_status(boolean read_status) {
 		this.read_status = read_status;
+	}
+
+	public String getSensor_name() {
+		return sensor_name;
+	}
+
+	public void setSensor_name(String sensor_name) {
+		this.sensor_name = sensor_name;
+	}
+
+	public String getSensor_unit() {
+		return sensor_unit;
+	}
+
+	public void setSensor_unit(String sensor_unit) {
+		this.sensor_unit = sensor_unit;
 	}
 }

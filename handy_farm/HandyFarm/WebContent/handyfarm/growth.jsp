@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -13,68 +15,31 @@
 		<div class="wrap">
 			<!-- title -->
 			<div class="title">
-			 	토마온실
+			 	${ gh_name }
 			</div>
 			<!-- // title -->
 			
 			<!-- pageBtn -->
-			<button class="sel-pageBtn shadow d-ib">
+			<button class="sel-pageBtn shadow d-ib" onclick="location.href='growth.do'">
 				생장
 			</button>
-			<button class="unsel-pageBtn shadow d-ib">
+			<button class="unsel-pageBtn shadow d-ib" onclick="location.href='analysis.do'">
 				분석
 			</button>
 			<!-- // pageBtn -->
 			
 			<!-- contents -->
 			<div>
-				<div class="growthBox d-ib shadow">
-					온도
-					<div class="d-t m-t">
-						<img class="d-tc" src="../icon/temperature.png" alt="temperature">
-						<div class="HF-DarkGray d-tc va-m value">30℃</div>
+				<c:forEach	items="${ growth }" var="dto">
+					<div class="growthBox d-ib shadow">
+						${ dto.sensor_name }
+						<div class="d-t m-t">
+							<img class="d-tc" src="../icon/${ dto.sensor_type }.png" alt="${ dto.sensor_type }">
+							<fmt:parseNumber var="sensor_value" integerOnly="true" value="${ dto.sensor_value }" />
+							<div class="HF-DarkGray d-tc va-m value">${ sensor_value }${ dto.sensor_unit }</div>
+						</div>
 					</div>
-				</div>
-				
-				<div class="growthBox d-ib shadow">
-					습도
-					<div class="d-t m-t">
-						<img class="d-tc" src="../icon/humidity.png" alt="humidity">
-						<div class="HF-DarkGray d-tc va-m value">60%</div>
-					</div>
-				</div>
-				
-				<div class="growthBox d-ib shadow">
-					이산화탄소
-					<div class="d-t m-t">
-						<img class="d-tc" src="../icon/co2.png" alt="co2">
-						<div class="HF-DarkGray d-tc va-m value">2단계</div>
-					</div>
-				</div>
-				
-				<div class="growthBox d-ib shadow">
-					토양수분도
-					<div class="d-t m-t">
-						<img class="d-tc" src="../icon/soil-moisture.png" alt="soil-moisture">
-						<div class="HF-DarkGray d-tc va-m value">40%</div>
-					</div>
-				</div>
-				
-				<div class="growthBox d-ib shadow">
-					일조량
-					<div class="d-t m-t">
-						<img class="d-tc" src="../icon/sunshine.png" alt="sunshine">
-						<div class="HF-DarkGray d-tc va-m value">67lx</div>
-					</div>
-				</div>
-				
-				<div class="growthBox d-ib shadow">
-					수확 가능 비율
-					<div class="d-t m-t">
-						<img class="d-tc" src="../icon/harvestable.png" alt="harvestable">
-						<div class="HF-DarkGray d-tc va-m value">33%</div>
-					</div>
-				</div>
+				</c:forEach>
 			</div>
 			<!-- // contents -->
 		</div>

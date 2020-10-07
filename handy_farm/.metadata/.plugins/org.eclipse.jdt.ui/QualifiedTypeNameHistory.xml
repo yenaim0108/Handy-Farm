@@ -6,5 +6,6 @@
 <fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.handyfarm.entity.HandyFarmDTO"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="com.handyfarm.dao.HandyFarmDAO"/>
 </qualifiedTypeNameHistroy>

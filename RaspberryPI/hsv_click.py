@@ -61,11 +61,11 @@ def mouse_callback(event, x, y, flags, param):
         print("@2", lower_blue2, "~", upper_blue2)
         print("@3", lower_blue3, "~", upper_blue3)
 
-cv2.namedWindow('img_color')
+# cv2.namedWindow('img_color', cv2.WINDOW_NORMAL)
 cv2.setMouseCallback('img_color', mouse_callback)
 
 while(True):
-    img_color = cv2.imread('.\\tomato\\tomato81.jpg')
+    img_color = cv2.imread('cmask.jpg')
     height, width = img_color.shape[:2]
 
     # 원본 영상을 HSV 영상으로 변환합니다.
@@ -82,6 +82,10 @@ while(True):
 
     # 마스크 이미지로 원본 이미지에서 범위값에 해당되는 영상 부분을 획득합니다.
     img_result = cv2.bitwise_and(img_color, img_color, mask=img_mask)
+
+
+    # cv2.namedWindow('img_mask', cv2.WINDOW_NORMAL)
+    # cv2.namedWindow('img_result', cv2.WINDOW_NORMAL)
 
     cv2.imshow('img_color', img_color)
     cv2.imshow('img_mask', img_mask)

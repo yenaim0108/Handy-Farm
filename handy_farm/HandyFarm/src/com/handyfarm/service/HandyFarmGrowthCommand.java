@@ -20,10 +20,10 @@ public class HandyFarmGrowthCommand implements HandyFarmCommand {
 		HandyFarmDAO dao = new HandyFarmDAO();
 		
 		// 온실 이름 가져오기
-		String gh_name = dao.getGHName(gh_id);
+		String gh_name = dao.getGHName("gh-62892166-001");
 		
 		// DB에 접근 growth 메서드를 호출 -> 결과물
-		ArrayList<HandyFarmDTO> list = dao.growth(gh_id, cultivar_number);
+		ArrayList<HandyFarmDTO> list = dao.growth("gh-62892166-001", "tomato");
 		// request 영역 속성값을 설정 -> 키, 값
 		request.setAttribute("growth", list);
 		request.setAttribute("gh_name", gh_name);

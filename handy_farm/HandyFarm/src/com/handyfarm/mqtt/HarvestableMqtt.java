@@ -40,10 +40,8 @@ public class HarvestableMqtt {
 				String serial = msg[0]; // 시리얼 번호 저장
 				float harvestable = Float.parseFloat(msg[1]); // 수확 가능 비율 저장
 				
-				System.out.println(msg);
 				// DB 연결
 				HandyFarmDAO dao = new HandyFarmDAO();
-				System.out.println("asd");
 
 				// harvestable 테이블에 데이터 넣기
 				dao.insertHarvestable(time, serial, harvestable);

@@ -18,16 +18,17 @@ public class HandyFarmDAO {
 	ResultSet rs = null;
 		
 	// DB 연결하는 기본 생성자
-	public HandyFarmDAO() {
-		System.out.println("db");
+	public HandyFarmDAO() { // jsp 단위 DB 연결
 		try {
 			Context ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mariadb");
-//			System.out.println("hey");
-//			Class.forName ("org.mariadb.jdbc.Driver");
-//			con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/handyfarm", "farmplant", "handyfarm");
 		} catch(Exception e) {
-			e.printStackTrace();
+			try { // java 단위 DB 연결
+				Class.forName ("org.mariadb.jdbc.Driver");
+				con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/handyfarm", "farmplant", "handyfarm");
+			} catch(Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 	}
 	
@@ -119,9 +120,6 @@ public class HandyFarmDAO {
 		String hms = sdf.format(time);
 		
 		try {
-			// DB 연결
-			con = ds.getConnection();
-			
 			// 로보가 속한 품종번호, 온실 ID, 휴대폰 번호 가져오는 sql문
 			String query = "SELECT cultivar_number, gh_id, phone_number " + 
 						   "FROM robo " + 
@@ -141,7 +139,6 @@ public class HandyFarmDAO {
 				
 				// 로보 시리얼 번호 뒷 8자리 가져오기
 				robo = serial.substring(serial.length() - 8, serial.length());
-				System.out.println(robo + ", " + hms);
 			}
 			
 			// harvestable 테이블에 데이터를 넣는 sql문

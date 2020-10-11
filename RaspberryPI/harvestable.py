@@ -34,7 +34,7 @@ def hough_circle(img) :
     copy = cv2.copyMakeBorder(img, 0, 0, 0, 0, cv2.BORDER_REPLICATE) # 이미지 복사
     cmask = np.zeros(img.shape)  # 이미지 마스크 (검은 배경 이미지, numpy 배열)
 
-    circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=30, maxRadius=60)  # 이미지에서 원 추출
+    circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=20, maxRadius=45)  # 이미지에서 원 추출
     circles = np.uint16(np.around(circles))  # np.around() 함수로 circles의 값들을 반올림/반내림하고 이를 UNIT16으로 변환한다.
 
     for i in circles[0, :]:
@@ -81,7 +81,7 @@ def color_extraction(img) :
     img_mask = 0 # img_mask 0으로 초기화
 
     # 붉은색
-    for i in range(-11, 10) : # 오차범위 ± 10, 가장 적은 숫자를 나타낼때는 + 180을 해주어 조정항 lower, upper 값
+    for i in range(0, 10) : # 오차범위 ± 10, 가장 적은 숫자를 나타낼때는 + 180을 해주어 조정항 lower, upper 값
         lower_blue1 = np.array([i - 10 + 180, 30, 30])
         upper_blue1 = np.array([180, 255, 255])
         lower_blue2 = np.array([0, 30, 30])
@@ -123,9 +123,9 @@ def mqtt_harvestable(ip, serial, harvestable) :
 ip = ipcheck()
 
 # 이미지 읽어오기
-img = cv2.imread(".\\tomato\\tomato28.jpg")
+img = cv2.imread(".\\tomato\\tomato42.jpg")
 # 이미지 사이즈 재조정
-img = cv2.resize(img, (0, 0), fx=0.3, fy=0.3)
+img = cv2.resize(img, (0, 0), fx=0.6, fy=0.6)
 
 # 원본 이미지 보여주기
 cv2.imshow('original', img)

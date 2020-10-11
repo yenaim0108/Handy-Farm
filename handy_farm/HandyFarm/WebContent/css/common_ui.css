@@ -10,7 +10,7 @@
 */
 
 @font-face {
-	font-family: aTitleGothic2;
+	font-family: aTitleGothic2 sans-serif;
 	src: url(../font/aTitleGothic2.ttf) format('truetype');
 }
 
@@ -30,13 +30,22 @@
 	background-color: #F5F5F3;
 }
 
-.HF-backGreen{
+.HF-backGreen {
 	background-color: #22AA4D;
+}
+
+.HF-backWhite {
+	background-color: #FFFFFF;
+}
+
+html {
+	width: 100%;
+	height: 100%;
 }
 
 body {
 	width: 100%;
-	height: -webkit-fill-available;
+	height: 100%;
 	font-family: 'aTitleGothic2';
 	background-color: #F5F5F3;
 	text-align: center;
@@ -50,6 +59,27 @@ body {
 	margin: 0;
 	font-size: 18px;
 	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.full {
+	width: 100%;
+	height: 100%; 
+}
+
+.over-x-h {
+	overflow-x: hidden;
+}
+
+.over-x-s {
+	overflow-x: scroll;
+}
+
+.over-y-h {
+	overflow-y: hidden;
+}
+
+.over-y-s {
 	overflow-y: scroll;
 }
 
@@ -87,22 +117,29 @@ input::placeholder {
 
 #bottomTabBar {
 	display: block !important;
-	width: -webkit-fill-available;
+	width: 100%;
 	height: 80px;
 	background-color: #FFFFFF;
 	border: 1px solid #FFFFFF;
 	border-radius: 25px 25px 0 0 / 30px 30px 0 0;
-	box-shadow: 0 -5px 15px #CECECE;
+	box-shadow: 0 -2px 8px #CECECE;
 	padding: 0 !important;
 	margin: 0 !important;
 }
 
 #bottomTabBar img {
-	float: left;
 	width: 40px;
 	height: auto;
 	padding: 0 25px;
- 	margin-top: 20px;
+}
+
+#bottomTabBar ul {
+	padding: 0;
+	margin-top: -20px;
+	margin-left: -188px;
+	position: absolute;
+ 	top: 50%;
+ 	left: 50%
 }
 
 .shadow {
@@ -156,6 +193,18 @@ input::placeholder {
 
 .t-a-c {
 	text-align: center;
+}
+
+.f-l {
+	float: left;
+}
+
+.f-r {
+	float: right;
+}
+
+.f-n {
+	float: none;
 }
 
 .t-a-l {

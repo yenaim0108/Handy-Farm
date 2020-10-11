@@ -13,7 +13,7 @@
 		<div class="wrap">
 			<!-- title -->
 			<div class="title">
-			 	토마온실
+			 	${ gh_name }
 			</div>
 			<!-- // title -->
 			

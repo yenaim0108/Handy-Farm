@@ -1,10 +1,8 @@
 package com.handyfarm.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -18,16 +16,21 @@ public class HandyFarmDAO {
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	
+		
+	// DB 연결하는 기본 생성자
 	public HandyFarmDAO() {
+		System.out.println("db");
 		try {
 			Context ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mariadb");
+//			System.out.println("hey");
+//			Class.forName ("org.mariadb.jdbc.Driver");
+//			con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/handyfarm", "farmplant", "handyfarm");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	// roboinsert	
 	public void roboinsert(String _robo_serial, String _robo_img, String _robo_nickname, String _cultivar_number, String _gh_id, String _phone_number) {
 		try {
@@ -99,8 +102,133 @@ public class HandyFarmDAO {
 		return cultivar_list;
 	}
 	//cultivar_select end
-
-	// 온실 이름 가져옫기
+	
+	/**
+	 * @author 임예나
+	 * email : yenaim0108@gmail.com
+	 */
+	
+	// 수확 가능 비율 DB에 저장하기
+	public void insertHarvestable(Timestamp time, String serial, float harvestable) {
+		// datas, robo 선언
+		String[] datas = new String[3];
+		String robo = null;
+		
+		// time 변수에서 시분초값만 가져오기
+		SimpleDateFormat sdf = new SimpleDateFormat("HHmmss");
+		String hms = sdf.format(time);
+		
+		try {
+			// DB 연결
+			con = ds.getConnection();
+			
+			// 로보가 속한 품종번호, 온실 ID, 휴대폰 번호 가져오는 sql문
+			String query = "SELECT cultivar_number, gh_id, phone_number " + 
+						   "FROM robo " + 
+						   "WHERE robo_serial = ?";
+			
+			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
+			pstmt.setString(1, serial);
+			// sql문 실행
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				// datas 배열의 값 설정
+				datas[0] = rs.getString("cultivar_number");
+				datas[1] = rs.getString("gh_id");
+				datas[2] = rs.getString("phone_number");
+				
+				// 로보 시리얼 번호 뒷 8자리 가져오기
+				robo = serial.substring(serial.length() - 8, serial.length());
+				System.out.println(robo + ", " + hms);
+			}
+			
+			// harvestable 테이블에 데이터를 넣는 sql문
+			query = "INSERT INTO harvestable (hrv_id, harvestable, upload_time, robo_serial, cultivar_number, gh_id, phone_number) " + 
+					"VALUES (?, ?, ?, ?, ?, ?, ?)";
+			
+			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
+			pstmt.setString(1, "hrv-" + robo + "-" + hms);
+			pstmt.setFloat(2, harvestable);
+			pstmt.setTimestamp(3, time);
+			pstmt.setString(4, serial);
+			pstmt.setString(5, datas[0]);
+			pstmt.setString(6, datas[1]);
+			pstmt.setString(7, datas[2]);
+			// sql문 적용
+			pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+	} // end insertHarvestable
+	
+	// 온실 목록 가져오기
+	public ArrayList<HandyFarmDTO> GHSelect(String _phone_number) {
+		// list 선언
+		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
+		
+		try {
+			// DB 연결
+			con = ds.getConnection();
+			
+			// 온실 목록을 가져오는 sql문
+			String query = "SELECT * " + 
+						   "FROM greenhouse " + 
+						   "WHERE phone_number = ?";
+			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
+			pstmt.setString(1, _phone_number);
+			// sql문 실행
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				// 레코드의 정보를 각 변수에 저장
+				String gh_id = rs.getString("gh_id");
+				String gh_img = rs.getString("gh_img");
+				String gh_nickname = rs.getString("gh_nickname");
+				
+				// data 객체 선언
+				HandyFarmDTO data = new HandyFarmDTO();
+				
+				// data 객체의 set 메서드에 해당하는 값을 설정
+				data.setGh_id(gh_id);
+				data.setGh_nickname(gh_nickname);
+				if (gh_img != null) { // DB에 저장된 온실 사진 가져오기
+					data.setGh_img(gh_img);
+				} else { // DB에 저장된 사진이 없으면 HandyFarm Logo 사진 가져오기
+					data.setGh_img("../icon/handyfarm_logo.png");
+				}
+				
+				list.add(data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		// 조회 결과 list 리턴
+		return list;
+	} // end GHSelect
+	
+	// 온실 이름 가져오기
 	public String getGHName(String _gh_id) {
 		String gh_name = null;
 		try {
@@ -146,7 +274,7 @@ public class HandyFarmDAO {
 			// DB 연결
 			con = ds.getConnection();
 			
-			// 해당 온실 in 작물에 있는 센서 종류 조회
+			// 해당 작물 in 온실에 있는 센서 종류 조회
 			String query = "SELECT sensor_type " + 
 						   "FROM sensor " + 
 						   "WHERE gh_id = ? AND cultivar_number = ?";
@@ -167,7 +295,7 @@ public class HandyFarmDAO {
 			}
 			
 			for (String _sensor_type : sensor) {
-				// 해당 온실 in 작물에 대한 생장환경 정보 조회 sql문
+				// 해당 작물 in 온실에 대한 생장환경 정보 조회 sql문
 				query = "SELECT sv.sensor_value " + 
 						"FROM sensor_value AS sv " + 
 						"JOIN sensor AS s " + 
@@ -219,7 +347,7 @@ public class HandyFarmDAO {
 			// 해당 온실 in 작물에 대한 수확 가능 비율 정보 조회 sql문
 			query = "SELECT harvestable " + 
 					"FROM harvestable " + 
-					"WHERE gh_id = ? AND cultivar_number = ?" + 
+					"WHERE gh_id = ? AND cultivar_number = ? " + 
 					"ORDER BY upload_time DESC";
 			
 			pstmt = con.prepareStatement(query);

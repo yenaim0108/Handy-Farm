@@ -245,8 +245,8 @@ public class HandyFarmController extends HttpServlet {
 			nextPage = "calendar_delete.jsp";
 		}
 		
-		// 실시간정보
-		if (com.equals("/handyfarm/realInfo.do")) {
+		// Tip 탭 || 실시간정보
+		if (com.equals("/handyfarm/tip.do") || com.equals("/handyfarm/realInfo.do")) {
 			command = new HandyFarmInfoAllCommand();
 			command.execute(request, response);
 			nextPage = "real_info.jsp";

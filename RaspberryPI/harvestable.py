@@ -4,15 +4,10 @@ import cv2
 import numpy as np
 import paho.mqtt.client as mqtt
 import sys
+import socket
 
-def white_balance(img) :
-    result = cv2.cvtColor(img, cv2.COLOR_BGR2LAB) # 컬러 이미지를 LAB 색공간으로 변환
-    avg_a = np.average(result[:, :, 1]) # 가중 평균 계산
-    avg_b = np.average(result[:, :, 2]) # 가중 평균 계산
-    result[:, :, 1] = result[:, :, 1] - ((avg_a - 128) * (result[:, :, 0] / 255.0) * 1.1) # 화이트 밸런스 처리
-    result[:, :, 2] = result[:, :, 2] - ((avg_b - 128) * (result[:, :, 0] / 255.0) * 1.1) # 화이트 밸런스 처리
-    result = cv2.cvtColor(result, cv2.COLOR_LAB2BGR) # LAB 색공간 컬러 이미지로 변환
-    return result # 화이트 밸런스 처리한 이미지 return
+def ipcheck():
+	return socket.gethostbyname(socket.getfqdn()) # 로컬 IP 값 return
 
 def mqtt_ask_illuminance() :
     client = mqtt.Client() # mqtt.Client() 인스턴스 생성
@@ -39,7 +34,7 @@ def hough_circle(img) :
     copy = cv2.copyMakeBorder(img, 0, 0, 0, 0, cv2.BORDER_REPLICATE) # 이미지 복사
     cmask = np.zeros(img.shape)  # 이미지 마스크 (검은 배경 이미지, numpy 배열)
 
-    circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=20, maxRadius=60)  # 이미지에서 원 추출
+    circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=30, maxRadius=60)  # 이미지에서 원 추출
     circles = np.uint16(np.around(circles))  # np.around() 함수로 circles의 값들을 반올림/반내림하고 이를 UNIT16으로 변환한다.
 
     for i in circles[0, :]:
@@ -54,6 +49,15 @@ def hough_circle(img) :
     cv2.imshow('crops', copy) # 감지한 원을 표시한 이미지 보여주기
 
     return crops # 감지한 농작물만 추출한 사진 return
+
+def white_balance(img) :
+    result = cv2.cvtColor(img, cv2.COLOR_BGR2LAB) # 컬러 이미지를 LAB 색공간으로 변환
+    avg_a = np.average(result[:, :, 1]) # 가중 평균 계산
+    avg_b = np.average(result[:, :, 2]) # 가중 평균 계산
+    result[:, :, 1] = result[:, :, 1] - ((avg_a - 128) * (result[:, :, 0] / 255.0) * 1.1) # 화이트 밸런스 처리
+    result[:, :, 2] = result[:, :, 2] - ((avg_b - 128) * (result[:, :, 0] / 255.0) * 1.1) # 화이트 밸런스 처리
+    result = cv2.cvtColor(result, cv2.COLOR_LAB2BGR) # LAB 색공간 컬러 이미지로 변환
+    return result # 화이트 밸런스 처리한 이미지 return
 
 def total_area(img) :
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY) # 컬러 이미지를 흑백 이미지로 변환
@@ -102,11 +106,21 @@ def color_extraction(img) :
 
     return ripe # 추출한 색 부분 면적 계산한 값 return
 
-def mqtt_harvestable(harvestable) :
+def mqtt_ask_ip() :
     client = mqtt.Client()  # mqtt.Client() 인스턴스 생성
-    client.connect('192.168.0.3', 1883)  # 브로커에 연결
-    client.publish('harvestable', harvestable)  # harvestable 토픽에 수확 가능 비율 보내기
+    client.connect('192.168.137.103', 1883)  # 브로커에 연결
+    client.publish('ask_illuminance', 'c')  # ask_illuminance 토픽에 메시지 보내기
     client.disconnect()  # 연결 종료
+
+def mqtt_harvestable(ip, serial, harvestable) :
+    client = mqtt.Client()  # mqtt.Client() 인스턴스 생성
+    client.connect(ip, 1883)  # 브로커에 연결
+    msg = serial + ", " + str(harvestable); # 수확 가능 비율과 시리얼 번호 하나의 메시지로 합치기
+    client.publish('harvestable', msg)  # harvestable 토픽에 수확 가능 비율 보내기
+    client.disconnect()  # 연결 종료
+
+# 로컬 IP주소 가져오기
+ip = ipcheck()
 
 # 이미지 읽어오기
 img = cv2.imread(".\\tomato\\tomato28.jpg")
@@ -116,11 +130,11 @@ img = cv2.resize(img, (0, 0), fx=0.3, fy=0.3)
 # 원본 이미지 보여주기
 cv2.imshow('original', img)
 
-# 조도 값 요청하기
-mqtt_ask_illuminance()
-
-# mqtt 통신으로 조도값을 받아와서 일정 값 이하면 수확시기 판단 중지
-mqtt_illuminance()
+# # 조도 값 요청하기
+# mqtt_ask_illuminance()
+#
+# # mqtt 통신으로 조도값을 받아와서 일정 값 이하면 수확시기 판단 중지
+# mqtt_illuminance()
 
 # 농작물 감지
 img = hough_circle(img)
@@ -142,10 +156,11 @@ ripe = color_extraction(img)
 
 # 수확 가능 비율 구하기
 harvestable = (ripe / (total - highlight)) * 100
-print("(숙성기준색 면적 / (마스크 전체 면적 - 하이라이트 면적)) * 100 = 숙성도%\n", "(", ripe, " / (", total, " - ", highlight, ")) * 100 = ", harvestable, "%")
 
 # mqtt 통신으로 서버에 수확 가능 비율 보내기
-mqtt_harvestable(harvestable)
+mqtt_harvestable(ip, "10000000c366d002", harvestable)
+
+print("(숙성기준색 면적 / (마스크 전체 면적 - 하이라이트 면적)) * 100 = 숙성도%\n", "(", ripe, " / (", total, " - ", highlight, ")) * 100 = ", harvestable, "%")
 
 # key 입력이 있을 때까지 무한 대기
 cv2.waitKey(0)

@@ -20,8 +20,8 @@
 	}
 </script>		
 	
-<footer>
-	<ul id="bottomTabBar">
+<footer id="bottomTabBar">
+	<ul>
 		<li class="d-ib">
 			<a onclick="sendPage(0);">
 				<img class="d-ib m-x-md" src="../icon/green_main.png" alt="main" name="page" value="main">
@@ -34,7 +34,7 @@
 		</li>
 		<li class="d-ib">
 			<a onclick="sendPage(2);">
-				<img class="d-ib m-x-md" src="../icon/gray_tip.png" alt="Tip" name="page" value="realInfo">
+				<img class="d-ib m-x-md" src="../icon/gray_tip.png" alt="Tip" name="page" value="tip">
 			</a>
 		</li>
 		<li class="d-ib">

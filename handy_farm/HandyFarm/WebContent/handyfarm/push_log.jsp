@@ -18,39 +18,38 @@
 	<body>
 		<div class="wrap">
 			<!-- icon_back -->
-			<button class="ud-div b-n HF-back d-b m-t-ml m-l-sl" value="push_back" onclick="location.href='main.do'" >
+			<button class="b-n HF-back d-b m-t-ml m-l-sl" value="push_back" onclick="location.href='main.do'" >
 				<img class="ud-img f-l" src="../icon/upButton.png" alt="back"/>
 			</button>
 			<!-- icon_back -->
-		</div>
-		
-		<!-- title -->
-		<div class="title_gh_rb">
-			알림센터
-		</div>
-		<!-- title -->
-		<!-- push_list -->
-		<c:forEach var="push" items="${push_list}" varStatus="status">
-			<div class="pushBox p-a-sl shadow t-a-l d-t">
-				<div class="d-ib pushintitle p-t-sl p-x-sl d-tc">
-				[${push.gh_nickname} - ${push.crops_name}] ${push.push_msg} <br> ${push.push_date}
-				</div>
-				<!-- 카테고리 별로 css 다르게 적용 -->
-				<div class="d-tc va-m">
-					<div class="pushinctg ${push.push_name}">
-					${push.push_category}
-				</div>
-				</div>
-				<!-- 카테고리 별로 css 다르게 적용 -->
+			<!-- title -->
+			<div class="title_gh_rb">
+				알림센터
 			</div>
-			<div class="m-b"></div>
-		</c:forEach>
-		<!-- push_list -->
-		
-		<!-- 알림 간 간격 -->
-		<div class="m-b-sl"> </div>
-		<!-- 알림 간 간격 -->
-		
+			<!-- title -->
+			
+			<!-- push_list -->
+			<c:forEach var="push" items="${push_list}" varStatus="status">
+				<div class="pushBox p-a-sl shadow t-a-l d-t">
+					<div class="d-ib pushintitle p-t-sl p-x-sl d-tc">
+					[${push.gh_nickname} - ${push.crops_name}] ${push.push_msg} <br> ${push.push_date}
+					</div>
+					<!-- 카테고리 별로 css 다르게 적용 -->
+					<div class="d-tc va-m">
+						<div class="pushinctg ${push.push_name}">
+						${push.push_category}
+					</div>
+					</div>
+					<!-- 카테고리 별로 css 다르게 적용 -->
+				</div>
+				<div class="m-b"></div>
+			</c:forEach>
+			<!-- push_list -->
+			
+			<!-- 알림 간 간격 -->
+			<div class="m-b-sl"> </div>
+			<!-- 알림 간 간격 -->
+		</div>
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>
 		<!-- //footer -->

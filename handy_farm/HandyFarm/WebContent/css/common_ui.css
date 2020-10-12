@@ -131,6 +131,11 @@ input::placeholder {
 	color: #D1D1D1;
 }
 
+.ud-img {
+	width: 30px;
+	height: auto;
+}
+
 #bottomTabBar {
 	display: block !important;
 	width: 100%;

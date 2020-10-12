@@ -127,7 +127,8 @@ public class HandyFarmDTO {
 	// 기타
 	String sensor_name;
 	String sensor_unit;
-	
+	String push_name;
+
 	// 기본생성자
 	public HandyFarmDTO() {
 		super();
@@ -984,5 +985,12 @@ public class HandyFarmDTO {
 
 	public void setSensor_unit(String sensor_unit) {
 		this.sensor_unit = sensor_unit;
+	}
+	public String getPush_name() {
+		return push_name;
+	}
+
+	public void setPush_name(String push_name) {
+		this.push_name = push_name;
 	}
 }

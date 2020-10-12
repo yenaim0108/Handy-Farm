@@ -145,6 +145,8 @@ public class HandyFarmController extends HttpServlet {
 		
 		// 로보 수정 화면
 		if (com.equals("/handyfarm/roboUpdateUI.do")) {
+			command = new HandyFarmRoboUpdateUICommand();
+			command.execute(request, response);
 			nextPage = "robo_update.jsp";
 		}
 		
@@ -152,7 +154,14 @@ public class HandyFarmController extends HttpServlet {
 		if (com.equals("/handyfarm/roboUpdate.do")) {
 			command = new HandyFarmRoboUpdateCommand();
 			command.execute(request, response);
-			nextPage = "gh_update.jsp";
+			nextPage = "main.jsp";
+		}
+		
+		// 로보 삭제
+		if (com.equals("/handyfarm/roboDelete.do")) {
+			command = new HandyFarmRoboDeleteCommand();
+			command.execute(request, response);
+			nextPage = "main.jsp";
 		}
 		
 		// 알림 센터
@@ -245,8 +254,8 @@ public class HandyFarmController extends HttpServlet {
 			nextPage = "calendar_delete.jsp";
 		}
 		
-		// 실시간정보
-		if (com.equals("/handyfarm/realInfo.do")) {
+		// Tip 탭 || 실시간정보
+		if (com.equals("/handyfarm/tip.do") || com.equals("/handyfarm/realInfo.do")) {
 			command = new HandyFarmInfoAllCommand();
 			command.execute(request, response);
 			nextPage = "real_info.jsp";

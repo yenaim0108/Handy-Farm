@@ -8,4 +8,5 @@
 <fullyQualifiedTypeName name="com.handyfarm.entity.HandyFarmDTO"/>
 <fullyQualifiedTypeName name="java.lang.Integer"/>
 <fullyQualifiedTypeName name="com.handyfarm.dao.HandyFarmDAO"/>
+<fullyQualifiedTypeName name="java.sql.Timestamp"/>
 </qualifiedTypeNameHistroy>

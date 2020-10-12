@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.handyfarm.dao.HandyFarmDAO" %>
+<%@ page import="com.handyfarm.entity.HandyFarmDTO" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -26,57 +30,26 @@
 		</div>
 		<!-- title -->
 		<!-- push_list -->
-		<%
-			int count = 3;
-			String[] ctgword = {"growthinfo", "infonotifi", "weathernotifi", "pests"};
-			String ctgname = "";
-			
-		
-			for(int i=0; i<count; i++ ) {
-		
-		%>
-		
-		<div class="pushBox p-a-sl shadow t-a-l">
-			<div class="d-ib pushintitle p-t-sl p-l-sl">
-			토마토 내부 온도가 올라갔어요!!<br>2020-03-01
-			</div>
-			
-			<!-- 카테고리 별로 css 다르게 적용 -->
-			<%
-				
-				
-				switch(ctgword[i]){
-				case "growthinfo":
-					ctgname = "생장정보";
-					break;
-				case "infonotifi":
-					ctgname = "정보알림";
-					break;
-				case "weathernotifi":
-					ctgname = "날씨알림";
-					break;
-				case "pests":
-					ctgname = "병충해알림";
-					break;
-				}
-			%>
-			<div class="d-ib">
-				<div class="pushinctg <%=ctgword[i] %>">
-				<%=ctgname %>
+		<c:forEach var="push" items="${push_list}" varStatus="status">
+			<div class="pushBox p-a-sl shadow t-a-l d-t">
+				<div class="d-ib pushintitle p-t-sl p-x-sl d-tc">
+				[${push.gh_nickname} - ${push.crops_name}] ${push.push_msg} <br> ${push.push_date}
 				</div>
+				<!-- 카테고리 별로 css 다르게 적용 -->
+				<div class="d-tc va-m">
+					<div class="pushinctg ${push.push_name}">
+					${push.push_category}
+				</div>
+				</div>
+				<!-- 카테고리 별로 css 다르게 적용 -->
 			</div>
-			<!-- 카테고리 별로 css 다르게 적용 -->
-		
-		</div>
+			<div class="m-b"></div>
+		</c:forEach>
 		<!-- push_list -->
 		
 		<!-- 알림 간 간격 -->
 		<div class="m-b-sl"> </div>
 		<!-- 알림 간 간격 -->
-		
-		<%
-		}
-		%>
 		
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>

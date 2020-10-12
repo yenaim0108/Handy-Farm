@@ -25,8 +25,7 @@
 			<%
 			String robo_serial = request.getParameter("robo_serial");
 			%>
-			시리얼번호: <input type="text" name="robo_serial">
-			이미지 경로:<input type="text" name="robo_img">
+			<!-- 시리얼번호: <input type="text" name="robo_serial" value=로보시리얼번호자바로> -->
 			<%
 			String gh_id = request.getParameter("gh_id");
 			System.out.println(gh_id);
@@ -45,6 +44,7 @@
 			<div class="cameraBox shadow" >
 				<!-- camera_img -->
 				<div class="">
+				<!-- 여기에 이미지 경로 넣는 거 들가야 함 -->
 				<img class="camera-img" src="../icon/camera.png" alt="camera" onclick=document.all.file.click();>
 				<input type="file" name="file" id="file" style="display: none;"/>
 				</div>
@@ -70,14 +70,7 @@
 			<!-- DropBox Crops-->
 			<select name="cultivar_number" class="p-x-ml d-b b-n shadow">
 				<option value="">농작물을 선택해주세요.</option>
-				<%
-				HandyFarmDAO dao = new HandyFarmDAO();
-				ArrayList<HandyFarmDTO> cultivar_list = dao.cultivar_list();
-				
-				request.setAttribute("cultivar_list", cultivar_list);
-				System.out.println(cultivar_list);
-				%>
-				<c:forEach var="cultivar" items="${cultivar_list}" varStatus="status">
+				<c:forEach var="cultivar" items="${cultivar_list_insert}" varStatus="status">
 					<option value="${cultivar.cultivar_number}"> ${cultivar.crops_name} </option>
 				</c:forEach>
 			</select>

@@ -9,11 +9,11 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 
-public class Subscriber {
+public class ExSubscriber {
 
 	private static String userName = "PahoExample_Subcriber";
-	private static String brokerUrl = "tcp://192.168.0.2:1883";
-	private static String topicName = "rx9simple";
+	private static String brokerUrl = "tcp://localhost:1883";
+	private static String topicName = "mood";
 	
 	
 	public static void main(String[] args) throws Exception{

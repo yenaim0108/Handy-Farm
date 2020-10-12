@@ -129,6 +129,12 @@ public class HandyFarmController extends HttpServlet {
          nextPage = "main.jsp";
       }
       
+      // 로보 목록 화면
+      if (com.equals("/handyfarm/roboList.do")) {
+          command = new HandyFarmRoboSelectAllCommand();
+          command.execute(request, response);
+          nextPage = "robo_list.jsp";
+       }
       // 로보 등록 화면
       if (com.equals("/handyfarm/roboInsertUI.do")) {
          command = new HandyFarmRoboInsertUICommand();

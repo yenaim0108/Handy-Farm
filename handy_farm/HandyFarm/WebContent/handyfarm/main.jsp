@@ -15,6 +15,7 @@
          <!-- 로고 -->
          <img class="logo-img d-ib m-t-lg" src="../icon/handyfarm_white.png" alt="handyfarm">
          <!-- 로고 -->
+         
          <!-- 알림 이력  -->
          <img class="PL-img f-r m-b-sl m-t-lg p-t-s m-r" src="../icon/notification.png" alt="push_log" onclick="location.href='pushLog.do'">
          <!-- // 알림 이력 -->
@@ -44,42 +45,50 @@
          <div class="GHlist p-x-ml">
             <!-- 제목 -->
             <div class="t-a-l m-t-lg m-b">
-               나의 온실 목록
+               	나의 온실 목록
             </div>
             <!-- // 제목 -->
-            <!-- 온실 -->
+            
+            <!-- 온실 목록 -->
             <c:forEach items="${ GHList }" var="dto">
                <form name="gh" method="post">
+               	  <!-- 온실 ID  -->
                   <input type="hidden" name="gh_id" value="${ dto.gh_id }">
-                  <div class="GH GH-Red b-n shadow m-b-m p-t-m">
+                  <!-- // 온실 ID -->
+                  
+                  <div class="GH GH-Red b-n shadow p-t-sl">
+                  	<input type="submit" class="HF-Green b-n f-s GH-Red underline d-b f-r m-r-sl" value="로보목록" formaction="roboList.do">
                      <div class="d-t m-b">
                         <!-- 온실 사진 -->
                         <img class="m-l-lg d-tc" src="${ dto.gh_img }" alt="GHImage">
                         <!-- // 온실 사진 -->
+                        
                         <!-- 온실 정보 -->
                         <div class="d-tc va-m t-a-l GH-Info p-r-sl">
                            ${ dto.gh_nickname }
                         </div>
                         <!-- // 온실 정보 -->
                      </div>
+                     
                      <!-- 수정 -->
                      <input class="unsel-pageBtn shadow m-b-m" type="submit" value="수정" formaction="ghUpdateUI.do">
                      <!-- // 수정 -->
+                     
                      <!-- 삭제 -->
                      <input class="sel-pageBtn shadow m-b-m" type="submit" value="삭제" formaction="ghDelete.do">
                      <!-- // 삭제 -->
                   </div>
                </form>
             </c:forEach>
-            <!-- // 온실 -->
+            <!-- // 온실 목록 -->
+            
             <!-- 온실 개설 -->
-            <div class="add shadow m-b-ml" onclick="location.href='ghInsertUI.do'">
+            <div class="add shadow" onclick="location.href='ghInsertUI.do'">
                <img src="../icon/add.png" alt="add">
             </div>
             <!-- // 온실 개설 -->
          </div>
          <!-- // 온실목록 -->
-         
       </div>
       <!-- footer -->
       <%@ include file="../include/bottonTabBar.inc" %>

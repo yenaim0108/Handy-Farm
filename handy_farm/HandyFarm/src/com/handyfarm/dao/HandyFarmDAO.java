@@ -593,8 +593,65 @@ public class HandyFarmDAO {
 		// 조회 결과 list 리턴
 		return list;
 	} // end GHSelect
-	
 
+	// 로보 목록 가져오기 임예나
+	public ArrayList<HandyFarmDTO> RoboSelect(String _gh_id) {
+		// list 선언
+		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
+		
+		try {
+			// DB 연결
+			con = ds.getConnection();
+			
+			// 로보 목록을 가져오는 sql문
+			String query = "SELECT * " + 
+						   "FROM robo AS r " + 
+						   "JOIN crops AS c " + 
+						   "ON r.cultivar_number = c.cultivar_number " + 
+						   "WHERE gh_id = ?";
+			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
+			pstmt.setString(1, _gh_id);
+			// sql문 실행
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				// 레코드의 정보를 각 변수에 저장
+				String robo_serial = rs.getString("robo_serial");
+				String robo_img = rs.getString("robo_img");
+				String robo_nickname = rs.getString("robo_nickname");
+				String crops_name = rs.getString("crops_name");
+				
+				// data 객체 선언
+				HandyFarmDTO data = new HandyFarmDTO();
+				
+				// data 객체의 set 메서드에 해당하는 값을 설정
+				data.setRobo_serial(robo_serial);
+				data.setRobo_nickname(robo_nickname);
+				data.setCrops_name(crops_name);
+				if (robo_img != null) { // DB에 저장된 로보 사진 가져오기
+					data.setRobo_img(robo_img);
+				} else { // DB에 저장된 사진이 없으면 HandyFarm Logo 사진 가져오기
+					data.setRobo_img("../icon/handyfarm_logo.png");
+				}
+				
+				list.add(data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		// 조회 결과 list 리턴
+		return list;
+	} // end RoboSelect
+	
 	// 온실 이름 가져오기 임예나
 	public String getGHName(String _gh_id) {
 		String gh_name = null;
@@ -631,7 +688,6 @@ public class HandyFarmDAO {
 		return gh_name;
 	} // end getGHName
 	
-
 	// 생장 정보 가져오기 임예나
 	public  ArrayList<HandyFarmDTO> growth(String _gh_id, String _cultivar_number) {
 		// sensor, list 선언

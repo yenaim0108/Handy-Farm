@@ -85,6 +85,7 @@
    width: 360px;
    border-radius: 20px 20px / 20px 20px;
    font-size: 28px;
+   margin: 0 auto 20px auto;
 }
 
 .GH-Red {
@@ -106,6 +107,7 @@
    height: 80px;
    background-color: #DCDCDC;
    border-radius: 20px 20px / 20px 20px;
+   margin: 0 auto 25px auto;
 }
 
 .add img {

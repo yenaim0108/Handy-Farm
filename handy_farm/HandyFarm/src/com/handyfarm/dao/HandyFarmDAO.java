@@ -388,6 +388,90 @@ public class HandyFarmDAO {
 		return cultivar_list;
 	}
 	//push_log end
+	
+	//gh_insert
+	
+	public void gh_insert(String gh_img, String gh_nickname, String phone_number) {
+		
+		try {
+			int count = 0;
+			con = ds.getConnection();
+			try{
+				String query1 = "SELECT count(*) FROM greenhouse";
+				pstmt = con.prepareStatement(query1);
+				rs = pstmt.executeQuery();
+						
+				while(rs.next()) {
+					count = rs.getInt(1);
+				}
+						
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			String phone_num = phone_number.substring(3);
+			
+			String query="INSERT INTO greenhouse (gh_id, gh_img, gh_nickname, phone_number)" +
+			"VALUES (?,?,?,?)";
+
+			pstmt=con.prepareStatement(query);
+			pstmt.setString(1, "gh-"+ phone_num+ "-" + count);
+			pstmt.setString(2, gh_img);
+			pstmt.setString(3, gh_nickname);
+			pstmt.setString(4, phone_number);
+			
+			int n = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if(con != null)
+					con.close();
+			} catch (SQLException e)  {
+				e.printStackTrace();
+			}
+		}
+	}//gh_insert_end
+	
+	//gh_id 가져오기
+	
+	public String getGHId(String gh_nickname) {
+		String gh_id = null;
+		try {
+			con = ds.getConnection();
+			String query = "SELECT gh_id FROM greenhouse WHERE gh_nickname = ?";
+			
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1,  gh_nickname);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				gh_id = rs.getString("gh_id");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if(con != null)
+					con.close();
+			} catch (SQLException e)  {
+				e.printStackTrace();
+			}
+		}
+		return gh_id;
+	}
+	
+	//gh_id 가져오기 end
 
 	/**
 	 * @author 임예나

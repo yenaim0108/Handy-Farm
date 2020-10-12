@@ -16,6 +16,11 @@ public class HandyFarmRoboInsertCommand implements HandyFarmCommand {
 		String cultivar_number = request.getParameter("cultivar_number");
 		String gh_id = request.getParameter("gh_id");
 		String phone_number = request.getParameter("phone_number");
+		System.out.println("phonenum: "+ phone_number);
+		System.out.println("robo_serial: "+ robo_serial);
+		System.out.println("robo_nickname: "+ robo_nickname);
+		System.out.println("cultivar_number: "+ cultivar_number);
+		System.out.println("gh_id: "+ gh_id);
 		
 		HandyFarmDAO dao = new HandyFarmDAO();
 		dao.roboinsert(robo_serial, robo_img, robo_nickname, cultivar_number, gh_id, phone_number);

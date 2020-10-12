@@ -19,7 +19,7 @@ public class HandyFarmGHSelectAllCommand implements HandyFarmCommand {
 		HandyFarmDAO dao = new HandyFarmDAO();
 				
 		// DB에 접근 메서드를 GHSelect 호출 -> 결과물
-		ArrayList<HandyFarmDTO> list = dao.GHSelect("01062892166"); // phone_number
+		ArrayList<HandyFarmDTO> list = dao.GHSelect(phone_number); // phone_number
 		// request 영역 속성값을 설정 -> 키, 값
 		request.setAttribute("GHList", list);
 	}

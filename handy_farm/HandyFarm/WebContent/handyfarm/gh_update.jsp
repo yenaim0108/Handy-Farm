@@ -47,9 +47,9 @@
          </div>
          <div class="labelsetting d-ib">
          <input type="submit" class="HF-Green b-n f-s HF-back underline" value="로보등록" formaction=roboInsertUI.do >
-         </div>
-               
+         </div>      
             <!-- Crops -->
+            <div class="d-b"> </div>
             <!-- DropBox Crops-->
             <select name="robo_serial" class="p-x-ml d-ib b-n shadow" style="width: 200px;">
                <c:forEach  items="${ robo_list }" var="dto">

@@ -12,23 +12,32 @@
 		<link rel="stylesheet" href="../css/common_ui.css">
 		<link rel="stylesheet" href="../css/main_tab.css">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 	</head>
 	<body>
 		<div class="wrap">
 			<!-- 값 -->
 			<form method="post">
 			<%
-			session.setAttribute("phone_number","01012345678");
 			String phone_number = (String)session.getAttribute("phone_number");
 			System.out.println(phone_number);
 			 %>
+			 
 			<%
-			String robo_serial = request.getParameter("robo_serial");
+			String robo_serial = null;
+			String serial = request.getParameter("serial");
+			
+			//만약 serial이 널이 아닌 경우 qr로 처리된 것 
+			if(serial != null){
+				robo_serial = serial;
+			}else{//serial이 널일 경우 시리얼 번호나 로보 목록에서 처리된 것
+				robo_serial = request.getParameter("robo_serial");
+			}
 			%>
-			<!-- 시리얼번호: <input type="text" name="robo_serial" value=로보시리얼번호자바로> -->
+
 			<%
 			String gh_id = request.getParameter("gh_id");
-			System.out.println(gh_id);
+			System.out.println("gh_id" +gh_id);
 			%>
 			<input type="hidden" name="gh_id" value=<%=gh_id%>>
 			<input type="hidden" name="phone_number" value=<%=phone_number%>>
@@ -59,6 +68,7 @@
 			<!-- Nickname -->
 			<!-- textBox Nickname -->
 			<div class="m-0-a">
+				<input type="hidden" value="<%=robo_serial %>" name="robo_serial">
 				<input class ="textBox b-n shadow p-x-ml" type="text" maxlength="8" id="Nickname" placeholder="별명을 입력해주세요." name="robo_nickname"/>
 			</div>
 			<!-- textBox Nickname -->

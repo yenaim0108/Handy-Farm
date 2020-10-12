@@ -23,8 +23,8 @@ public class HandyFarmDAO {
 	ResultSet rs = null;
 		
 	// DB 연결하는 기본 생성자
-	public HandyFarmDAO() { // jsp 단위 DB 연결
-		try {
+	public HandyFarmDAO() {
+		try { // jsp 단위 DB 연결
 			Context ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mariadb");
 		} catch(Exception e) {
@@ -37,9 +37,17 @@ public class HandyFarmDAO {
 		}
 	}
 
+	/**
+	 * @author 김연주
+	 * email : sym61503@naver.com
+	 */
 
+	/**
+	 * @author 정민정
+	 * email : as514188@gmail.com
+	 */
+	
 	// robo_insert	정민정
-
 	public void roboinsert(String _robo_serial, String _robo_img, String _robo_nickname, String _cultivar_number, String _gh_id, String _phone_number) {
 		try {
 			con = ds.getConnection();
@@ -150,7 +158,6 @@ public class HandyFarmDAO {
 	}
 	//cultivar_list_insert end
 	
-	
 	//robo_select 정민정
 	public ArrayList<HandyFarmDTO> robo_list(String gh_id){
 		ArrayList<HandyFarmDTO> robo_list = new ArrayList<HandyFarmDTO> ();
@@ -192,10 +199,7 @@ public class HandyFarmDAO {
 		System.out.println(robo_list);
 		return robo_list;
 	}
-	//robo_select end
-		
-			
-			
+	//robo_select end	
 			
 	//robo_search 정민정
 	public ArrayList<HandyFarmDTO> robo_search_list(String robo_serial) {
@@ -239,7 +243,6 @@ public class HandyFarmDAO {
 	}
 	//robo_search end
 		
-		
 	//robo_Update 정민정
 	public void robo_update(String robo_serial, String robo_nickname, String robo_img, String cultivar_number) {
 		
@@ -267,8 +270,6 @@ public class HandyFarmDAO {
 		}
 	}//robo_Update end
 		
-		
-		
 	//robo_delete 정민정
 	
 	public void robo_delete(String robo_serial) {
@@ -293,7 +294,6 @@ public class HandyFarmDAO {
 	}
 		
 	//robo_delete end
-		
 		
 	//push_log 정민정
 	public ArrayList<HandyFarmDTO> push_list(String phone_number){
@@ -388,8 +388,6 @@ public class HandyFarmDAO {
 		return cultivar_list;
 	}
 	//push_log end
-
-	//cultivar_select end
 
 	/**
 	 * @author 임예나

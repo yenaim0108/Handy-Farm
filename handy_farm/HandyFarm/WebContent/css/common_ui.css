@@ -59,6 +59,7 @@ body {
 	height : -moz-calc(100% - 80px);
 	height : -webkit-calc(100% - 80px);
 	height : -o-calc(100% - 80px);
+	background-color: #F5F5F3;
 	margin: 0;
 	font-size: 18px;
 	overflow-x: hidden;
@@ -68,6 +69,14 @@ body {
 .full {
 	width: 100%;
 	height: 100%; 
+}
+
+.full-b {
+	width: 100%;
+	height : calc(100% - 80px);
+	height : -moz-calc(100% - 80px);
+	height : -webkit-calc(100% - 80px);
+	height : -o-calc(100% - 80px);
 }
 
 .over-x-h {

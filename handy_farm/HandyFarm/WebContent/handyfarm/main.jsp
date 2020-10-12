@@ -10,13 +10,13 @@
 		<link rel="stylesheet" href="../css/main_tab.css">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
-	<body> 
-		<div class="HF-backGreen full over-x-h over-y-h">
+	<body class="HF-backWhite"> 
+		<div class="HF-backGreen full-b over-x-h over-y-h">
 			<!-- 로고 -->
 			<img class="logo-img d-ib m-t-lg" src="../icon/handyfarm_white.png" alt="handyfarm">
 			<!-- 로고 -->
 			<!-- 알림 이력  -->
-			<img class="PL-img f-r m-b-sl m-t-lg p-t-s m-r" src="../icon/notification.png" alt="push_log">
+			<img class="PL-img f-r m-b-sl m-t-lg p-t-s m-r" src="../icon/notification.png" alt="push_log" onclick="location.href='pushLog.do'">
 			<!-- // 알림 이력 -->
 			
 			<!-- 날씨 -->
@@ -41,7 +41,7 @@
 			<!-- // 날씨 -->
 			
 			<!-- 온실 목록 -->
-			<div class="GHlist p-x-ml p-b-m">
+			<div class="GHlist p-x-ml">
 				<!-- 제목 -->
 				<div class="t-a-l m-t-lg m-b">
 					나의 온실 목록

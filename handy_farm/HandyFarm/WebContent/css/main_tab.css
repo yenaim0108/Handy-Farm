@@ -34,11 +34,11 @@
 .weather {
 	width: 350px;
 	height: 64px;
-	padding-top: 110px;
 	margin: 0 auto;
 	color: #FFFFFF;
 	font-size: 35px;
 	margin: 0 auto;
+	padding-top: 110px;
 }
 
 .weather img {
@@ -66,10 +66,10 @@
 }
 
 .GHlist {
-	height : calc(100% - 316px);
-	height : -moz-calc(100% - 316px);
-	height : -webkit-calc(100% - 316px);
-	height : -o-calc(100% - 316px);
+	height : calc(100% - 232px);
+	height : -moz-calc(100% - 232px);
+	height : -webkit-calc(100% - 232px);
+	height : -o-calc(100% - 232px);
 	overflow-x: hidden;
 	overflow-y: scroll;
 	background-color: #FFFFFF;

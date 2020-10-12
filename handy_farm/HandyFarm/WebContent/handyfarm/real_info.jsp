@@ -39,7 +39,7 @@
          
          <div class="labelsetting labelNick t-a-l p-a-0">전체 카테고리</div>
          
-         <div class="categoryBox p-a-sl shadow t-a-l m-x-sl">
+         <div class="categoryBox p-a-sl shadow t-a-l m-x-sl" onclick="location.href='realInfoSel.do'">
             <div class="categoryintitle p-a-sl m-x-s">
             <img class="ud-img d-ib" src="../icon/pest.png" alt="pests"/><br>
                	병충해 정보

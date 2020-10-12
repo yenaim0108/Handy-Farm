@@ -28,14 +28,15 @@
 				style="background-image: url('../icon/search.png'); background-position: 20px 9px; 
 					background-repeat: no-repeat; background-size : 25px;">
 			<img class="heart-img f-r " src="../icon/unlike_heart.png" alt="unlike_heart">
-			</input>
+			
 		</div>
 		<!-- textBox search-->
 		
 		<!-- 한줄띄우기 -->
          <div class="m-y-ml"></div>  
 		
-		<!-- 작물 리스트 -->
+		<!-- 작물 리스트 : crops에 있는 거 가져와서 띄워야 함. 추후에 수정해야한다는 거 잊지마셈 -->
+		
 		<div class="cropBox p-a-sl shadow t-a-l m-x-sl m-y-s">
 			<img class="crop-img f-r " src="../icon/circle_stawberry.png" alt="circle_stawberry">
 			<div class="cropintitle">딸기</div>

@@ -30,14 +30,7 @@
 			<!-- DropBox Realtime issue-->
 			<select name="issue_number" class="issueBox m-a-s p-a-sl f-s d-ib b-n shadow">
 				<!-- <option value="">농작물을 선택해주세요.</option> -->
-<<<<<<< Updated upstream
 
-				<c:forEach var="cultivar" items="${cultivar_list}" varStatus="status">
-					<option value="${cultivar.cultivar_number}"> ${cultivar.crops_name} </option>
-				</c:forEach>
-=======
-				
->>>>>>> Stashed changes
 			</select>
 			<!-- DropBox Realtime issue-->
 			

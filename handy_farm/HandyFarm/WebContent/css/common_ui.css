@@ -10,7 +10,7 @@
 */
 
 @font-face {
-	font-family: aTitleGothic2;
+	font-family: aTitleGothic2 sans-serif;
 	src: url(../font/aTitleGothic2.ttf) format('truetype');
 }
 

@@ -10,10 +10,14 @@
 		<link rel="stylesheet" href="../css/main_tab.css">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
+<<<<<<< HEAD
 	<body class="HF-backGreen"> 
 	<form method="post" name="form">
 		<div class="wrap">
 		<body class="HF-backWhite"> 
+=======
+	<body class="HF-backWhite"> 
+>>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
 		<div class="HF-backGreen full-b over-x-h over-y-h">
 			<!-- 로고 -->
 			<img class="logo-img d-ib m-t-lg" src="../icon/handyfarm_white.png" alt="handyfarm">
@@ -21,6 +25,7 @@
 			<!-- 알림 이력  -->
 			<img class="PL-img f-r m-b-sl m-t-lg p-t-s m-r" src="../icon/notification.png" alt="push_log" onclick="location.href='pushLog.do'">
 			<!-- // 알림 이력 -->
+<<<<<<< HEAD
 
 			<!-- push_log_icon -->
 			<input type="submit" class="ud-img p-b-sl m-l-lg"  value="로그" formaction=pushLog.do>
@@ -32,6 +37,9 @@
 			<!-- mainlist -->
 			<div class="mainlist">
 
+=======
+			
+>>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
 			<!-- 날씨 -->
 			<div class="weather m-0-a">
 				<div class="d-ib va-m">

@@ -33,6 +33,7 @@
 				<!-- camera_img -->
 			</div>
 			<!-- picture insert -->	
+<<<<<<< HEAD
 	         <div class="labelsetting labelNick t-a-l">
 	         	별명
 	         </div>
@@ -62,6 +63,53 @@
 			<!-- update -->
 			<!-- delete -->
 			<input type="submit" class="ud-div b-n HF-back HF-Red underline" value="삭제" formaction=roboDelete.do >
+=======
+			
+			<!-- Nickname -->
+			<div class="labelsetting labelNick t-a-l">
+			별명
+			</div>
+			<!-- Nickname -->
+			<!-- textBox Nickname -->
+			<div>
+				<input class ="textBox p-a-sl f-s b-n shadow" type="text" placeholder="수정할 로보 이름" maxlength="5" id="Nickname" alt="Nickname"/>
+			</div>
+			<!-- textBox Nickname -->
+			
+			<!-- roboBox : label을 한 이유: 로보 라는 글자가 width가 줄여져도 TextBox 위 왼쪽에 위치 -->
+			<div class="labelsetting labelrobo t-a-l d-ib p-l-sl">
+			로보
+			</div>
+			<div class="labelsetting d-ib">
+			<input type="submit" class="HF-Green b-n f-s HF-back" value="로보 등록" formaction=roboInsertUI.do >
+			</div>
+			
+			<!-- 한칸 띄우기 -->
+			<div class="d-b"> </div>
+			<!-- 한칸 띄우기 -->
+			
+			<!-- roboBox -->
+			<!-- DropBox robo : labelBox을 한 이유: 로보 라는 글자가 width가 줄여져도 TextBox 위 왼쪽에 위치 -->
+			<div class="labelBox d-ib">
+			<select class="roboBox p-a-sl f-s d-ib b-n shadow">
+				<option selected>토마로보</option>
+				<!-- for문 돌릴 부분 -->
+				<option>토마온실</option>
+				<!-- for문 돌릴 부분 -->
+			</select>
+			</div>
+			<!-- DropBox robo -->
+			
+			<!-- update -->
+			<button class="ud-div b-n HF-back" value="robo_insert" onclick="location.href='robo_update.do'" >
+				<img class="ud-img d-ib" src="../icon/update.png" alt="update"/>
+			</button>
+			<!-- update -->
+			<!-- delete -->
+			<button class="ud-div b-n HF-back" value="robo_delete" >
+				<img class="ud-img d-ib" src="../icon/delete.png" alt="delete"/>
+			</button>
+>>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
 			<!-- delete -->
 			
 			<!-- 한칸 띄우기 -->

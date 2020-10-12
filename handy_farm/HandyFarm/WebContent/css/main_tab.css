@@ -29,6 +29,7 @@
 	position: absolute;
 	left: 50%;
 	margin-left: -110px;
+<<<<<<< HEAD
 }
 
 .push_log {
@@ -50,6 +51,29 @@
 	height: auto;
 }
 
+=======
+}
+
+.push_log {
+	width:80px;
+}
+
+.weather {
+	width: 350px;
+	height: 64px;
+	margin: 0 auto;
+	color: #FFFFFF;
+	font-size: 35px;
+	margin: 0 auto;
+	padding-top: 110px;
+}
+
+.weather img {
+	width: 60px;
+	height: auto;
+}
+
+>>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
 .location {
 	font-size: 23px;
 }

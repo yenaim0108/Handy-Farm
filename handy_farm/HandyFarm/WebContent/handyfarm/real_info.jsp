@@ -35,7 +35,10 @@
 			<select name="issue_number" class="issueBox m-a-s p-a-sl f-s d-ib b-n shadow">
 				<!-- <option value="">농작물을 선택해주세요.</option> -->
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
 				<%
 					HandyFarmDAO dao = new HandyFarmDAO();
 					ArrayList<HandyFarmDTO> cultivar_list = dao.cultivar_list();
@@ -43,6 +46,9 @@
 					request.setAttribute("cultivar_list", cultivar_list);
 					System.out.println(cultivar_list);
 				%>
+<<<<<<< HEAD
+>>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
+=======
 >>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
 				<c:forEach var="cultivar" items="${cultivar_list}" varStatus="status">
 					<option value="${cultivar.cultivar_number}"> ${cultivar.crops_name} </option>

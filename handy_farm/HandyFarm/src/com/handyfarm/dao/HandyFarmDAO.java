@@ -1,13 +1,10 @@
 package com.handyfarm.dao;
 
-<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-=======
->>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
 import java.sql.*;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
@@ -39,15 +36,10 @@ public class HandyFarmDAO {
 			}
 		}
 	}
-<<<<<<< HEAD
 
 
 	// robo_insert	정민정
-	
-=======
-	
-	// roboinsert	
->>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
+
 	public void roboinsert(String _robo_serial, String _robo_img, String _robo_nickname, String _cultivar_number, String _gh_id, String _phone_number) {
 		try {
 			con = ds.getConnection();
@@ -156,7 +148,6 @@ public class HandyFarmDAO {
 		System.out.println(cultivar_list);
 		return cultivar_list;
 	}
-<<<<<<< HEAD
 	//cultivar_list_insert end
 	
 	
@@ -397,22 +388,15 @@ public class HandyFarmDAO {
 		return cultivar_list;
 	}
 	//push_log end
-		
-		
-=======
+
 	//cultivar_select end
->>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
-	
+
 	/**
 	 * @author 임예나
 	 * email : yenaim0108@gmail.com
 	 */
-	
-<<<<<<< HEAD
-	// 수확 가능 비율 DB에 저장하기 임예나
-=======
+
 	// 수확 가능 비율 DB에 저장하기
->>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
 	public void insertHarvestable(Timestamp time, String serial, float harvestable) {
 		// datas, robo 선언
 		String[] datas = new String[3];
@@ -474,11 +458,7 @@ public class HandyFarmDAO {
 		} // end finally
 	} // end insertHarvestable
 	
-<<<<<<< HEAD
 	// 온실 목록 가져오기 임예나
-=======
-	// 온실 목록 가져오기
->>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
 	public ArrayList<HandyFarmDTO> GHSelect(String _phone_number) {
 		// list 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
@@ -532,11 +512,8 @@ public class HandyFarmDAO {
 		return list;
 	} // end GHSelect
 	
-<<<<<<< HEAD
+
 	// 온실 이름 가져오기 임예나
-=======
-	// 온실 이름 가져오기
->>>>>>> 152c51b61c2626c0735f4a1c662c56b957a03a7e
 	public String getGHName(String _gh_id) {
 		String gh_name = null;
 		try {

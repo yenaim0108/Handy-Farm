@@ -16,19 +16,19 @@ import javax.sql.DataSource;
 import com.handyfarm.entity.HandyFarmDTO;
 
 public class HandyFarmDAO {
-	// 데이터베이스 연결 정보
+	// �뜲�씠�꽣踰좎씠�뒪 �뿰寃� �젙蹂�
 	DataSource ds;
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 		
-	// DB 연결하는 기본 생성자
+	// DB �뿰寃고븯�뒗 湲곕낯 �깮�꽦�옄
 	public HandyFarmDAO() {
-		try { // jsp 단위 DB 연결
+		try { // jsp �떒�쐞 DB �뿰寃�
 			Context ctx = new InitialContext();
 			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/mariadb");
 		} catch(Exception e) {
-			try { // java 단위 DB 연결
+			try { // java �떒�쐞 DB �뿰寃�
 				Class.forName ("org.mariadb.jdbc.Driver");
 				con = DriverManager.getConnection("jdbc:mariadb://localhost:3306/handyfarm", "farmplant", "handyfarm");
 			} catch(Exception e2) {
@@ -38,16 +38,16 @@ public class HandyFarmDAO {
 	}
 
 	/**
-	 * @author 김연주
+	 * @author 源��뿰二�
 	 * email : sym61503@naver.com
 	 */
 
 	/**
-	 * @author 정민정
+	 * @author �젙誘쇱젙
 	 * email : as514188@gmail.com
 	 */
 	
-	// robo_insert	정민정
+	// robo_insert	�젙誘쇱젙
 	public void roboinsert(String _robo_serial, String _robo_img, String _robo_nickname, String _cultivar_number, String _gh_id, String _phone_number) {
 		try {
 			con = ds.getConnection();
@@ -78,7 +78,7 @@ public class HandyFarmDAO {
 		}
 	}//robo_insert end
 	
-	//cultivar_list 정민정
+	//cultivar_list �젙誘쇱젙
 	public ArrayList<HandyFarmDTO> cultivar_list(String robo_serial){
 		ArrayList<HandyFarmDTO> cultivar_list = new ArrayList<HandyFarmDTO> ();
 		
@@ -92,11 +92,11 @@ public class HandyFarmDAO {
 			while(rs.next()) {
 				String crops_name = rs.getString("crops_name");
 				String cultivar_number = rs.getString("cultivar_number");
-				//데이터 객체 생성
+				//�뜲�씠�꽣 媛앹껜 �깮�꽦
 				HandyFarmDTO data = new HandyFarmDTO();
 				data.setCrops_name(crops_name);
 				data.setCultivar_number(cultivar_number);
-				//리스트 값 추가
+				//由ъ뒪�듃 媛� 異붽�
 				cultivar_list.add(data);
 			}
 		}catch(Exception e) {
@@ -118,8 +118,8 @@ public class HandyFarmDAO {
 	}
 	//cultivar_list end
 	
-	//cultivar_list_robo_insert 위의 쿼리 함수에서 경우에 따라 조금만 바꿔서 해당 함수 쓰려했는데 시간 없어서 걍 새로 만듦
-	//정민정
+	//cultivar_list_robo_insert �쐞�쓽 荑쇰━ �븿�닔�뿉�꽌 寃쎌슦�뿉 �뵲�씪 議곌툑留� 諛붽퓭�꽌 �빐�떦 �븿�닔 �벐�젮�뻽�뒗�뜲 �떆媛� �뾾�뼱�꽌 嫄� �깉濡� 留뚮벀
+	//�젙誘쇱젙
 	public ArrayList<HandyFarmDTO> cultivar_list_insert(){
 		ArrayList<HandyFarmDTO> cultivar_list = new ArrayList<HandyFarmDTO> ();
 		
@@ -132,11 +132,11 @@ public class HandyFarmDAO {
 			while(rs.next()) {
 				String crops_name = rs.getString("crops_name");
 				String cultivar_number = rs.getString("cultivar_number");
-				//데이터 객체 생성
+				//�뜲�씠�꽣 媛앹껜 �깮�꽦
 				HandyFarmDTO data = new HandyFarmDTO();
 				data.setCrops_name(crops_name);
 				data.setCultivar_number(cultivar_number);
-				//리스트 값 추가
+				//由ъ뒪�듃 媛� 異붽�
 				cultivar_list.add(data);
 			}
 		}catch(Exception e) {
@@ -158,7 +158,7 @@ public class HandyFarmDAO {
 	}
 	//cultivar_list_insert end
 	
-	//robo_select 정민정
+	//robo_select �젙誘쇱젙
 	public ArrayList<HandyFarmDTO> robo_list(String gh_id){
 		ArrayList<HandyFarmDTO> robo_list = new ArrayList<HandyFarmDTO> ();
 		
@@ -174,12 +174,12 @@ public class HandyFarmDAO {
 				String robo_nickname = rs.getString("robo_nickname");
 				String robo_serial = rs.getString("robo_serial");
 				String cultivar_number = rs.getString("cultivar_number"); 
-				//데이터 객체 생성
+				//�뜲�씠�꽣 媛앹껜 �깮�꽦
 				HandyFarmDTO data = new HandyFarmDTO();
 				data.setRobo_nickname(robo_nickname);
 				data.setRobo_serial(robo_serial);
 				data.setCultivar_number(cultivar_number);
-				//리스트 값 추가
+				//由ъ뒪�듃 媛� 異붽�
 				robo_list.add(data);
 			}
 		}catch(Exception e) {
@@ -201,7 +201,7 @@ public class HandyFarmDAO {
 	}
 	//robo_select end	
 			
-	//robo_search 정민정
+	//robo_search �젙誘쇱젙
 	public ArrayList<HandyFarmDTO> robo_search_list(String robo_serial) {
 		
 		ArrayList<HandyFarmDTO> robo_search_list = new ArrayList<HandyFarmDTO> ();
@@ -225,7 +225,7 @@ public class HandyFarmDAO {
 				data.setCrops_name(crops_name);
 				data.setCultivar_number(cultivar_number);
 				
-				//리스트 값 추가
+				//由ъ뒪�듃 媛� 異붽�
 				robo_search_list.add(data);
 			}
 			
@@ -243,7 +243,7 @@ public class HandyFarmDAO {
 	}
 	//robo_search end
 		
-	//robo_Update 정민정
+	//robo_Update �젙誘쇱젙
 	public void robo_update(String robo_serial, String robo_nickname, String robo_img, String cultivar_number) {
 		
 		try {
@@ -270,7 +270,7 @@ public class HandyFarmDAO {
 		}
 	}//robo_Update end
 		
-	//robo_delete 정민정
+	//robo_delete �젙誘쇱젙
 	
 	public void robo_delete(String robo_serial) {
 		try {
@@ -295,7 +295,7 @@ public class HandyFarmDAO {
 		
 	//robo_delete end
 		
-	//push_log 정민정
+	//push_log �젙誘쇱젙
 	public ArrayList<HandyFarmDTO> push_list(String phone_number){
 		ArrayList<HandyFarmDTO> cultivar_list = new ArrayList<HandyFarmDTO> ();
 		ResultSet rs2 = null;
@@ -315,7 +315,7 @@ public class HandyFarmDAO {
 				boolean read_status = rs.getBoolean("read_status");
 				String cultivar_number = rs.getString("cultivar_number");
 				String gh_id = rs.getString("gh_id");
-				//데이터 객체 생성0
+				//�뜲�씠�꽣 媛앹껜 �깮�꽦0
 				HandyFarmDTO data = new HandyFarmDTO();
 						
 				data.setPush_category(push_category);
@@ -357,17 +357,17 @@ public class HandyFarmDAO {
 				}
 				System.out.println(push_category);
 						
-				if(push_category.equals("병충해알림")) {
+				if(push_category.equals("蹂묒땐�빐�븣由�")) {
 					data.setPush_name("pests");
-				}else if(push_category.equals("날씨알림")) {
+				}else if(push_category.equals("�궇�뵪�븣由�")) {
 					data.setPush_name("weathernotifi");
-				}else if(push_category.equals("생장정보")) {
+				}else if(push_category.equals("�깮�옣�젙蹂�")) {
 					data.setPush_name("growthinfo");
-				}else if(push_category.equals("실시간정보")) {
+				}else if(push_category.equals("�떎�떆媛꾩젙蹂�")) {
 					data.setPush_name("RTinfo");
 				}
 
-				//리스트 값 추가
+				//由ъ뒪�듃 媛� 異붽�
 				cultivar_list.add(data);
 			}
 		}catch(Exception e) {
@@ -439,7 +439,7 @@ public class HandyFarmDAO {
 		}
 	}//gh_insert_end
 	
-	//gh_id 가져오기
+	//gh_id 媛��졇�삤湲�
 	
 	public String getGHId(String gh_nickname) {
 		String gh_id = null;
@@ -471,51 +471,51 @@ public class HandyFarmDAO {
 		return gh_id;
 	}
 	
-	//gh_id 가져오기 end
+	//gh_id 媛��졇�삤湲� end
 
 	/**
-	 * @author 임예나
+	 * @author �엫�삁�굹
 	 * email : yenaim0108@gmail.com
 	 */
 
-	// 수확 가능 비율 DB에 저장하기
+	// �닔�솗 媛��뒫 鍮꾩쑉 DB�뿉 ���옣�븯湲�
 	public void insertHarvestable(Timestamp time, String serial, float harvestable) {
-		// datas, robo 선언
+		// datas, robo �꽑�뼵
 		String[] datas = new String[3];
 		String robo = null;
 		
-		// time 변수에서 시분초값만 가져오기
+		// time 蹂��닔�뿉�꽌 �떆遺꾩큹媛믩쭔 媛��졇�삤湲�
 		SimpleDateFormat sdf = new SimpleDateFormat("HHmmss");
 		String hms = sdf.format(time);
 		
 		try {
-			// 로보가 속한 품종번호, 온실 ID, 휴대폰 번호 가져오는 sql문
+			// 濡쒕낫媛� �냽�븳 �뭹醫낅쾲�샇, �삩�떎 ID, �쑕���룿 踰덊샇 媛��졇�삤�뒗 sql臾�
 			String query = "SELECT cultivar_number, gh_id, phone_number " + 
 						   "FROM robo " + 
 						   "WHERE robo_serial = ?";
 			
 			pstmt = con.prepareStatement(query);
-			// 매개변수 값 대입 -> set 메서드에 값 설정
+			// 留ㅺ컻蹂��닔 媛� ���엯 -> set 硫붿꽌�뱶�뿉 媛� �꽕�젙
 			pstmt.setString(1, serial);
-			// sql문 실행
+			// sql臾� �떎�뻾
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				// datas 배열의 값 설정
+				// datas 諛곗뿴�쓽 媛� �꽕�젙
 				datas[0] = rs.getString("cultivar_number");
 				datas[1] = rs.getString("gh_id");
 				datas[2] = rs.getString("phone_number");
 				
-				// 로보 시리얼 번호 뒷 8자리 가져오기
+				// 濡쒕낫 �떆由ъ뼹 踰덊샇 �뮮 8�옄由� 媛��졇�삤湲�
 				robo = serial.substring(serial.length() - 8, serial.length());
 			}
 			
-			// harvestable 테이블에 데이터를 넣는 sql문
+			// harvestable �뀒�씠釉붿뿉 �뜲�씠�꽣瑜� �꽔�뒗 sql臾�
 			query = "INSERT INTO harvestable (hrv_id, harvestable, upload_time, robo_serial, cultivar_number, gh_id, phone_number) " + 
 					"VALUES (?, ?, ?, ?, ?, ?, ?)";
 			
 			pstmt = con.prepareStatement(query);
-			// 매개변수 값 대입 -> set 메서드에 값 설정
+			// 留ㅺ컻蹂��닔 媛� ���엯 -> set 硫붿꽌�뱶�뿉 媛� �꽕�젙
 			pstmt.setString(1, "hrv-" + robo + "-" + hms);
 			pstmt.setFloat(2, harvestable);
 			pstmt.setTimestamp(3, time);
@@ -523,7 +523,7 @@ public class HandyFarmDAO {
 			pstmt.setString(5, datas[0]);
 			pstmt.setString(6, datas[1]);
 			pstmt.setString(7, datas[2]);
-			// sql문 적용
+			// sql臾� �쟻�슜
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -540,40 +540,40 @@ public class HandyFarmDAO {
 		} // end finally
 	} // end insertHarvestable
 	
-	// 온실 목록 가져오기 임예나
+	// �삩�떎 紐⑸줉 媛��졇�삤湲� �엫�삁�굹
 	public ArrayList<HandyFarmDTO> GHSelect(String _phone_number) {
-		// list 선언
+		// list �꽑�뼵
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
 		
 		try {
-			// DB 연결
+			// DB �뿰寃�
 			con = ds.getConnection();
 			
-			// 온실 목록을 가져오는 sql문
+			// �삩�떎 紐⑸줉�쓣 媛��졇�삤�뒗 sql臾�
 			String query = "SELECT * " + 
 						   "FROM greenhouse " + 
 						   "WHERE phone_number = ?";
 			pstmt = con.prepareStatement(query);
-			// 매개변수 값 대입 -> set 메서드에 값 설정
+			// 留ㅺ컻蹂��닔 媛� ���엯 -> set 硫붿꽌�뱶�뿉 媛� �꽕�젙
 			pstmt.setString(1, _phone_number);
-			// sql문 실행
+			// sql臾� �떎�뻾
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				// 레코드의 정보를 각 변수에 저장
+				// �젅肄붾뱶�쓽 �젙蹂대�� 媛� 蹂��닔�뿉 ���옣
 				String gh_id = rs.getString("gh_id");
 				String gh_img = rs.getString("gh_img");
 				String gh_nickname = rs.getString("gh_nickname");
 				
-				// data 객체 선언
+				// data 媛앹껜 �꽑�뼵
 				HandyFarmDTO data = new HandyFarmDTO();
 				
-				// data 객체의 set 메서드에 해당하는 값을 설정
+				// data 媛앹껜�쓽 set 硫붿꽌�뱶�뿉 �빐�떦�븯�뒗 媛믪쓣 �꽕�젙
 				data.setGh_id(gh_id);
 				data.setGh_nickname(gh_nickname);
-				if (gh_img != null) { // DB에 저장된 온실 사진 가져오기
+				if (gh_img != null) { // DB�뿉 ���옣�맂 �삩�떎 �궗吏� 媛��졇�삤湲�
 					data.setGh_img(gh_img);
-				} else { // DB에 저장된 사진이 없으면 HandyFarm Logo 사진 가져오기
+				} else { // DB�뿉 ���옣�맂 �궗吏꾩씠 �뾾�쑝硫� HandyFarm Logo �궗吏� 媛��졇�삤湲�
 					data.setGh_img("../icon/handyfarm_logo.png");
 				}
 				
@@ -590,48 +590,48 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-		// 조회 결과 list 리턴
+		// 議고쉶 寃곌낵 list 由ы꽩
 		return list;
 	} // end GHSelect
 
-	// 로보 목록 가져오기 임예나
+	// 濡쒕낫 紐⑸줉 媛��졇�삤湲� �엫�삁�굹
 	public ArrayList<HandyFarmDTO> RoboSelect(String _gh_id) {
-		// list 선언
+		// list �꽑�뼵
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
 		
 		try {
-			// DB 연결
+			// DB �뿰寃�
 			con = ds.getConnection();
 			
-			// 로보 목록을 가져오는 sql문
+			// 濡쒕낫 紐⑸줉�쓣 媛��졇�삤�뒗 sql臾�
 			String query = "SELECT * " + 
 						   "FROM robo AS r " + 
 						   "JOIN crops AS c " + 
 						   "ON r.cultivar_number = c.cultivar_number " + 
 						   "WHERE gh_id = ?";
 			pstmt = con.prepareStatement(query);
-			// 매개변수 값 대입 -> set 메서드에 값 설정
+			// 留ㅺ컻蹂��닔 媛� ���엯 -> set 硫붿꽌�뱶�뿉 媛� �꽕�젙
 			pstmt.setString(1, _gh_id);
-			// sql문 실행
+			// sql臾� �떎�뻾
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				// 레코드의 정보를 각 변수에 저장
+				// �젅肄붾뱶�쓽 �젙蹂대�� 媛� 蹂��닔�뿉 ���옣
 				String robo_serial = rs.getString("robo_serial");
 				String robo_img = rs.getString("robo_img");
 				String robo_nickname = rs.getString("robo_nickname");
 				String crops_name = rs.getString("crops_name");
 				
-				// data 객체 선언
+				// data 媛앹껜 �꽑�뼵
 				HandyFarmDTO data = new HandyFarmDTO();
 				
-				// data 객체의 set 메서드에 해당하는 값을 설정
+				// data 媛앹껜�쓽 set 硫붿꽌�뱶�뿉 �빐�떦�븯�뒗 媛믪쓣 �꽕�젙
 				data.setRobo_serial(robo_serial);
 				data.setRobo_nickname(robo_nickname);
 				data.setCrops_name(crops_name);
-				if (robo_img != null) { // DB에 저장된 로보 사진 가져오기
+				if (robo_img != null) { // DB�뿉 ���옣�맂 濡쒕낫 �궗吏� 媛��졇�삤湲�
 					data.setRobo_img(robo_img);
-				} else { // DB에 저장된 사진이 없으면 HandyFarm Logo 사진 가져오기
+				} else { // DB�뿉 ���옣�맂 �궗吏꾩씠 �뾾�쑝硫� HandyFarm Logo �궗吏� 媛��졇�삤湲�
 					data.setRobo_img("../icon/handyfarm_logo.png");
 				}
 				
@@ -648,26 +648,26 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-		// 조회 결과 list 리턴
+		// 議고쉶 寃곌낵 list 由ы꽩
 		return list;
 	} // end RoboSelect
 	
-	// 온실 이름 가져오기 임예나
+	// �삩�떎 �씠由� 媛��졇�삤湲� �엫�삁�굹
 	public String getGHName(String _gh_id) {
 		String gh_name = null;
 		try {
-			// DB 연결
+			// DB �뿰寃�
 			con = ds.getConnection();
 			
-			// 온실 이름 조회
+			// �삩�떎 �씠由� 議고쉶
 			String query = "SELECT gh_nickname " + 
 						   "FROM greenhouse " + 
 						   "WHERE gh_id = ?";
 			
 			pstmt = con.prepareStatement(query);
-			// 매개변수 값 대입 -> set 메서드에 값 설정
+			// 留ㅺ컻蹂��닔 媛� ���엯 -> set 硫붿꽌�뱶�뿉 媛� �꽕�젙
 			pstmt.setString(1,  _gh_id);
-			// sql문 실행
+			// sql臾� �떎�뻾
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
@@ -684,42 +684,42 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-		// 조회 결과 gh_name 리턴
+		// 議고쉶 寃곌낵 gh_name 由ы꽩
 		return gh_name;
 	} // end getGHName
 	
-	// 생장 정보 가져오기 임예나
+	// �깮�옣 �젙蹂� 媛��졇�삤湲� �엫�삁�굹
 	public  ArrayList<HandyFarmDTO> growth(String _gh_id, String _cultivar_number) {
-		// sensor, list 선언
+		// sensor, list �꽑�뼵
 		ArrayList<String> sensor = new ArrayList<String>();
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
 		
 		try {
-			// DB 연결
+			// DB �뿰寃�
 			con = ds.getConnection();
 			
-			// 해당 작물 in 온실에 있는 센서 종류 조회
+			// �빐�떦 �옉臾� in �삩�떎�뿉 �엳�뒗 �꽱�꽌 醫낅쪟 議고쉶
 			String query = "SELECT sensor_type " + 
 						   "FROM sensor " + 
 						   "WHERE gh_id = ? AND cultivar_number = ?";
 			
 			pstmt = con.prepareStatement(query);
-			// 매개변수 값 대입 -> set 메서드에 값 설정
+			// 留ㅺ컻蹂��닔 媛� ���엯 -> set 硫붿꽌�뱶�뿉 媛� �꽕�젙
 			pstmt.setString(1, _gh_id);
 			pstmt.setString(2, _cultivar_number);
-			// sql문 실행
+			// sql臾� �떎�뻾
 			rs = pstmt.executeQuery();
 			
-			// 레코드 값만큼 반복
+			// �젅肄붾뱶 媛믩쭔�겮 諛섎났
 			while (rs.next()) {
-				// 레코드의 정보를 변수에 저장
+				// �젅肄붾뱶�쓽 �젙蹂대�� 蹂��닔�뿉 ���옣
 				String sensor_type = rs.getString("sensor_type");
 				
 				sensor.add(sensor_type);
 			}
 			
 			for (String _sensor_type : sensor) {
-				// 해당 작물 in 온실에 대한 생장환경 정보 조회 sql문
+				// �빐�떦 �옉臾� in �삩�떎�뿉 ���븳 �깮�옣�솚寃� �젙蹂� 議고쉶 sql臾�
 				query = "SELECT sv.sensor_value " + 
 						"FROM sensor_value AS sv " + 
 						"JOIN sensor AS s " + 
@@ -728,39 +728,39 @@ public class HandyFarmDAO {
 						"ORDER BY sv.measure_time DESC";
 				
 				pstmt = con.prepareStatement(query);
-				// 매개변수 값 대입 -> set 메서드에 값 설정
+				// 留ㅺ컻蹂��닔 媛� ���엯 -> set 硫붿꽌�뱶�뿉 媛� �꽕�젙
 				pstmt.setString(1, _gh_id);
 				pstmt.setString(2, _cultivar_number);
 				pstmt.setString(3, _sensor_type);
-				// sql문 실행
+				// sql臾� �떎�뻾
 				rs = pstmt.executeQuery();
 				
 				if (rs.next()) {
-					// 레코드의 정보를 각 변수에 저장
+					// �젅肄붾뱶�쓽 �젙蹂대�� 媛� 蹂��닔�뿉 ���옣
 					float sensor_value = rs.getFloat("sensor_value");
 					
 					
-					// data 객체 선언
+					// data 媛앹껜 �꽑�뼵
 					HandyFarmDTO data = new HandyFarmDTO();
 					
-					// data 객체의 set 메서드에 해당하는 값을 설정
+					// data 媛앹껜�쓽 set 硫붿꽌�뱶�뿉 �빐�떦�븯�뒗 媛믪쓣 �꽕�젙
 					data.setSensor_type(_sensor_type);
 					data.setSensor_value(sensor_value);
 					
 					if (_sensor_type.equals("temperature")) {
-						data.setSensor_name("온도");
-						data.setSensor_unit("℃");
+						data.setSensor_name("�삩�룄");
+						data.setSensor_unit("�꼦");
 					} else if (_sensor_type.equals("humidity")) {
-						data.setSensor_name("습도");
+						data.setSensor_name("�뒿�룄");
 						data.setSensor_unit("%");
 					} else if (_sensor_type.equals("co2")) {
-						data.setSensor_name("이산화탄소");
-						data.setSensor_unit("단계");
+						data.setSensor_name("�씠�궛�솕�깂�냼");
+						data.setSensor_unit("�떒怨�");
 					} else if (_sensor_type.equals("soil-moisture")) {
-						data.setSensor_name("토양 수분도");
+						data.setSensor_name("�넗�뼇 �닔遺꾨룄");
 						data.setSensor_unit("%");
 					} else if (_sensor_type.equals("sunshine")) {
-						data.setSensor_name("일조량");
+						data.setSensor_name("�씪議곕웾");
 						data.setSensor_unit("lx");
 					}
 					
@@ -768,41 +768,41 @@ public class HandyFarmDAO {
 				} // end if
 			} // end for
 			
-			// 해당 온실 in 작물에 대한 수확 가능 비율 정보 조회 sql문
+			// �빐�떦 �삩�떎 in �옉臾쇱뿉 ���븳 �닔�솗 媛��뒫 鍮꾩쑉 �젙蹂� 議고쉶 sql臾�
 			query = "SELECT harvestable " + 
 					"FROM harvestable " + 
 					"WHERE gh_id = ? AND cultivar_number = ? " + 
 					"ORDER BY upload_time DESC";
 			
 			pstmt = con.prepareStatement(query);
-			// 매개변수 값 대입 -> set 메서드에 값 설정
+			// 留ㅺ컻蹂��닔 媛� ���엯 -> set 硫붿꽌�뱶�뿉 媛� �꽕�젙
 			pstmt.setString(1, _gh_id);
 			pstmt.setString(2, _cultivar_number);
-			// sql문 실행
+			// sql臾� �떎�뻾
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
-				// 레코드의 정보를 각 변수에 저장
+				// �젅肄붾뱶�쓽 �젙蹂대�� 媛� 蹂��닔�뿉 ���옣
 				float harvestable = rs.getFloat("harvestable");
 				
-				// data 객체 선언
+				// data 媛앹껜 �꽑�뼵
 				HandyFarmDTO data = new HandyFarmDTO();
 				
-				// data 객체의 set 메서드에 해당하는 값을 설정
+				// data 媛앹껜�쓽 set 硫붿꽌�뱶�뿉 �빐�떦�븯�뒗 媛믪쓣 �꽕�젙
 				data.setSensor_type("harvestable");
 				data.setSensor_value(harvestable);
-				data.setSensor_name("수확 가능 비율");
+				data.setSensor_name("�닔�솗 媛��뒫 鍮꾩쑉");
 				data.setSensor_unit("%");
 				
 				list.add(data);
 			} else {
-				// data 객체 선언
+				// data 媛앹껜 �꽑�뼵
 				HandyFarmDTO data = new HandyFarmDTO();
 				
-				// data 객체의 set 메서드에 해당하는 값을 설정
+				// data 媛앹껜�쓽 set 硫붿꽌�뱶�뿉 �빐�떦�븯�뒗 媛믪쓣 �꽕�젙
 				data.setSensor_type("harvestable");
 				data.setSensor_value(0);
-				data.setSensor_name("수확 가능 비율");
+				data.setSensor_name("�닔�솗 媛��뒫 鍮꾩쑉");
 				data.setSensor_unit("%");
 				
 				list.add(data);
@@ -818,7 +818,7 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-		// 조회 결과 list 리턴
+		// 議고쉶 寃곌낵 list 由ы꽩
 		return list;
 	} // end growth
 }

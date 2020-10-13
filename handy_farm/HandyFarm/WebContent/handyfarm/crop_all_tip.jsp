@@ -50,7 +50,7 @@
          </div>  
          
          <div class="cropBox p-a-sl shadow t-a-l m-x-sl m-y-s">
-			<img class="crop-img f-r " src="../icon/circle_melon.png" alt="circle_melon">
+			<img class="crop-img f-r " src="../icon/circle_chamoe.png" alt="circle_chamoe">
 			<div class="cropintitle">참외</div>
 			<img class="crop_heart-img" src="../icon/unlike_heart.png" alt="unlike_heart">
          </div>  

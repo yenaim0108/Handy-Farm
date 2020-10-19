@@ -13,7 +13,7 @@
 		<div class="wrap">
 			<!-- title -->
 			<div class="title">
-			 	${ gh_name }
+			 	${ gh_nickname }
 			</div>
 			<!-- // title -->
 			

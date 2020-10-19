@@ -23,9 +23,9 @@ public class HandyFarmRoboUpdateUICommand implements HandyFarmCommand {
 		
 		
 		//DB에 접근해서 list 메서드 호출
-		ArrayList<HandyFarmDTO> cultivar_list = dao.cultivar_list(robo_serial);
+		ArrayList<HandyFarmDTO> crops_list = dao.crops_list(robo_serial);
 		
-		request.setAttribute("cultivar_list", cultivar_list);
-		System.out.println(cultivar_list);
+		request.setAttribute("cultivar_list", crops_list);
+		System.out.println(crops_list);
 	}
 }

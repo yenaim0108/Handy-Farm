@@ -138,25 +138,8 @@
    height: auto;
 }
 
-.labelsetting {
-   margin: 0 auto;
-   margin-top:15px;
-   margin-bottom: 10px;
-}
-
-.labelNick {
-   width: 250px;
-}
-
 .labelrobo {
    width:160px;
-}
-
-.textBox {
-   width: 235px;
-   height: 46px;
-   border-radius: 30px 30px;
-   color: #707070;
 }
 
 select {

@@ -36,6 +36,7 @@
 			%>
 
 			<%
+			System.out.println(robo_serial);
 			String gh_id = request.getParameter("gh_id");
 			System.out.println("gh_id" +gh_id);
 			%>

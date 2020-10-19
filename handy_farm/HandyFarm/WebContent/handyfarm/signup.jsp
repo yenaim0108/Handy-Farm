@@ -11,11 +11,31 @@
 	</head>
 	<body>
 		<div class="wrap">
-		<%
-			session.setAttribute("sign_up","0");
-			String phone_number = (String)session.getAttribute("sign_up");
-		%>
+			<!-- title -->
+			<div class="sign-title">
+			 	회원가입
+			</div>
+			<!-- // title -->
 			
+			<form name="login" method="post" action="signup.do">
+				<!-- id -->
+				<div class="labelNick labelsetting t-a-l">
+					아이디
+				</div>
+				<input class="textBox b-n shadow p-x-ml" type="text" name="id">
+				<!-- // id -->
+				
+				<!-- password -->
+				<div class="labelNick labelsetting t-a-l m-t-m">
+					비밀번호
+				</div>
+				<input class="textBox b-n shadow p-x-ml" type="text" name="password">
+				<!-- // password -->
+				
+				<!-- next -->
+				<input type="submit" class="next d-ib shadow"  value="다음">
+				<!-- // next -->
+			</form>
 		</div>
 	</body>
 </html>

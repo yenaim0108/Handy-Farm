@@ -14,7 +14,10 @@
    <body>
    <form method="post" name="form">
    <!-- 온실 아이디만 넘길 겸 쓴다 -->
-   <input type="hidden" name="gh_id" value="gh-12345678-001"/>
+   <%
+   String gh_id = request.getParameter("gh_id");
+   %>
+   <input type="hidden" name="gh_id" value="<%= gh_id%>"/>
    <!-- 온실 아이디만 넘길 겸 쓴다 -->
    
       <div class="wrap">
@@ -24,9 +27,11 @@
          </div>
          <!-- title -->
          <!-- picture insert -->
+         <c:forEach items="${ gh_in_list }" var="in_list">
          <div class="cameraBox shadow" >
             <!-- camera_img -->
             <div class="">
+            <!-- 이 아래에 src부분에 ${in_list.gh_img} 써주어야함 -->
             <img class="camera-img" src="../icon/camera.png" alt="camera" onclick=document.all.file.click();>
             <input type="file" name="file" id="file" style="display: none;"/>
             </div>
@@ -38,9 +43,13 @@
             </div>
             <!-- Nickname -->
             <!-- textBox Nickname -->
+
+            <input type="hidden" name="gh_id" value="${in_list.gh_id}">
+            <input type="hidden" name="gh_img" value="${in_list.gh_img}">
             <div class="m-0-a">
-               <input class ="textBox b-n shadow p-x-ml" type="text" maxlength="8" id="Nickname" placeholder="별명을 입력해주세요."/>
+               <input class ="textBox b-n shadow p-x-ml" type="text" maxlength="8" name="gh_nickname" placeholder="${in_list.gh_nickname}"/>
             </div>
+            </c:forEach>
             <!-- textBox Nickname -->
          <div class="labelsetting labelrobo t-a-l d-ib">
          로보
@@ -74,9 +83,7 @@
          </button>
          <!-- cancel button -->
          <!-- ok button -->
-         <button class="d-ib sel-pageBtn okBox m-t-40">
-         확인
-         </button>
+         <input type="submit" class="d-ib sel-pageBtn okBox m-t-40"  value="확인" formaction=ghUpdate.do>
          <!-- ok button -->
       </div>
    </form>

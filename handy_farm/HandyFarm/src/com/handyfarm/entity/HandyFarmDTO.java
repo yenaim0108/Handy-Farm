@@ -5,7 +5,8 @@ import java.sql.*;
 public class HandyFarmDTO {
 	// 테이블 컬럼에 해당하는 값 선언 (table - attribute)
 	// 회원
-	String phone_number;                // 회원 - 핸드폰 번호
+	String id;                          // 회원 - 아이디
+	String password;                    // 회원 - 비밀번호
 	String token;                       // 회원 - 토큰
 	String latitude;                    // 회원 - 위도
 	String longitude;                   // 회원 - 경도
@@ -17,8 +18,9 @@ public class HandyFarmDTO {
 	
 	// 로보
 	String robo_serial;                 // 로보 - 로보 시리얼번호
-	String robo_img;                    // 로보 - 사진 경로
-	String robo_nickname;               // 로보 - 별명
+	String robo_img;                    // 로보 - 로보 사진
+	String robo_nickname;               // 로보 - 로보 별명
+	String ip;                          // 로보 - ip 주소
 	
 	// 센서
 	String sensor_id;                   // 센서 - 센서 ID
@@ -48,7 +50,8 @@ public class HandyFarmDTO {
     Timestamp control_time;             // 설비 제어 이력 - 제어 시간
     
     // 작물
-	String cultivar_number;             // 작물 - 품종번호
+	String crops_id;                    // 작물 -작물 ID
+	String crops_img;                   // 작물 - 작물 사진
 	String crops_name;                  // 작물 - 작물 이름
 	float sum_mrn_min_temperature;      // 작물 - 여름 오전 최저 온도
 	float sum_mrn_max_temperature;      // 작물 - 여름 오전 최고 온도
@@ -62,16 +65,20 @@ public class HandyFarmDTO {
 	float win_ngh_max_temperature;      // 작물 - 겨울 야간 최고 온도
 	float min_humidity;                 // 작물 - 최저 습도
 	float max_humidity;                 // 작물 - 최고 습도
+	float min_co2;                      // 작물 - 최저 이산화탄소
 	float max_co2;                      // 작물 - 최대 이산화탄소
 	float min_soil_moisture;            // 작물 - 최저 토양 수분도
 	float max_soil_moisture;            // 작물 - 최고 토양 수분도
 	float min_sunshine;                 // 작물 - 최저 일조량
+	float max_sunshine;                 // 작물 - 최대 일조량
 	float min_soil_temperature;         // 작물 - 토양 속 최저 온도
 	float max_soil_temperature;         // 작물 - 토양 속 최고 온도
 	
 	// 일정
 	String cal_number;                  // 일정 - 일정번호
 	String cal_title;                   // 일정 - 일정제목
+	Date cal_start_date;                // 일정 - 시작 날짜
+	Date cal_end_date;                  // 일정 - 종료 날짜
 	Time cal_start;                     // 일정 - 시작 시간
 	Time cal_end;                       // 일정 - 종료 시간
 	String cal_memo;                    // 일정 - 메모
@@ -106,10 +113,12 @@ public class HandyFarmDTO {
 	float push_win_ngh_max_temperature; // 알림 관리 - 알림_겨울 야간 최고 온도
 	float push_min_humidity;            // 알림 관리 - 알림_최저 습도
 	float push_max_humidity;            // 알림 관리 - 알림_최고 습도
+	float push_min_co2;                 // 알림 관리 - 알림_최저 이산화탄소
 	float push_max_co2;                 // 알림 관리 - 알림_최대 이산화탄소
 	float push_min_soil_moisture;       // 알림 관리 - 알림_최저 토양 수분도
 	float push_max_soil_moisture;       // 알림 관리 - 알림_최고 토양 수분도
 	float push_min_sunshine;            // 알림 관리 - 알림_최저 일조량
+	float push_max_sunshine;            // 알림 관리 - 알림_최대 일조량
 	float push_min_soil_temperature;    // 알림 관리 - 알림_토양 속 최저 온도
 	float push_max_soil_temperature;    // 알림 관리 - 알림_토양 속 최고 온도
 	boolean harvestable_60;             // 알림 관리 - 수확 가능 비율 60%
@@ -133,130 +142,23 @@ public class HandyFarmDTO {
 	public HandyFarmDTO() {
 		super();
 	}
+
 	
-	// 매개변수 생성자
-	public HandyFarmDTO(String phone_number, String token, String latitude, String longitude, String gh_id,
-			String gh_img, String gh_nickname, String robo_serial, String robo_img, String robo_nickname,
-			String sensor_id, String sensor_type, String value_id, float sensor_value, Timestamp measure_time,
-			String avg_id, float reading_avg_value, String hrv_id, float harvestable, Timestamp upload_time,
-			String equipment_id, String equipment_name, String control_log_id, boolean control_status,
-			Timestamp control_time, String cultivar_number, String crops_name, float sum_mrn_min_temperature,
-			float sum_mrn_max_temperature, float sum_aft_min_temperature, float sum_aft_max_temperature,
-			float sum_ngh_min_temperature, float sum_ngh_max_temperature, float win_day_min_temperature,
-			float win_day_max_temperature, float win_ngh_min_temperature, float win_ngh_max_temperature,
-			float min_humidity, float max_humidity, float max_co2, float min_soil_moisture, float max_soil_moisture,
-			float min_sunshine, float min_soil_temperature, float max_soil_temperature, String cal_number,
-			String cal_title, Time cal_start, Time cal_end, String cal_memo, float cal_yield_kg,
-			Timestamp cal_yield_time, String link, int views, String title, String content, Date date, String category,
-			String img, boolean wish, boolean push, boolean sound, boolean vibration,
-			float push_sum_mrn_min_temperature, float push_sum_mrn_max_temperature, float push_sum_aft_min_temperature,
-			float push_sum_aft_max_temperature, float push_sum_ngh_min_temperature, float push_sum_ngh_max_temperature,
-			float push_win_day_min_temperature, float push_win_day_max_temperature, float push_win_ngh_min_temperature,
-			float push_win_ngh_max_temperature, float push_min_humidity, float push_max_humidity, float push_max_co2,
-			float push_min_soil_moisture, float push_max_soil_moisture, float push_min_sunshine,
-			float push_min_soil_temperature, float push_max_soil_temperature, boolean harvestable_60,
-			boolean harvestable_70, boolean harvestable_80, boolean harvestable_90, String plog_id, String push_msg,
-			Timestamp push_date, String push_category, boolean read_status) {
-		super();
-		this.phone_number = phone_number;
-		this.token = token;
-		this.latitude = latitude;
-		this.longitude = longitude;
-		this.gh_id = gh_id;
-		this.gh_img = gh_img;
-		this.gh_nickname = gh_nickname;
-		this.robo_serial = robo_serial;
-		this.robo_img = robo_img;
-		this.robo_nickname = robo_nickname;
-		this.sensor_id = sensor_id;
-		this.sensor_type = sensor_type;
-		this.value_id = value_id;
-		this.sensor_value = sensor_value;
-		this.measure_time = measure_time;
-		this.avg_id = avg_id;
-		this.reading_avg_value = reading_avg_value;
-		this.hrv_id = hrv_id;
-		this.harvestable = harvestable;
-		this.upload_time = upload_time;
-		this.equipment_id = equipment_id;
-		this.equipment_name = equipment_name;
-		this.control_log_id = control_log_id;
-		this.control_status = control_status;
-		this.control_time = control_time;
-		this.cultivar_number = cultivar_number;
-		this.crops_name = crops_name;
-		this.sum_mrn_min_temperature = sum_mrn_min_temperature;
-		this.sum_mrn_max_temperature = sum_mrn_max_temperature;
-		this.sum_aft_min_temperature = sum_aft_min_temperature;
-		this.sum_aft_max_temperature = sum_aft_max_temperature;
-		this.sum_ngh_min_temperature = sum_ngh_min_temperature;
-		this.sum_ngh_max_temperature = sum_ngh_max_temperature;
-		this.win_day_min_temperature = win_day_min_temperature;
-		this.win_day_max_temperature = win_day_max_temperature;
-		this.win_ngh_min_temperature = win_ngh_min_temperature;
-		this.win_ngh_max_temperature = win_ngh_max_temperature;
-		this.min_humidity = min_humidity;
-		this.max_humidity = max_humidity;
-		this.max_co2 = max_co2;
-		this.min_soil_moisture = min_soil_moisture;
-		this.max_soil_moisture = max_soil_moisture;
-		this.min_sunshine = min_sunshine;
-		this.min_soil_temperature = min_soil_temperature;
-		this.max_soil_temperature = max_soil_temperature;
-		this.cal_number = cal_number;
-		this.cal_title = cal_title;
-		this.cal_start = cal_start;
-		this.cal_end = cal_end;
-		this.cal_memo = cal_memo;
-		this.cal_yield_kg = cal_yield_kg;
-		this.cal_yield_time = cal_yield_time;
-		this.link = link;
-		this.views = views;
-		this.title = title;
-		this.content = content;
-		this.date = date;
-		this.category = category;
-		this.img = img;
-		this.wish = wish;
-		this.push = push;
-		this.sound = sound;
-		this.vibration = vibration;
-		this.push_sum_mrn_min_temperature = push_sum_mrn_min_temperature;
-		this.push_sum_mrn_max_temperature = push_sum_mrn_max_temperature;
-		this.push_sum_aft_min_temperature = push_sum_aft_min_temperature;
-		this.push_sum_aft_max_temperature = push_sum_aft_max_temperature;
-		this.push_sum_ngh_min_temperature = push_sum_ngh_min_temperature;
-		this.push_sum_ngh_max_temperature = push_sum_ngh_max_temperature;
-		this.push_win_day_min_temperature = push_win_day_min_temperature;
-		this.push_win_day_max_temperature = push_win_day_max_temperature;
-		this.push_win_ngh_min_temperature = push_win_ngh_min_temperature;
-		this.push_win_ngh_max_temperature = push_win_ngh_max_temperature;
-		this.push_min_humidity = push_min_humidity;
-		this.push_max_humidity = push_max_humidity;
-		this.push_max_co2 = push_max_co2;
-		this.push_min_soil_moisture = push_min_soil_moisture;
-		this.push_max_soil_moisture = push_max_soil_moisture;
-		this.push_min_sunshine = push_min_sunshine;
-		this.push_min_soil_temperature = push_min_soil_temperature;
-		this.push_max_soil_temperature = push_max_soil_temperature;
-		this.harvestable_60 = harvestable_60;
-		this.harvestable_70 = harvestable_70;
-		this.harvestable_80 = harvestable_80;
-		this.harvestable_90 = harvestable_90;
-		this.plog_id = plog_id;
-		this.push_msg = push_msg;
-		this.push_date = push_date;
-		this.push_category = push_category;
-		this.read_status = read_status;
-	}
-
 	// getter/setter
-	public String getPhone_number() {
-		return phone_number;
+	public String getId() {
+		return id;
 	}
 
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getToken() {
@@ -329,6 +231,14 @@ public class HandyFarmDTO {
 
 	public void setRobo_nickname(String robo_nickname) {
 		this.robo_nickname = robo_nickname;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 
 	public String getSensor_id() {
@@ -451,12 +361,20 @@ public class HandyFarmDTO {
 		this.control_time = control_time;
 	}
 
-	public String getCultivar_number() {
-		return cultivar_number;
+	public String getCrops_id() {
+		return crops_id;
 	}
 
-	public void setCultivar_number(String cultivar_number) {
-		this.cultivar_number = cultivar_number;
+	public void setCrops_id(String crops_id) {
+		this.crops_id = crops_id;
+	}
+
+	public String getCrops_img() {
+		return crops_img;
+	}
+
+	public void setCrops_img(String crops_img) {
+		this.crops_img = crops_img;
 	}
 
 	public String getCrops_name() {
@@ -563,6 +481,14 @@ public class HandyFarmDTO {
 		this.max_humidity = max_humidity;
 	}
 
+	public float getMin_co2() {
+		return min_co2;
+	}
+
+	public void setMin_co2(float min_co2) {
+		this.min_co2 = min_co2;
+	}
+
 	public float getMax_co2() {
 		return max_co2;
 	}
@@ -595,6 +521,14 @@ public class HandyFarmDTO {
 		this.min_sunshine = min_sunshine;
 	}
 
+	public float getMax_sunshine() {
+		return max_sunshine;
+	}
+
+	public void setMax_sunshine(float max_sunshine) {
+		this.max_sunshine = max_sunshine;
+	}
+
 	public float getMin_soil_temperature() {
 		return min_soil_temperature;
 	}
@@ -625,6 +559,22 @@ public class HandyFarmDTO {
 
 	public void setCal_title(String cal_title) {
 		this.cal_title = cal_title;
+	}
+
+	public Date getCal_start_date() {
+		return cal_start_date;
+	}
+
+	public void setCal_start_date(Date cal_start_date) {
+		this.cal_start_date = cal_start_date;
+	}
+
+	public Date getCal_end_date() {
+		return cal_end_date;
+	}
+
+	public void setCal_end_date(Date cal_end_date) {
+		this.cal_end_date = cal_end_date;
 	}
 
 	public Time getCal_start() {
@@ -851,6 +801,14 @@ public class HandyFarmDTO {
 		this.push_max_humidity = push_max_humidity;
 	}
 
+	public float getPush_min_co2() {
+		return push_min_co2;
+	}
+
+	public void setPush_min_co2(float push_min_co2) {
+		this.push_min_co2 = push_min_co2;
+	}
+
 	public float getPush_max_co2() {
 		return push_max_co2;
 	}
@@ -881,6 +839,14 @@ public class HandyFarmDTO {
 
 	public void setPush_min_sunshine(float push_min_sunshine) {
 		this.push_min_sunshine = push_min_sunshine;
+	}
+
+	public float getPush_max_sunshine() {
+		return push_max_sunshine;
+	}
+
+	public void setPush_max_sunshine(float push_max_sunshine) {
+		this.push_max_sunshine = push_max_sunshine;
 	}
 
 	public float getPush_min_soil_temperature() {
@@ -986,6 +952,7 @@ public class HandyFarmDTO {
 	public void setSensor_unit(String sensor_unit) {
 		this.sensor_unit = sensor_unit;
 	}
+
 	public String getPush_name() {
 		return push_name;
 	}

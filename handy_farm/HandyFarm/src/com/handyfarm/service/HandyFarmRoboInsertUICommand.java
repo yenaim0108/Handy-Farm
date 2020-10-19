@@ -21,9 +21,9 @@ public class HandyFarmRoboInsertUICommand implements HandyFarmCommand {
 		HandyFarmDAO dao = new HandyFarmDAO();
 		//DB에 접근해서 list 메서드 호출
 		//String gh_id = dao.getGHId(gh_nickname);
-		ArrayList<HandyFarmDTO> cultivar_list_insert = dao.cultivar_list_insert();
+		ArrayList<HandyFarmDTO> crops_list_insert = dao.crops_list_insert();
 		
-		request.setAttribute("cultivar_list_insert", cultivar_list_insert);
+		request.setAttribute("crops_list_insert", crops_list_insert);
 		request.setAttribute("gh_id", gh_id);
 		request.setAttribute("robo_serial", robo_serial);
 	}

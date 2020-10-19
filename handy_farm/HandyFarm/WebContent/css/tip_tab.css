@@ -8,6 +8,16 @@
 }
 
 
+.crop-imgBox {
+   width: 190px;
+   height : 190px;
+   background-color: #FFFFFF;
+   border-radius: 50%;
+   margin: 0 auto;
+}
+
+
+
 
 .labelsetting {
 	margin: 0 auto;
@@ -49,6 +59,77 @@
 	border-radius: 20px 20px;
 	margin: 10;
 	display: inline-block;
+}
+
+.crop_tip_Box{
+	width: 330px;
+	height: auto;
+	background-color: #FFFFFF;
+	border-radius: 20px 20px;
+	margin: 10;
+	display: inline-block;
+	
+}
+
+.crop_tip_content{
+	font-size: 18px;
+	width: 310px;
+	text-align: left;
+}
+
+.temperature_label{
+	font-size: 18px;
+	text-align: right;
+	float: right;
+}
+
+.temperature_label_high {
+	color: color: #E8474B;
+}
+
+.HF-Tip_Blue{
+	color: Blue;
+}
+
+.tip_whether-img{
+	width:25px;
+	height: auto;
+}
+
+
+.pest_info_box{
+	width: 280px;
+	height: 280px; 
+	background-color: #FFFFFF;
+	border-radius: 20px 20px;
+	margin: 10;
+	display: inline-block;
+	
+}
+
+
+
+.pest_infointitle{
+	font-size: 18px;
+	width: 230px;
+	text-align: center;
+	margin: 20px;
+}
+
+.pest_infoinContent{
+	font-size: 18px;
+	width: 230px;
+	height : 180px;
+	text-align: left;
+
+}
+
+.pest_infoFooter{
+	font-size: 18px;
+	width: 230px;
+	height : auto;
+	text-align: right;
+	
 }
 
 .cropBox{
@@ -103,6 +184,11 @@
 	height: auto;
 }
 
+.tip_back-img{
+	width:25px;
+	height: auto;
+}
+
 .crop-img{
 	width: 90px;
 	height: auto;
@@ -127,6 +213,10 @@
 	margin-top: 10px;
 	display: inline-block;
 	float: right;
+}
+
+.wish_toggle-img::before{
+	
 }
 
 .ud-div {

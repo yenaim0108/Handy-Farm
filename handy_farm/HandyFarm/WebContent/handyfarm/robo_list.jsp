@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -14,13 +14,17 @@
 		<div class="wrap">
 			<!-- title -->
 			<div class="title">
-			 	${ gh_name } - 로보 목록
+			 	${ gh_nickname } - 로보 목록
 			</div>
 			<!-- // title -->
 			
 			<!-- 로보 목록 -->
 			<c:forEach items="${ RoboList }" var="dto">
-               <form name="gh" method="post">
+               <form name="robo" method="post">'
+                  <!-- 온실 ID -->
+                  <input type="hidden" name="gh_id" value="${ gh_id }">
+                  <!-- // 온실 ID -->
+               
                	  <!-- 로보 시리얼 번호 -->
                   <input type="hidden" name="robo_serial" value="${ dto.robo_serial }">
                   <!-- // 로보 시리얼번호 -->
@@ -42,7 +46,7 @@
                      </div>
                      
                      <!-- 수정 -->
-                     <input class="unsel-pageBtn shadow m-b-m" type="submit" value="수정" formaction="roboUpdate.do">
+                     <input class="unsel-pageBtn shadow m-b-m" type="submit" value="수정" formaction="roboUpdateUI.do">
                      <!-- // 수정 -->
                      
                      <!-- 삭제 -->
@@ -52,6 +56,19 @@
                </form>
             </c:forEach>
             <!-- // 로보 목록 -->
+            
+            <!-- 로보 개설 -->
+            <form name="roboInsert" method="post">
+                <!-- 온실 ID -->
+                <input type="hidden" name="gh_id" value="${ gh_id }">
+                <!-- // 온실 ID -->
+                  
+                <input class="sel-pageBtn shadow m-b-m" type="submit" formaction="${ next }">
+                <div class="add shadow" onclick="location.href='ghInsert.do'">
+                   <img src="../icon/add.png" alt="add">
+                </div>
+            </form>
+            <!-- // 로보 개설 -->
 		</div>
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>

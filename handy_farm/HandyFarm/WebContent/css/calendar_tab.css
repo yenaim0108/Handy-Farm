@@ -1,1 +1,79 @@
 @charset "UTF-8";
+
+.calendarBtn {
+	width: 28px;
+	height: auto;
+}
+
+#year {
+	font-size: 15px;
+	color: #5E5E5E;
+}
+
+#month {
+	width: 280px;
+	font-size: 30px;
+} 
+
+#calendar {
+	width: 340px;
+	height: auto;
+	border-radius: 20px / 20px;
+	margin: 0 auto;
+	color: #404040;
+	font-family: 12LotteMartDreamLight;
+	font-weight: bold;
+}
+
+th, td {
+	width: 42px;
+	height: 42px;
+	padding: 0;
+}
+
+th {
+	color: #5E5E5E;
+	font-weight: normal;
+}
+
+td:first-child {
+	color: #EA0000;
+}
+
+.active {
+	background-color: #22AA4D;
+	border-radius: 50%;
+	color: #FFFFFF !important;
+}
+
+#to-doTitle {
+	width: 320px;
+	color: #3D3D3D;
+	margin: 25px auto;
+}
+
+#to-doList {
+	width: 290px;
+	height: auto;
+	border-radius: 20px / 20px;
+	margin: 0 auto;
+	font-size: 15px;
+	color: #FFFFFF;
+}
+
+.to-do {
+	width : calc(100% - 30px);
+	width : -moz-calc(100% - 30px);
+	width : -webkit-calc(100% - 30px);
+	width : -o-calc(100% - 30px);
+	height : calc(100% - 20px);
+	height : -moz-calc(100% - 20px);
+	height : -webkit-calc(100% - 20px);
+	height : -o-calc(100% - 20px);
+	padding: 10px 15px;
+	border-radius: 10px / 10px; 
+}
+
+.time {
+	font-size: 12px;
+}

@@ -12,7 +12,6 @@ public class HandyFarmPushSelectCommand implements HandyFarmCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		
 		String phone_number = "01062892166";
 		
 		HandyFarmDAO dao = new HandyFarmDAO();
@@ -21,6 +20,5 @@ public class HandyFarmPushSelectCommand implements HandyFarmCommand {
 		
 		request.setAttribute("push_list", push_list);
 		System.out.println(push_list);
-		
 	}
 }

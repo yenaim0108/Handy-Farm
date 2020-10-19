@@ -89,16 +89,18 @@ public class HandyFarmController extends HttpServlet {
          nextPage = "robo_qr.jsp";
       }
       
-      // 로보 등록 화면
-      if (com.equals("/handyfarm/roboInsertUI.do")) {
-         nextPage = "robo_sign_insert.jsp";
+      // 로보 등록 화면_회원가입
+      if (com.equals("/handyfarm/roboSignInsertUI.do")) {
+    	 command = new HandyFarmRoboInsertUICommand();
+         command.execute(request, response);
+         nextPage = "robo_insert.jsp";
       }
       
       // 로보 등록_회원가입
       if (com.equals("/handyfarm/roboSignInsert.do")) {
          command = new HandyFarmRoboInsertCommand();
          command.execute(request, response);
-         nextPage = "mian.jsp";
+         nextPage = "main.jsp";
       }
       
       // 메인 페이지
@@ -146,7 +148,7 @@ public class HandyFarmController extends HttpServlet {
       if (com.equals("/handyfarm/roboInsert.do")) {
          command = new HandyFarmRoboInsertCommand();
          command.execute(request, response);
-         nextPage = "main.jsp";
+         nextPage = "robo_list.jsp";
       }
       
       // 로보 수정 화면
@@ -160,14 +162,14 @@ public class HandyFarmController extends HttpServlet {
       if (com.equals("/handyfarm/roboUpdate.do")) {
          command = new HandyFarmRoboUpdateCommand();
          command.execute(request, response);
-         nextPage = "main.jsp";
+         nextPage = "robo_list.jsp";
       }
       
       // 로보 삭제
       if (com.equals("/handyfarm/roboDelete.do")) {
          command = new HandyFarmRoboDeleteCommand();
          command.execute(request, response);
-         nextPage = "main.jsp";
+         nextPage = "robo_list.jsp";
       }
       
       // 알림 센터

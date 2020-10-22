@@ -29,14 +29,14 @@
                30℃
             </div>
             <div class="d-ib va-m location m-r">
-               영등포구
+               	영등포구
             </div>
             <div class="d-ib va-m next t-a-l">
                <img src="../icon/next.png" alt="next">
             </div>
          </div>
          <div class="update m-t-sl m-b-lg">
-            업데이트 5/6 오후 1:10
+            	업데이트 5/6 오후 1:10
             <img src="../icon/refresh.png" alt="refresh">
          </div>
          <!-- // 날씨 -->
@@ -71,11 +71,15 @@
                      </div>
                      
                      <!-- 수정 -->
-                     <input class="unsel-pageBtn shadow m-b-m" type="submit" value="수정" formaction="ghUpdateUI.do">
+                     <button class="unsel-pageBtn shadow m-b-m" formaction="ghUpdateUI.do">
+                     	수정
+                     </button>
                      <!-- // 수정 -->
                      
                      <!-- 삭제 -->
-                     <input class="sel-pageBtn shadow m-b-m" type="submit" value="삭제" formaction="ghDelete.do">
+                     <button class="sel-pageBtn shadow m-b-m" formaction="ghDelete.do">
+                     	삭제
+                     </button>
                      <!-- // 삭제 -->
                   </div>
                </form>

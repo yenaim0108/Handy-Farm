@@ -117,19 +117,19 @@ footer ul li {
 }
 
 .title {
-	margin: 30px 0 25px 0;
+	margin: 45px 0 30px 0;
 	font-size: 28px;
 	font-weight: bold;
+}
+
+.labelNick {
+   width: 250px;
 }
 
 .labelsetting {
    margin: 0 auto;
    margin-top:15px;
    margin-bottom: 10px;
-}
-
-.labelNick {
-   width: 250px;
 }
 
 .textBox {
@@ -213,6 +213,11 @@ input::placeholder {
 	border: none;
 }
 
+.upButton {
+	width: 30px;
+	height: auto;
+}
+
 .cancel-b-Btn {
 	background-color: #F5F5F3;
 	color: #22AA4D;
@@ -291,6 +296,10 @@ input::placeholder {
 
 .f-s {
 	font-size:18px;
+}
+
+.i-f-s {
+	font-size: 16px;
 }
 
 .t-a-c {
@@ -467,6 +476,10 @@ input::placeholder {
 	margin-top: 30px;
 }
 
+.m-t-\-40 {
+	margin-top: = -40px;
+}
+
 <!-- margin bottom -->
 .m-b-0 {
 	margin-bottom: 0;
@@ -494,6 +507,10 @@ input::placeholder {
 
 .m-b-lg {
 	margin-bottom: 30px;
+}
+
+.m-b-40 {
+	margin-bottom: 40px;
 }
 
 <!-- margin right -->

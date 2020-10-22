@@ -145,9 +145,17 @@
 				오늘의 일정
 			</div>
 			<div id="to-doList" class="HF-backWhite shadow p-a-ml">
-				
+				<c:forEach items="${ calendar }" var="dto">
+					<div class="do t-a-l m-b-s ${ dto.cal_color }">
+						${ dto.cal_title }
+						<div class="m-t-s"></div>
+						${ dto.cal_time } ~
+					</div>
+				</c:forEach>
 			</div>
 			<!-- to-do list -->
+			
+			<img class="floating HF-backGreen p-a-m shadow" src="../icon/add_white.png" alt="floating">
 		</div>
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>

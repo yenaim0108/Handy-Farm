@@ -49,7 +49,7 @@ td:first-child {
 #to-doTitle {
 	width: 320px;
 	color: #3D3D3D;
-	margin: 25px auto;
+	margin: 25px auto 15px auto;
 }
 
 #to-doList {
@@ -57,8 +57,6 @@ td:first-child {
 	height: auto;
 	border-radius: 20px / 20px;
 	margin: 0 auto;
-	font-size: 15px;
-	color: #FFFFFF;
 }
 
 .to-do {
@@ -76,4 +74,38 @@ td:first-child {
 
 .time {
 	font-size: 12px;
+}
+
+.floating {
+	width: 35px;
+	height: auto;
+	border-radius: 50%;
+	position: fixed;
+	right: 25px;
+	bottom: 100px;
+}
+
+.do {
+	width: 260px;
+	border-radius: 15px / 15px;
+	font-size: 14px;
+	padding: 10px 15px;
+	font-weight: normal;
+	color: #FFFFFF;
+}
+
+.c-0 {
+	background-color: #F5AA00;	
+}
+
+.c-1 {
+	background-color: #AACC03;	
+}
+
+.c-2 {
+	background-color: #29753B;	
+}
+
+.c-3 {
+	background-color: #E8474B;	
 }

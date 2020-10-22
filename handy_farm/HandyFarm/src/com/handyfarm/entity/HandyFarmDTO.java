@@ -79,8 +79,8 @@ public class HandyFarmDTO {
 	String cal_title;                   // 일정 - 일정제목
 	Date cal_start_date;                // 일정 - 시작 날짜
 	Date cal_end_date;                  // 일정 - 종료 날짜
-	Time cal_start;                     // 일정 - 시작 시간
-	Time cal_end;                       // 일정 - 종료 시간
+	Time cal_start_time;                     // 일정 - 시작 시간
+	Time cal_end_time;                       // 일정 - 종료 시간
 	String cal_memo;                    // 일정 - 메모
 	float cal_yield_kg;                 // 일정 - 수확량 (kg)
 	Timestamp cal_yield_time;           // 일정 - 수확시기
@@ -137,12 +137,15 @@ public class HandyFarmDTO {
 	String sensor_name;
 	String sensor_unit;
 	String push_name;
+	boolean idCheck;
+	boolean passwordCheck;
+	String cal_color;
+	String cal_time;
 
 	// 기본생성자
 	public HandyFarmDTO() {
 		super();
 	}
-
 	
 	// getter/setter
 	public String getId() {
@@ -577,20 +580,20 @@ public class HandyFarmDTO {
 		this.cal_end_date = cal_end_date;
 	}
 
-	public Time getCal_start() {
-		return cal_start;
+	public Time getCal_start_time() {
+		return cal_start_time;
 	}
 
-	public void setCal_start(Time cal_start) {
-		this.cal_start = cal_start;
+	public void setCal_start_time(Time cal_start) {
+		this.cal_start_time = cal_start;
 	}
 
-	public Time getCal_end() {
-		return cal_end;
+	public Time getCal_end_time() {
+		return cal_end_time;
 	}
 
-	public void setCal_end(Time cal_end) {
-		this.cal_end = cal_end;
+	public void setCal_end_time(Time cal_end) {
+		this.cal_end_time = cal_end;
 	}
 
 	public String getCal_memo() {
@@ -959,5 +962,37 @@ public class HandyFarmDTO {
 
 	public void setPush_name(String push_name) {
 		this.push_name = push_name;
+	}
+
+	public boolean getIdCheck() {
+		return idCheck;
+	}
+
+	public void setIdCheck(boolean idCheck) {
+		this.idCheck = idCheck;
+	}
+
+	public boolean getPasswordCheck() {
+		return passwordCheck;
+	}
+
+	public void setPasswordCheck(boolean passwordCheck) {
+		this.passwordCheck = passwordCheck;
+	}
+
+	public String getCal_color() {
+		return cal_color;
+	}
+
+	public void setCal_color(String cal_color) {
+		this.cal_color = cal_color;
+	}
+
+	public String getCal_time() {
+		return cal_time;
+	}
+
+	public void setCal_time(String cal_time) {
+		this.cal_time = cal_time;
 	}
 }

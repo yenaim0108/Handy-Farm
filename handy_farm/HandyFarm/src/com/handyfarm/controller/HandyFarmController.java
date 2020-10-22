@@ -40,11 +40,15 @@ public class HandyFarmController extends HttpServlet {
       
       // 앱 권한 동의
       if (com.equals("/handyfarm/agree.do")) {
+    	 command = new HandyFarmMqttCommand();
+         command.execute(request, response);
          nextPage = "agree.jsp";
       }
       
       // 로그인 화면
       if (com.equals("/handyfarm/loginUI.do")) {
+    	 command = new HandyFarmMqttCommand();
+         command.execute(request, response);
          nextPage = "login.jsp";
       }
       
@@ -52,7 +56,7 @@ public class HandyFarmController extends HttpServlet {
       if (com.equals("/handyfarm/login.do")) {
          command = new HandyFarmLoginCommand();
          command.execute(request, response);
-         nextPage = "login.jsp";
+         nextPage = "main.jsp";
       }
       
       // 회원가입 화면
@@ -60,23 +64,32 @@ public class HandyFarmController extends HttpServlet {
          nextPage = "signup.jsp";
       }
       
-      // 회원가입
-      if (com.equals("/handyfarm/signup.do")) {
-         command = new HandyFarmSignUpCommand();
-         command.execute(request, response);
-         nextPage = "signup.jsp";
+      // id 중복 체크
+      if (com.equals("/handyfarm/idCheck.do")) {
+    	  command = new HandyFarmIDCheckCommand();
+          command.execute(request, response);
+          return;
       }
       
-      // 온실 개설 화면
-      if (com.equals("/handyfarm/ghInsertUI.do")) {
+      // password가 일치하는지 체크
+      if (com.equals("/handyfarm/passwordCheck.do")) {
+    	  command = new HandyFarmPasswordCheckCommand();
+          command.execute(request, response);
+          return;
+      }
+      
+      // 회원가입 > 온실 개설
+      if (com.equals("/handyfarm/signGHInsert.do")) {
+         command = new HandyFarmSignGHCommand();
+         command.execute(request, response);
          nextPage = "gh_insert.jsp";
       }
       
-      // 온실 개설_회원가입
-      if (com.equals("/handyfarm/ghInsertSignup.do")) {
-         command = new HandyFarmGHInsertCommand();
-         command.execute(request, response);
-         nextPage = "robo_serial.jsp";
+      // 회원가입 > 온실 개설 > 로보 시리얼
+      if (com.equals("/handyfarm/signGHRoboFoward.do")) {
+    	  command = new HandyFarmSignGHRoboCommand();
+          command.execute(request, response);
+          nextPage = "robo_serial.jsp";
       }
       
       // 로보 연동_시리얼 화면
@@ -89,25 +102,39 @@ public class HandyFarmController extends HttpServlet {
          nextPage = "robo_qr.jsp";
       }
       
-      // 로보 등록 화면_회원가입
+      // 회원가입 > 온실 개설 > 로보 시리얼 > 로보 등록
       if (com.equals("/handyfarm/roboSignInsertUI.do")) {
-    	 command = new HandyFarmRoboInsertUICommand();
+    	 command = new HandyFarmRoboSignInsertUICommand();
          command.execute(request, response);
          nextPage = "robo_insert.jsp";
       }
       
-      // 로보 등록_회원가입
-      if (com.equals("/handyfarm/roboSignInsert.do")) {
-         command = new HandyFarmRoboInsertCommand();
+      // 회원가입 > 온실 개설 > 로보 시리얼 > 로보 등록 > 메인
+      if (com.equals("/handyfarm/signup.do")) {
+    	  command = new HandyFarmSignUpCommand();
          command.execute(request, response);
          nextPage = "main.jsp";
       }
       
       // 메인 페이지
       if (com.equals("/handyfarm/main.do")) {
-         command = new HandyFarmGHSelectAllCommand();
+         command = new HandyFarmMainCommand();
          command.execute(request, response);
          nextPage = "main.jsp";
+      }
+      
+      // 온실 개설 화면
+      if (com.equals("/handyfarm/ghInsertUI.do")) {
+    	 command = new HandyFarmGHInsertUICommand();
+    	 command.execute(request, response);
+         nextPage = "gh_insert.jsp";
+      }
+      
+      // 온실 개설
+      if (com.equals("/handyfarm/ghInsert.do")) {
+         command = new HandyFarmGHInsertCommand();
+         command.execute(request, response);
+         nextPage = "robo_serial.jsp";
       }
       
       // 온실 수정 화면
@@ -129,6 +156,13 @@ public class HandyFarmController extends HttpServlet {
          command = new HandyFarmGHDeleteCommand();
          command.execute(request, response);
          nextPage = "main.jsp";
+      }
+      
+      // 메인 > 온실 > 로보
+      if (com.equals("/handyfarm/mainGHRoboFoward.do")) {
+    	  command = new HandyFarmMainGHRoboCommand();
+          command.execute(request, response);
+          nextPage = "robo_serial.jsp";
       }
       
       // 로보 목록 화면

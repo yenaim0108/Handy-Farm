@@ -15,40 +15,57 @@
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
 	<body>
-	<form method="post">
 		<div class="wrap">
-		<input type="hidden" name="gh_id" value="${gh_id}">
-			<!-- title -->
-         <div class="title_rb">
-            로보 연동
-         </div>
-         <div class="waybox">
-         *인증 방법을 선택해주세요
-         </div>
-         <!-- 시리얼 -->
-         <input type="submit" class="sel_btn shadow" value="시리얼 번호">
-         <!-- 시리얼 -->
-         
-         <!-- QR -->
-         <input type="submit" class="unsel_btn shadow" value="QR 코드 인증" formaction=roboQR.do>
-         <!-- QR --> 
-         
-         <!-- textBox robo_serial -->
-	         <div class="seriald-ib">
-				<div class="serialbox m-t-lg d-ib">
-					<input class ="serialtb b-n shadow p-x-ml" type="text" maxlength="15" id="serial" placeholder="시리얼번호를 입력" name="robo_serial"/>
-				</div>		        
-	        <!-- ok button -->
-			<input type="submit" class="d-ib serial_ok shadow"  value="확인" formaction=roboInsertUI.do>
-			<!-- ok button -->
+			<!-- upButton -->
+			<button class="b-n HF-back d-b m-t-ml m-l-sl" value="back" onclick="history.back(-1);" >
+				<img class="ud-img f-l" src="../icon/upButton.png" alt="back"/>
+			</button>			
+			<!-- // upButton -->
 			
-	        </div>
-	        <!-- textBox robo_serial -->
-
+			<!-- title -->
+        	 <div class="title">
+            	로보 연동
+         	</div>
+         	<!-- // title -->
+         	
+			<form name="robo_serial" method="post" action="${ next }">
+				<input type="hidden" name="id" value="${ id }">
+				<input type="hidden" name="password" value="${ password }">
+				<input type="hidden" name="gh_nickname" value="${gh_nickname}">
+				<input type="hidden" name="next" value="${ next }">
+	         	
+	         	<div class="waybox">
+	         		*인증 방법을 선택해주세요
+	         	</div>
+	         	
+	         	<!-- 시리얼 -->
+	        	 <button class="sel_btn shadow">
+	        	 	시리얼 번호
+	        	 </button>
+	        	 <!-- 시리얼 -->
+	         
+		         <!-- QR -->
+		         <button class="unsel_btn shadow" formaction=roboQR.do>
+		         	QR 코드 인증
+		         </button>
+		         <!-- QR --> 
+	         
+	        	 <!-- textBox robo_serial -->
+		         <div class="seriald-ib">
+					<div class="serialbox m-t-lg d-ib">
+						<input class ="serialtb b-n shadow p-x-ml" type="text" maxlength="16" id="serial" placeholder="시리얼번호를 입력" name="robo_serial"/>
+					</div>
+							        
+			        <!-- ok button -->
+					<button class="d-ib serial_ok shadow">
+						확인
+					</button>
+					<!-- ok button -->
+				
+		        </div>
+		        <!-- textBox robo_serial -->
+	
+			</form>
 		</div>
-		</form>
-		<!-- footer -->
-		<%@ include file="../include/bottonTabBar.inc" %>
-		<!-- //footer -->
 	</body>
 </html>

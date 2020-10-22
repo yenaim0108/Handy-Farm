@@ -26,7 +26,7 @@ public class HandyFarmRoboDeleteCommand implements HandyFarmCommand {
 		request.setAttribute("GHList", list);
 		
 		String gh_nickname = dao.getGHNickname(gh_id);
-		ArrayList<HandyFarmDTO> list2 = dao.RoboSelect(gh_id);
+		ArrayList<HandyFarmDTO> list2 = dao.roboSelect(gh_id);
 		// request 영역 속성값을 설정 -> 키, 값
 		request.setAttribute("RoboList", list2);
 		request.setAttribute("gh_nickname", gh_nickname);

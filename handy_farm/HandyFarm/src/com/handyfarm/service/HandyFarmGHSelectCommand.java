@@ -12,7 +12,7 @@ public class HandyFarmGHSelectCommand implements HandyFarmCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
-		String gh_id = request.getParameter("gh_id");;
+		String gh_id = request.getParameter("gh_id");
 		
 		HandyFarmDAO dao = new HandyFarmDAO();
 		//DB에 접근해서 list 메서드 호출

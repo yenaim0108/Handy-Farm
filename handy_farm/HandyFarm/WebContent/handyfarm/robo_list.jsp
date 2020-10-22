@@ -12,14 +12,20 @@
 	</head>
 	<body>
 		<div class="wrap">
+			<!-- upButton -->
+			<button class="b-n HF-back d-b m-t-ml m-l-sl" value="back" onclick="history.back(-1);" >
+				<img class="ud-img f-l" src="../icon/upButton.png" alt="back"/>
+			</button>			
+			<!-- // upButton -->
+			
 			<!-- title -->
-			<div class="title">
+			<div class="=title">
 			 	${ gh_nickname } - 로보 목록
 			</div>
 			<!-- // title -->
 			
 			<!-- 로보 목록 -->
-			<c:forEach items="${ RoboList }" var="dto">
+			<c:forEach items="${ roboList }" var="dto">
                <form name="robo" method="post">'
                   <!-- 온실 ID -->
                   <input type="hidden" name="gh_id" value="${ gh_id }">
@@ -63,15 +69,11 @@
                 <input type="hidden" name="gh_id" value="${ gh_id }">
                 <!-- // 온실 ID -->
                   
-                <input class="sel-pageBtn shadow m-b-m" type="submit" formaction="${ next }">
                 <div class="add shadow" onclick="location.href='ghInsert.do'">
                    <img src="../icon/add.png" alt="add">
                 </div>
             </form>
             <!-- // 로보 개설 -->
 		</div>
-		<!-- footer -->
-		<%@ include file="../include/bottonTabBar.inc" %>
-		<!-- //footer -->
 	</body>
 </html>

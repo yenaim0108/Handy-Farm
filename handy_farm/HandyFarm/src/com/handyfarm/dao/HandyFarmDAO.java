@@ -1,10 +1,5 @@
 package com.handyfarm.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.sql.*;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
@@ -173,19 +168,19 @@ public class HandyFarmDAO {
     */
    
    // robo_insert   정민정
-   public void roboinsert(String _robo_serial, String _robo_img, String _robo_nickname, String _crops_id, String _gh_id, String _id) {
+   public void roboinsert(String _robo_serial, String _robo_img, String _robo_nickname, String _gh_id, String _id, String _crops_id) {
       try {
          con = ds.getConnection();
-         String query="INSERT INTO robo(robo_serial, robo_img, robo_nickname, crops_id, gh_id, id)" +
+         String query="INSERT INTO robo(robo_serial, robo_img, robo_nickname, gh_id, id, crops_id)" +
          "VALUES (?,?,?,?,?,?)";
          
          pstmt=con.prepareStatement(query);
          pstmt.setString(1, _robo_serial);
          pstmt.setString(2, _robo_img);
          pstmt.setString(3, _robo_nickname);
-         pstmt.setString(4, _crops_id);
-         pstmt.setString(5, _gh_id);
-         pstmt.setString(6, _id);
+         pstmt.setString(4, _gh_id);
+         pstmt.setString(5, _id);
+         pstmt.setString(6, _crops_id);
          
          int n = pstmt.executeUpdate();
          
@@ -278,7 +273,6 @@ public class HandyFarmDAO {
             e.printStackTrace();
          }
       }
-      System.out.println(crops_list);
       return crops_list;
    }
    //cultivar_list_insert end
@@ -515,61 +509,26 @@ public class HandyFarmDAO {
    //push_log end
    
    //gh_insert 정민정
-   public void gh_insert(String gh_img, String gh_nickname, String id) {
-      
-      try {
-         int count = 0;
-         String gh_id_in="";
-         String gh_id = "";
-         con = ds.getConnection();
-         try{
-            String query1 = "SELECT count(*) FROM greenhouse";
-            pstmt = con.prepareStatement(query1);
-            rs = pstmt.executeQuery();
-                  
-            while(rs.next()) {
-               count = rs.getInt(1);
-            }
-            
-            if(count == 0) {
-               gh_id = "1";
-            }else {
-               
-               try {
-                  String query2 = "SELECT gh_id FROM greenhouse WHERE id = ? order by gh_id desc";
-                  pstmt = con.prepareStatement(query2);
-                  pstmt.setString(1,  id);
-                  rs = pstmt.executeQuery();
-                  
-                  if(rs.next()) {
-                     gh_id_in = rs.getString(1);
-                     count = Integer.parseInt(gh_id_in.substring(12));
-                     count++;
-                     gh_id = Integer.toString(count);
-                     System.out.println("1이 아닐때: "+gh_id);
-                  }
-                  
-               }catch(Exception e) {
-                  e.printStackTrace();
-               }
-               
-            }
-                  
-         }catch(Exception e) {
-            e.printStackTrace();
-         }
-         
-         String query="INSERT INTO greenhouse (gh_id, gh_img, gh_nickname, id)" +
-         "VALUES (?,?,?,?)";
-
-         pstmt=con.prepareStatement(query);
-         pstmt.setString(1, "gh-"+ id + "-" + gh_id);
-         pstmt.setString(2, gh_img);
-         pstmt.setString(3, gh_nickname);
-         pstmt.setString(4, id);
-         
-         int n = pstmt.executeUpdate();
-         
+   public String gh_insert(String gh_img, String gh_nickname, String id) {
+	   // 온실 id 생성
+       Timestamp time = new Timestamp(System.currentTimeMillis());
+       SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HHmmss");
+       String d = sdf.format(time);
+       String[] date = d.split(" ");
+       String gh_id = "gh-" + id + "-" + date[0] + "-" + date[1];
+       
+       try {         
+    	   con = ds.getConnection();
+    	   
+    	   String query="INSERT INTO greenhouse (gh_id, gh_img, gh_nickname, id)" +
+    		            "VALUES (?,?,?,?)";
+    		
+    	   pstmt=con.prepareStatement(query);
+    	   pstmt.setString(1, gh_id);
+    	   pstmt.setString(2, gh_img);
+    	   pstmt.setString(3, gh_nickname);
+    	   pstmt.setString(4, id);
+    	   pstmt.executeUpdate();
       }catch(Exception e) {
          e.printStackTrace();
       }
@@ -586,6 +545,8 @@ public class HandyFarmDAO {
             e.printStackTrace();
          }
       }
+      // gh_id 리턴
+      return gh_id;
    }//gh_insert_end
    
    //gh_id 가져오기 정민정
@@ -1152,6 +1113,186 @@ public class HandyFarmDAO {
 		} // end finally
 	} // end equipmentStatusInsert
 	
+	// id 중복 확인하기
+	public ArrayList<HandyFarmDTO> idCheck(String _id) {
+		// isOverlap 선언
+		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
+		
+		try {
+			con = ds.getConnection();
+			
+			// 회원 테이블에 해당 id가 있는지 찾는 sql문
+			String query = "SELECT * " + 
+					"FROM member " + 
+					"WHERE id = ?";
+			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
+			pstmt.setString(1, _id);
+			// sql문 실행
+			rs = pstmt.executeQuery();
+			
+			HandyFarmDTO data = new HandyFarmDTO();
+			
+			if (rs.next()) { // 결과가 있으면 true
+				data.setIdCheck(true);
+			} else { // 결과가 없으면 false
+				data.setIdCheck(false);
+			}
+			// list에  추가
+			list.add(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		// 결과값 isOverlap 리턴
+		return list;
+	} // end idCheck
+	
+	// 비밀번호가 일치하는지 확인하기
+	public ArrayList<HandyFarmDTO> passwordCheck(String _id, String _password) {
+		// isOverlap 선언
+		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
+		
+		try {
+			con = ds.getConnection();
+			
+			// 회원 테이블에서 해당 id에 대한 비밀번호를 가져오는 sql문
+			String query = "SELECT password " + 
+					"FROM member " + 
+					"WHERE id = ?";
+			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
+			pstmt.setString(1, _id);
+			// sql문 실행
+			rs = pstmt.executeQuery();
+			
+			HandyFarmDTO data = new HandyFarmDTO();
+			
+			if (rs.next()) { // 비밀번호가 맞는지 체크
+				String tmp = rs.getString("password");
+				
+				if (tmp.equals(_password)) { // 비밀번호가 일치하면 true
+					data.setPasswordCheck(true);
+				} else { // 비밀번호가 일치하지 않으면 false
+					data.setPasswordCheck(false);
+				}
+			}
+			// list에 추가
+			list.add(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		// 결과값 isOverlap 리턴
+		return list;
+	} // end passwordCheck
+	
+	// 회원 테이블에 id, password 저장하기
+	public boolean signup(String _id, String _password) {
+		// result 선언
+		boolean result = false;
+		
+		try {
+			con = ds.getConnection();
+			
+			// 회원 가입 테이블에 id, password 저장하는 sql문
+			String query = "INSERT INTO MEMBER (id, password, token, latitude, longitude) " + 
+						   "VALUES (?, ?, ?, ?, ?);";
+			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
+			pstmt.setString(1, _id);
+			pstmt.setString(2, _password);
+			pstmt.setString(3, "-");
+			pstmt.setString(4, "");
+			pstmt.setString(5, "");
+			// sql문 적용
+			int n = pstmt.executeUpdate();
+			
+			if (n > 0) {
+				result = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		// DB 저장 성공 여부 결과값 result 리턴
+		return result;
+	} // end signup
+	
+	// 회원가입 할 때 모든 농작물에 대한 찜 상태 0으로 insert 해주기
+	public boolean signupWishDataInsert(String _id) {
+		// datas, result 선언
+		ArrayList<String> datas = new ArrayList<String>();
+		boolean result = false;
+		
+		try {
+			con = ds.getConnection();
+			
+			// crops 테이블에 모든 crops_id를 가져오는 sql문
+			String query = "SELECT crops_id " + 
+						   "FROM crops";
+			pstmt = con.prepareStatement(query);
+			// sql문 실행
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				datas.add(rs.getString("crops_id"));
+			}
+			
+			for (String d : datas) {
+				try {
+					// wish 테이블에 농작물 찜 상태를 0으로 저장하는 sql
+					query = "INSERT INTO wish (wish, id, crops_id) " + 
+							"VALUE ('0', ?, ?)";
+					pstmt = con.prepareStatement(query);
+					// 매개변수 값 대입 -> set 메서드에 값 설정
+					pstmt.setString(1, _id);
+					pstmt.setString(2, d);
+					// sql문 적용
+					int n = pstmt.executeUpdate();
+					
+					if (n > 0) {
+						result = true;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		// DB 저장 성공 여부 결과값 result 리턴
+		return result;
+	}
+	
 	// 온실 목록 가져오기 임예나
 	public ArrayList<HandyFarmDTO> GHSelect(String _id) {
 		// list 선언
@@ -1207,7 +1348,7 @@ public class HandyFarmDAO {
 	} // end GHSelect
 
 	// 로보 목록 가져오기 임예나
-	public ArrayList<HandyFarmDTO> RoboSelect(String _gh_id) {
+	public ArrayList<HandyFarmDTO> roboSelect(String _gh_id) {
 		// list 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
 		
@@ -1374,6 +1515,9 @@ public class HandyFarmDAO {
 					} else if (_sensor_type.equals("sunshine")) {
 						data.setSensor_name("일조량");
 						data.setSensor_unit("lx");
+					} else if (_sensor_type.equals("soil-temperature")) {
+						data.setSensor_name("토양 속 온도");
+						data.setSensor_unit("℃");
 					}
 					
 					list.add(data);
@@ -1433,4 +1577,266 @@ public class HandyFarmDAO {
 		// 조회 결과 list 리턴
 		return list;
 	} // end growth
+	
+	// 일정 조회
+	public ArrayList<HandyFarmDTO> calendarAllSelect(String _id, Date _date) {
+		// list, _cal_start_date 선언
+		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
+		String[] colorList = { "c-0", "c-1", "c-2", "c-3" };
+		int i = 0;
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "SELECT cal_title, cal_start_time, cal_end_time " + 
+						   "FROM calendar " + 
+						   "WHERE id = ? AND cal_start_date = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, _id);
+			pstmt.setDate(2, _date);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String start = rs.getTime("cal_start_time").toString();
+				String end = rs.getTime("cal_end_time").toString();
+				
+				HandyFarmDTO data = new HandyFarmDTO(); 
+				
+				if (i == 4) {
+					i = 0;
+				}
+				
+				data.setCal_title(rs.getString("cal_title"));
+				data.setCal_color(colorList[i]);
+				if ((start == "00:00:00") && (end == "23:59:59")) {
+					data.setCal_time("하루종일");
+				} else {
+					data.setCal_time(rs.getTime("cal_start_time").toString());
+				}
+				
+				list.add(data);
+				i++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		// 조회 결과값 리턴
+		return list;
+	} // end calendarAllSelect
+	
+	// 일정 보기
+	public ArrayList<HandyFarmDTO> calendarSelect(String _cal_number) {
+		// list, _cal_start_date 선언
+		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
+		
+		try {
+			con = ds.getConnection();
+			
+			String query = "SELECT * " + 
+						   "FROM calendar " + 
+						   "WHERE cal_number = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, _cal_number);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				HandyFarmDTO data = new HandyFarmDTO(); 
+				
+				data.setCal_number(rs.getString("cal_number"));
+				data.setCal_title(rs.getString("cal_title"));
+				data.setCal_start_date(rs.getDate("cal_start_date"));
+				data.setCal_end_date(rs.getDate("cal_end_date"));
+				data.setCal_start_time(rs.getTime("cal_start_time"));
+				data.setCal_end_time(rs.getTime("cal_end_time"));
+				data.setCal_memo(rs.getString("cal_memo"));
+				data.setCal_yield_kg(rs.getFloat("cal_yield_kg"));
+				data.setCal_yield_time(rs.getTimestamp("cal_yield_time"));
+				data.setGh_id(rs.getString("gh_id"));
+				data.setId(rs.getString("id"));
+				data.setCrops_id(rs.getString("crops_id"));
+				
+				list.add(data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		// 조회 결과값 return
+		return list;
+	} // end calendarSelect
+	
+	// 일정 추가 - 개인
+	public void personalCalendarInsert(String _cal_number, String _cal_title, Date _cal_start_date, Date _cal_end_date, Time _cal_start_time, Time _cal_end_time, String _cal_memo, float _cal_yield_kg, Timestamp _cal_yield_time, String _id) {
+		// gh_id, crops_id 선언
+		String _gh_id = null;
+		String _crops_id = null;
+		
+		try {
+			con = ds.getConnection();
+			
+			// gh_id, crops_id 가져오기
+			String query = "SELECT gh_id, crops_id " + 
+						   "FROM robo " + 
+						   "WHERE id = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, _id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				_gh_id = rs.getString("gh_id");
+				_crops_id = rs.getString("crops_id");
+			}
+			
+			// 개인 온실을 추가하는 sql문
+			query = "INSERT INTO calendar (cal_number, cal_title, cal_start_date, cal_end_date, cal_start_time, cal_end_time, cal_memo, cal_yield_kg, cal_yield_time, gh_id, id, crops_id) " + 
+					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, _cal_number);
+			pstmt.setString(2, _cal_title);
+			pstmt.setDate(3, _cal_start_date);
+			pstmt.setDate(4, _cal_end_date);
+			pstmt.setTime(5, _cal_start_time);
+			pstmt.setTime(6, _cal_end_time);
+			pstmt.setString(7, _cal_memo);
+			pstmt.setFloat(8, _cal_yield_kg);
+			pstmt.setTimestamp(9, _cal_yield_time);
+			pstmt.setString(10, _gh_id);
+			pstmt.setString(11, _id);
+			pstmt.setString(12, _crops_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+	} // end personalCalendarInsert
+	
+	// 일정 추가 - 로보
+	public void roboCalendarInsert(String _cal_number, String _cal_title, float _cal_yield_kg, String _id, String date) {
+		// gh_id, crops_id 선언
+		String _gh_id = null;
+		String _crops_id = null;
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		try {
+			con = ds.getConnection();
+			
+			// gh_id, crops_id 가져오기
+			String query = "SELECT gh_id, crops_id " + 
+						   "FROM robo " + 
+						   "WHERE id = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, _id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				_gh_id = rs.getString("gh_id");
+				_crops_id = rs.getString("crops_id");
+			};
+			
+			// 개인 온실을 추가하는 sql문
+			query = "INSERT INTO calendar (cal_number, cal_title, cal_start_date, cal_end_date, cal_start_time, cal_end_time, cal_yield_kg, cal_yield_time, gh_id, id, crops_id) " + 
+					"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, _cal_number);
+			pstmt.setString(2, _cal_title);
+			pstmt.setDate(3, (java.sql.Date) sdf.parse(date));
+			pstmt.setDate(4, (java.sql.Date) sdf.parse(date));
+			pstmt.setTime(5, (java.sql.Time) sdf.parse("00:00:00"));
+			pstmt.setTime(6, (java.sql.Time) sdf.parse("23:59:59"));
+			pstmt.setFloat(7, _cal_yield_kg);
+			pstmt.setTimestamp(8, java.sql.Timestamp.valueOf(date));
+			pstmt.setString(9, _gh_id);
+			pstmt.setString(10, _id);
+			pstmt.setString(11, _crops_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+	} // end roboCalendarInsert
+	
+	// 일정 수정
+	public void calendarUpdate(String _cal_number, String _cal_title, Date _cal_start_date, Date _cal_end_date, Time _cal_start_time, Time _cal_end_time, String _cal_memo, float _cal_yield_kg, Timestamp _cal_yield_time) {
+		try {
+			con = ds.getConnection();
+			
+			String query = "UPDATE calendar " + 
+						   "SET cal_title = ?, cal_start_date = ?, cal_end_date = ?, cal_start_time = ?, cal_end_time = ?, cal_memo = ?, cal_yield_kg = ?, cal_yield_time = ?" + 
+						   "WHERE cal_number = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, _cal_title);
+			pstmt.setDate(2, _cal_start_date);
+			pstmt.setDate(3, _cal_end_date);
+			pstmt.setTime(4, _cal_start_time);
+			pstmt.setTime(5, _cal_end_time);
+			pstmt.setString(6, _cal_memo);
+			pstmt.setFloat(7, _cal_yield_kg);
+			pstmt.setTimestamp(8, _cal_yield_time);
+			pstmt.setString(9, _cal_number);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+	} // end calendarUpdate
+	
+	// 일정 삭제
+	public void claendarDelete(String _cal_number) {
+		try {
+			con = ds.getConnection();
+			
+			// 일정을 삭제하는 sql문
+			String query = "DELETE " + 
+						   "FROM calendar " + 
+						   "WHERE cal_number = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, _cal_number);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+	} // end calendarDelete
 }

@@ -17,13 +17,14 @@
 	</head>
 	<body>
 		<div class="wrap">
-			<!-- icon_back -->
-			<button class="b-n HF-back d-b m-t-ml m-l-sl" value="push_back" onclick="location.href='main.do'" >
+			<!-- upButton -->
+			<button class="b-n HF-back d-b m-t-ml m-l-sl" value="back" onclick="history.back(-1);" >
 				<img class="ud-img f-l" src="../icon/upButton.png" alt="back"/>
-			</button>
-			<!-- icon_back -->
+			</button>			
+			<!-- // upButton -->
+			
 			<!-- title -->
-			<div class="title_gh_rb">
+			<div class="title">
 				알림센터
 			</div>
 			<!-- title -->

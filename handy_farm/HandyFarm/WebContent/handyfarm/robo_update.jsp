@@ -14,76 +14,81 @@
       <script src="http://code.jquery.com/jquery-latest.min.js"></script>
    </head>
    <body>
-   	<form method="post" name="form">
       <div class="wrap">
-         <!-- title -->
-         <div class="title_gh_rb">
-            로보 수정
-         </div>
-         
-         <%
-          String robo_serial = request.getParameter("robo_serial");
-         %>
-         <input type="hidden" name="robo_serial" value="<%=robo_serial%>">
-         
-         <!-- forEach robo_search 시작 -->
-         <c:forEach var="robo_search" items="${robo_search_list}" varStatus="status">
-         <!-- title -->
-         <!-- picture insert -->
-         <div class="cameraBox shadow" >
-            <!-- camera_img -->
-            <div class="">
-            <img class="camera-img" src="../icon/camera.png" alt="camera" onclick=document.all.file.click();>
-            <input type="file" name="file" id="file" style="display: none;"/>
-            </div>
-            <!-- camera_img -->
-         </div>
-         <!-- picture insert -->   
-         
-         <!-- Nickname -->
-         <div class="labelsetting labelNick t-a-l">
-            별명
-         </div>
-         <!-- Nickname -->
-         <!-- textBox Nickname -->
-         <div class="m-0-a">
-            <input class ="textBox b-n shadow p-x-ml f-s HF-DarkGray" value="${robo_search.robo_nickname}" type="text" maxlength="8" name="robo_nickname"/>
-         </div>
-         
+      	<!-- upButton -->
+		<button class="b-n HF-back d-b m-t-ml m-l-sl" value="back" onclick="history.back(-1);" >
+			<img class="ud-img f-l" src="../icon/upButton.png" alt="back"/>
+		</button>			
+		<!-- // upButton -->
+			
+        <!-- title -->
+        <div class="title">
+       	    로보 수정
+        </div>
+        <!-- // title -->
         
-         <!-- forEach robo_search 끝 -->
-         
-         
-         <!-- textBox Nickname -->
-         <!-- Crops -->
-         <div class="labelsetting labelNick t-a-l">
-            농작물
-         </div>
-         <!-- Crops -->
-         <!-- DropBox Crops-->
-         <select name="cultivar_number" class="p-x-ml d-b b-n shadow">
-			<option value="${robo_search.cultivar_number}">${robo_search.crops_name}</option>
-			<!-- forEach cultivar_list 시작 -->
-			<c:forEach var="cultivar" items="${cultivar_list}" varStatus="status">
-				<option value="${cultivar.cultivar_number}"> ${cultivar.crops_name}</option>
+      	<form method="post" name="form">
+	         
+	         <%
+	          String robo_serial = request.getParameter("robo_serial");
+	         %>
+	         <input type="hidden" name="robo_serial" value="<%=robo_serial%>">
+	         
+	         <!-- forEach robo_search 시작 -->
+	         <c:forEach var="robo_search" items="${robo_search_list}" varStatus="status">
+	         <!-- title -->
+	         <!-- picture insert -->
+	         <div class="cameraBox shadow" >
+	            <!-- camera_img -->
+	            <div class="">
+	            <img class="camera-img" src="../icon/camera.png" alt="camera" onclick=document.all.file.click();>
+	            <input type="file" name="file" id="file" style="display: none;"/>
+	            </div>
+	            <!-- camera_img -->
+	         </div>
+	         <!-- picture insert -->   
+	         
+	         <!-- Nickname -->
+	         <div class="labelsetting labelNick t-a-l">
+	           	 별명
+	         </div>
+	         <!-- Nickname -->
+	         <!-- textBox Nickname -->
+	         <div class="m-0-a">
+	            <input class ="textBox b-n shadow p-x-ml f-s HF-DarkGray" value="${robo_search.robo_nickname}" type="text" maxlength="8" name="robo_nickname"/>
+	         </div>
+	         
+	        
+	         <!-- forEach robo_search 끝 -->
+	         
+	         
+	         <!-- textBox Nickname -->
+	         <!-- Crops -->
+	         <div class="labelsetting labelNick t-a-l">
+	            농작물
+	         </div>
+	         <!-- Crops -->
+	         <!-- DropBox Crops-->
+	         <select name="cultivar_number" class="p-x-ml d-b b-n shadow">
+				<option value="${robo_search.cultivar_number}">${robo_search.crops_name}</option>
+				<!-- forEach cultivar_list 시작 -->
+				<c:forEach var="cultivar" items="${cultivar_list}" varStatus="status">
+					<option value="${cultivar.cultivar_number}"> ${cultivar.crops_name}</option>
+				</c:forEach>
+				<!-- forEach cultivar_list 시작 -->
+			</select>
 			</c:forEach>
-			<!-- forEach cultivar_list 시작 -->
-		</select>
-		</c:forEach>
-         <!-- DropBox Crops -->
-         <!-- cancel button -->
-         <button class="d-ib cancel-b-Btn m-t-40" onclick="history.back(-1);">
-            취소
-         </button>
-         <!-- cancel button -->
-         
-         <!-- ok button -->
-         <input type="submit" class="d-ib sel-pageBtn okBox m-t-40"  value="확인" formaction=roboUpdate.do>
-         <!-- ok button -->
+	         <!-- DropBox Crops -->
+	         <!-- cancel button -->
+	         <button class="d-ib cancel-b-Btn m-t-40" onclick="history.back(-1);">
+	            취소
+	         </button>
+	         <!-- cancel button -->
+	         
+	         <!-- ok button -->
+	         <input type="submit" class="d-ib sel-pageBtn okBox m-t-40"  value="확인" formaction=roboUpdate.do>
+	         <!-- ok button -->
+	     </form>
       </div>
-     </form>
-      <!-- footer -->
-      <%@ include file="../include/bottonTabBar.inc" %>
-      <!-- //footer -->
    </body>
 </html>

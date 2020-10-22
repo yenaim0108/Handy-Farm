@@ -28,5 +28,6 @@ public class HandyFarmGHSelectAllCommand implements HandyFarmCommand {
 		
 		// request 영역 속성값을 설정 -> 키, 값
 		request.setAttribute("GHList", list);
+		request.setAttribute("next", "roboInsertUI.do");
 	}
 }

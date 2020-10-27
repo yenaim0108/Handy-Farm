@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri ="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -10,8 +12,9 @@
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
 	<body>
+	<c:forEach var="dto" items="${tip_list}" >
 		<div class="wrap">
-
+		
 		<!-- icon_back -->
 		<button class="b-n HF-back d-b m-t-ml m-l-sl" value="push_back"
 			onclick="location.href='cropAll.do'">
@@ -22,8 +25,8 @@
 		
 		
 		<!-- content -->
-		<img class="crop-imgBox" src="../icon/tomato_image.png" alt="tomato" />
-		<div class="title">토  마  토</div>
+		<img class="crop-imgBox" src="${dto.crops_img }" alt="tomato" />
+		<div class="title">${dto.crops_name }</div>
 		
 		<!-- 한줄띄우기 -->
         <div class="m-y-lg"></div> 
@@ -40,7 +43,9 @@
 				<div class="crop_tip_content m-l-lg d-i">
 					-오전
 					<div class="temperature_label d-i m-r">
-						최고 <span class="HF-Red">30</span> / 최저 <span class="HF-Tip_Blue">25</span>
+					
+						최고 <span class="HF-Red"><fmt:parseNumber integerOnly="true" value="${dto.sum_mrn_max_temperature }" />
+						</span> / 최저 <span class="HF-Tip_Blue"><fmt:parseNumber integerOnly="true" value="${dto.sum_mrn_min_temperature }" /></span>
 					</div>
 				</div>
 
@@ -50,7 +55,9 @@
 				<div class="crop_tip_content m-l-lg d-i">
 					-오후
 					<div class="temperature_label d-i m-r">
-						최고 <span class="HF-Red">25</span> / 최저 <span class="HF-Tip_Blue">20</span>
+					
+						최고 <span class="HF-Red"><fmt:parseNumber integerOnly="true" value="${dto.sum_aft_max_temperature }" /></span>
+						 / 최저 <span class="HF-Tip_Blue"><fmt:parseNumber integerOnly="true" value="${dto.sum_aft_min_temperature }" /></span>
 					</div>
 				</div>
 				
@@ -59,7 +66,9 @@
 				
 				<div class="crop_tip_content p-a-sl">*야간</div>
 				<div class="temperature_label d-i m-r">
-						최고 <span class="HF-Red">25</span> / 최저 <span class="HF-Tip_Blue">20</span>
+				
+						최고 <span class="HF-Red"><fmt:parseNumber integerOnly="true" value="${dto.sum_ngh_max_temperature }" /></span>
+						 / 최저 <span class="HF-Tip_Blue"><fmt:parseNumber integerOnly="true" value="${dto.sum_ngh_min_temperature }" /></span>
 				</div>
 			</div>
 			
@@ -80,7 +89,8 @@
 				<br>
 				<div class="crop_tip_content p-a-sl">*주간</div>
 				<div class="temperature_label d-i m-r">
-						최고 <span class="HF-Red">25</span> / 최저 <span class="HF-Tip_Blue">20</span>
+						최고 <span class="HF-Red"><fmt:parseNumber integerOnly="true" value="${dto.win_day_max_temperature }" /></span>
+						 / 최저 <span class="HF-Tip_Blue"><fmt:parseNumber integerOnly="true" value="${dto.win_day_min_temperature }" /></span>
 				</div>
 	
 				
@@ -89,7 +99,9 @@
 				
 				<div class="crop_tip_content p-a-sl">*야간</div>
 				<div class="temperature_label d-i m-r">
-						최고 <span class="HF-Red">25</span> / 최저 <span class="HF-Tip_Blue">20</span>
+				
+						최고 <span class="HF-Red"><fmt:parseNumber integerOnly="true" value="${dto.win_ngh_max_temperature }" /></span>
+						 / 최저 <span class="HF-Tip_Blue"><fmt:parseNumber integerOnly="true" value="${dto.win_ngh_min_temperature }" /></span>
 				</div>
 			</div>
 			<!-- 한줄띄우기 -->
@@ -105,7 +117,9 @@
 		<div class="crop_tip_Box p-a-sl shadow t-a-l m-x-sl">
 			<div class="crop_tip_content p-a-sl HF-DarkGray">
 				<div class="temperature_label d-i m-r">
-					최고 <span class="HF-Red">30</span> / 최저 <span class="HF-Tip_Blue">20</span>
+				
+					최고 <span class="HF-Red"><fmt:parseNumber integerOnly="true" value="${dto.max_humidity }" /></span>
+					 / 최저 <span class="HF-Tip_Blue"><fmt:parseNumber integerOnly="true" value="${dto.min_humidity }" /></span>
 				</div>
 
 				<!-- 한줄띄우기 -->
@@ -122,7 +136,9 @@
 		<div class="crop_tip_Box p-a-sl shadow t-a-l m-x-sl">
 			<div class="crop_tip_content p-a-sl HF-DarkGray">
 				<div class="temperature_label d-i m-r">
-					최대 <span class="HF-Red">25</span>
+				
+					최대 <span class="HF-Red"><fmt:parseNumber integerOnly="true" value="${dto.max_co2 }" /></span>
+					 / 최저 <span class="HF-Tip_Blue"><fmt:parseNumber integerOnly="true" value="${dto.min_co2 }" /></span>
 				</div>
 
 				<!-- 한줄띄우기 -->
@@ -139,7 +155,9 @@
 		<div class="crop_tip_Box p-a-sl shadow t-a-l m-x-sl">
 			<div class="crop_tip_content p-a-sl HF-DarkGray">
 				<div class="temperature_label d-i m-r">
-					최고 <span class="HF-Red">30</span> / 최저 <span class="HF-Tip_Blue">20</span>
+				
+					최고 <span class="HF-Red"><fmt:parseNumber integerOnly="true" value="${dto.max_soil_moisture }" /></span>
+					 / 최저 <span class="HF-Tip_Blue"><fmt:parseNumber integerOnly="true" value="${dto.min_soil_moisture }" /></span>
 				</div>
 
 				<!-- 한줄띄우기 -->
@@ -156,7 +174,9 @@
 		<div class="crop_tip_Box p-a-sl shadow t-a-l m-x-sl">
 			<div class="crop_tip_content p-a-sl HF-DarkGray">
 				<div class="temperature_label d-i m-r">
-					최저 <span class="HF-Tip_Blue">25</span>
+				
+					최고 <span class="HF-Red"><fmt:parseNumber integerOnly="true" value="${dto.max_sunshine }" /></span>
+					 / 최저 <span class="HF-Tip_Blue"><fmt:parseNumber integerOnly="true" value="${dto.min_sunshine }" /></span>
 				</div>
 
 				<!-- 한줄띄우기 -->
@@ -174,7 +194,8 @@
 		<div class="crop_tip_Box p-a-sl shadow t-a-l m-x-sl">
 			<div class="crop_tip_content p-a-sl HF-DarkGray">
 				<div class="temperature_label d-i m-r">
-					최고 <span class="HF-Red">30</span> / 최저 <span class="HF-Tip_Blue">20</span>
+					최고 <span class="HF-Red"><fmt:parseNumber integerOnly="true" value="${dto.max_soil_temperature }" /></span>
+					 / 최저 <span class="HF-Tip_Blue"><fmt:parseNumber integerOnly="true" value="${dto.min_soil_temperature }" /></span>
 				</div>
 
 				<!-- 한줄띄우기 -->
@@ -191,6 +212,7 @@
 		
 		<!-- //content -->
 		</div>
+		</c:forEach>
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>
 		<!-- //footer -->

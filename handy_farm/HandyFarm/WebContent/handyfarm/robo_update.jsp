@@ -28,11 +28,8 @@
         <!-- // title -->
         
       	<form method="post" name="form">
-	         
-	         <%
-	          String robo_serial = request.getParameter("robo_serial");
-	         %>
-	         <input type="hidden" name="robo_serial" value="<%=robo_serial%>">
+	         <input type="hidden" name="robo_serial" value="${ robo_serial }">
+	         <input type="hidden" name="gh_id" value="${ gh_id }">
 	         
 	         <!-- forEach robo_search 시작 -->
 	         <c:forEach var="robo_search" items="${robo_search_list}" varStatus="status">
@@ -69,11 +66,11 @@
 	         </div>
 	         <!-- Crops -->
 	         <!-- DropBox Crops-->
-	         <select name="cultivar_number" class="p-x-ml d-b b-n shadow">
-				<option value="${robo_search.cultivar_number}">${robo_search.crops_name}</option>
+	         <select name="crops_id" class="p-x-ml d-b b-n shadow">
+				<option value="${robo_search.crops_id}">${robo_search.crops_name}</option>
 				<!-- forEach cultivar_list 시작 -->
-				<c:forEach var="cultivar" items="${cultivar_list}" varStatus="status">
-					<option value="${cultivar.cultivar_number}"> ${cultivar.crops_name}</option>
+				<c:forEach var="crops" items="${crops_list}" varStatus="status">
+					<option value="${crops.crops_id}"> ${crops.crops_name}</option>
 				</c:forEach>
 				<!-- forEach cultivar_list 시작 -->
 			</select>

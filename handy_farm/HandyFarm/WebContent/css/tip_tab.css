@@ -16,9 +16,6 @@
    margin: 0 auto;
 }
 
-
-
-
 .labelsetting {
 	margin: 0 auto;
 	margin-top:15px;
@@ -34,10 +31,11 @@
 }
 
 .textBox {
-	width: 220px;
+	width: 210px;
 	height: 45px;
 	border-radius: 30px 30px;
 	border: 2px solid #B7B7B7;
+	padding-left: 60px;
 }
 
 .labelBox {
@@ -96,40 +94,44 @@
 	height: auto;
 }
 
+.pest-img{
+	width: 100px;
+	height: auto;
+}
+
+.pest-img img {
+	width: 100px;
+	height: auto;
+}
 
 .pest_info_box{
 	width: 280px;
-	height: 280px; 
+	height: auto;
 	background-color: #FFFFFF;
 	border-radius: 20px 20px;
-	margin: 10;
-	display: inline-block;
-	
+	margin: 10px auto;
+	padding: 10px 15px;
 }
-
-
 
 .pest_infointitle{
+	width: 220px;
 	font-size: 18px;
-	width: 230px;
-	text-align: center;
-	margin: 20px;
+	text-decoration: underline;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.pest_infoinContent{
-	font-size: 18px;
-	width: 230px;
-	height : 180px;
-	text-align: left;
 
+.pest_infoinContent{
+	font-size: 15px;
+	width: 220px;
+	height : auto;
 }
 
 .pest_infoFooter{
-	font-size: 18px;
-	width: 230px;
-	height : auto;
-	text-align: right;
-	
+	font-size: 15px;
+	width: 220px;
 }
 
 .cropBox{
@@ -199,9 +201,9 @@
 	
 }
 .heart-img{
-	width: 40px;
+	width: 38px;
 	height: auto;
-	margin-right: 35px;
+	margin-right: 45px;
 	display: inline-block;
 	
 }
@@ -225,4 +227,8 @@
 
 .m-t-40 {
 	margin-top:40px;
+}
+
+.f-s-l{
+    font-size : 15px;
 }

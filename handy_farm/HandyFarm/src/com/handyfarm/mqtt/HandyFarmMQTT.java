@@ -70,6 +70,9 @@ public class HandyFarmMQTT {
 				}
 			});
 		} catch (Exception e) {
+			HandyFarmMQTT mqtt = new HandyFarmMQTT();
+			mqtt.harvestableMqtt.start();
+			
 			e.printStackTrace();
 		}
 
@@ -112,6 +115,9 @@ public class HandyFarmMQTT {
 				}
 			});
 		} catch (Exception e) {
+			HandyFarmMQTT mqtt = new HandyFarmMQTT();
+			mqtt.sensorMqtt.start();
+			
 			e.printStackTrace();
 		}
 	});
@@ -146,6 +152,9 @@ public class HandyFarmMQTT {
 			try {
 				Thread.sleep(timeInterval);
 			} catch(InterruptedException e) {
+				HandyFarmMQTT mqtt = new HandyFarmMQTT();
+				mqtt.equipmentControlMqtt.start();
+				
 				e.printStackTrace();
 			}
 		}
@@ -201,6 +210,9 @@ public class HandyFarmMQTT {
 				}
 			});
 		} catch (Exception e){
+			HandyFarmMQTT mqtt = new HandyFarmMQTT();
+			mqtt.equipmentStatusMqtt.start();
+			
 			e.printStackTrace();
 		}
 	});

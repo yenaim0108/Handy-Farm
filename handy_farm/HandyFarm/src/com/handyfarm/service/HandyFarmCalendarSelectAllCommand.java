@@ -2,7 +2,6 @@ package com.handyfarm.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +22,7 @@ public class HandyFarmCalendarSelectAllCommand implements HandyFarmCommand {
 		// 현재 날짜 가져오기
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		Date date = new Date(time.getTime());
+		
 		
 		// DB 연결
 		HandyFarmDAO dao = new HandyFarmDAO();

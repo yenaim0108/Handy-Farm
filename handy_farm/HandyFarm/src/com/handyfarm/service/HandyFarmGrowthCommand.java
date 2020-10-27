@@ -23,7 +23,8 @@ public class HandyFarmGrowthCommand implements HandyFarmCommand {
 		String gh_nickname = dao.getGHNickname(gh_id);
 		
 		// DB에 접근 growth 메서드를 호출 -> 결과물
-		ArrayList<HandyFarmDTO> list = dao.growth(gh_id, crops_id);
+		ArrayList<HandyFarmDTO> list = dao.growth(gh_id, "tomato");
+
 		// request 영역 속성값을 설정 -> 키, 값
 		request.setAttribute("growth", list);
 		request.setAttribute("gh_nickname", gh_nickname);

@@ -5,7 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-		<meta http-equiv="refresh" content="0; URL=loginUI.do">
+		<meta http-equiv="refresh" content="1; URL=loginUI.do">
 		<title>스플래시</title>
 		<link rel="stylesheet" href="../css/common_ui.css">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>

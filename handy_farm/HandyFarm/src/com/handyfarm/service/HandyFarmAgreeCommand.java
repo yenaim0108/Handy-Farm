@@ -3,8 +3,6 @@ package com.handyfarm.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.handyfarm.mqtt.HandyFarmMQTT;
-
 public class HandyFarmAgreeCommand implements HandyFarmCommand {
 
 	@Override

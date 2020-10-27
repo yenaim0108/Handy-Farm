@@ -39,7 +39,7 @@
 		            <!-- camera_img -->
 		            <div class="">
 		            <!-- 이 아래에 src부분에 ${in_list.gh_img} 써주어야함 -->
-		            <img class="camera-img" src="../icon/camera.png" alt="camera" onclick=document.all.file.click();>
+		            <img class="camera-img" src="${in_list.gh_img}" alt="camera" onclick=document.all.file.click();>
 		            <input type="file" name="file" id="file" style="display: none;"/>
 		            </div>
 		            <!-- camera_img -->
@@ -47,7 +47,6 @@
 		         <!-- picture insert -->   
 		
 	            <input type="hidden" name="gh_id" value="${in_list.gh_id}">
-	            <input type="hidden" name="gh_img" value="${in_list.gh_img}">
 		        
 		        <!-- Nickname -->
 				<div class="labelsetting labelNick t-a-l">
@@ -57,7 +56,7 @@
 				
 				<!-- textBox Nickname -->
 				<div class="m-0-a">
-					<input class ="textBox b-n shadow p-x-ml" type="text" maxlength="8" id="gh_nickname" placeholder="${in_list.gh_nickname}" name="gh_nickname" alt="nickname">
+					<input class ="textBox b-n shadow p-x-ml" type="text" maxlength="8" id="gh_nickname" value="${in_list.gh_nickname}" name="gh_nickname" alt="nickname">
 				</div>
 				<!-- textBox Nickname -->
 			</c:forEach>

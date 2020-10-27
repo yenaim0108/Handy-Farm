@@ -51,12 +51,12 @@
             
             <!-- 온실 목록 -->
             <c:forEach items="${ GHList }" var="dto">
-               <form name="gh" method="post">
+               <form name="gh" method="post" action="growth.do">
                	  <!-- 온실 ID  -->
                   <input type="hidden" name="gh_id" value="${ dto.gh_id }">
                   <!-- // 온실 ID -->
                   
-                  <div class="GH GH-Red b-n shadow p-t-sl">
+                  <div class="GH GH-Red b-n shadow p-t-sl" onclick="document.forms['gh'].submit();">
                   	<input type="submit" class="HF-Green b-n f-s GH-Red underline d-b f-r m-r-sl" value="로보목록" formaction="roboList.do">
                      <div class="d-t m-b">
                         <!-- 온실 사진 -->

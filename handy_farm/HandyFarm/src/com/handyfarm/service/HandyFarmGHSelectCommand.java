@@ -17,7 +17,7 @@ public class HandyFarmGHSelectCommand implements HandyFarmCommand {
 		HandyFarmDAO dao = new HandyFarmDAO();
 		//DB에 접근해서 list 메서드 호출
 		ArrayList<HandyFarmDTO> robo_list = dao.robo_list(gh_id);
-		ArrayList<HandyFarmDTO> gh_in_list = dao.gh_in_list(gh_id); // phone_numbervv
+		ArrayList<HandyFarmDTO> gh_in_list = dao.gh_in_list(gh_id);
 		
 		request.setAttribute("robo_list", robo_list);
 		request.setAttribute("gh_in_list", gh_in_list);

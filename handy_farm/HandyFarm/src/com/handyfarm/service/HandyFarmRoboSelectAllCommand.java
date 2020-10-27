@@ -21,11 +21,12 @@ public class HandyFarmRoboSelectAllCommand implements HandyFarmCommand {
 		// 온실 별명 가져오기
 		String gh_nickname = dao.getGHNickname(gh_id);
 				
-		// DB에 접근 메서드를 GHSelect 호출 -> 결과물
+		// DB에 접근 메서드를 roboSelect 호출 -> 결과물
 		ArrayList<HandyFarmDTO> roboList = dao.roboSelect(gh_id);
 		
 		// request 영역 속성값을 설정 -> 키, 값
 		request.setAttribute("roboList", roboList);
+		request.setAttribute("gh_id", gh_id);
 		request.setAttribute("gh_nickname", gh_nickname);
 	}
 

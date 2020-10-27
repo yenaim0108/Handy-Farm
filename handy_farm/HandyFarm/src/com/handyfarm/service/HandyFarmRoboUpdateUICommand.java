@@ -13,19 +13,20 @@ public class HandyFarmRoboUpdateUICommand implements HandyFarmCommand {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		String robo_serial = request.getParameter("robo_serial");
+		String gh_id = request.getParameter("gh_id");
 		
 		HandyFarmDAO dao = new HandyFarmDAO();
 		
 		ArrayList<HandyFarmDTO> robo_search_list = dao.robo_search_list(robo_serial);
 		
 		request.setAttribute("robo_search_list", robo_search_list);
-		System.out.println(robo_search_list);
-		
 		
 		//DB에 접근해서 list 메서드 호출
 		ArrayList<HandyFarmDTO> crops_list = dao.crops_list(robo_serial);
 		
-		request.setAttribute("cultivar_list", crops_list);
-		System.out.println(crops_list);
+		request.setAttribute("crops_list", crops_list);
+		
+		request.setAttribute("robo_serial", robo_serial);
+		request.setAttribute("gh_id", gh_id);
 	}
 }

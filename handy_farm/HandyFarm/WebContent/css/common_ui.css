@@ -75,6 +75,16 @@ body {
 	overflow-y: scroll;
 }
 
+.wrap_bottomNone {
+	width: 100%;
+	height : 100%;
+	background-color: #F5F5F3;
+	margin: 0;
+	font-size: 18px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
 .full {
 	width: 100%;
 	height: 100%; 
@@ -118,6 +128,12 @@ footer ul li {
 
 .title {
 	margin: 45px 0 30px 0;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.title2 {
+	margin: 15px 0 30px 0;
 	font-size: 28px;
 	font-weight: bold;
 }

@@ -10,10 +10,6 @@
 		<link rel="stylesheet" type="text/css" href="../css/common_ui.css?after">
 		<link rel="stylesheet" type="text/css" href="../css/main_tab.css?after">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<%
-		request.setAttribute("gh_id", "gh-12345678-001");
-		request.setAttribute("cultivar_number", "pepper");
-%>
 	</head>
 	<body>
 		<div class="wrap">
@@ -24,7 +20,7 @@
 			<!-- // upButton -->
 			
 			<!-- title -->
-			<div class="title">
+			<div class="title2">
 			 	${ gh_nickname }
 			</div>
 			<!-- // title -->

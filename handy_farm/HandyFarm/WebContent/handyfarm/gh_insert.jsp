@@ -31,11 +31,9 @@
 			</div>
 			<!-- // title -->
 			
-			<form name="gh_insert" method="post" action="${ GH_next }" onsubmit="return checkData()">
+			<form name="gh_insert" method="post" action="${ next }" onsubmit="return checkData()">
 				<input type="hidden" name="id" value="${ id }">
 				<input type="hidden" name="password" value="${ password }">
-				<input type="hidden" name="next" value="${ next }">
-				
 				
 				<!-- picture insert -->
 				<div class="cameraBox shadow" >

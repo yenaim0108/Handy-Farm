@@ -102,12 +102,37 @@
 				clickDate = e.currentTarget;
 				clickDate.classList.add('active');
 				date = new Date(date.getFullYear(), date.getMonth(), clickDate.id);
-				reloadList();
+				
+				reloadList(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + clickDate.id);
 			}
 			
 			// 사용자가 클릭한 날짜의 일정 가져오기
-			function reloadList() {
+			function reloadList(date) {
+				var html = " "
 				
+				$.ajax({
+					type: "POST",
+					url: "calendarSelect.do",
+					data: "date=" + date,
+					dataType: "json",
+					success: function(data) {
+						$('#to-doList').empty();
+						
+						$.each(data, function(key, value) {
+							html += "<div class='do t-a-l m-b-s " + value.cal_color + "'>";
+							html += value.cal_title;
+							html += "<div class='m-t-s'></div>";
+							html += value.cal_time + " ~";
+							html += "</div>"
+
+						});
+						
+						document.getElementById('to-doList').innerHTML = html;
+					},
+					error: function(request, status, error) {
+						alert("code : " + request.status + "\nmessage : " + request.reponseText +"\nerror : " + error + "\n에러가 발생하였습니다.\n관리자에게 문의해보세요.");
+					}
+				});
 			}
 		</script>
 
@@ -155,7 +180,7 @@
 			</div>
 			<!-- to-do list -->
 			
-			<img class="floating HF-backGreen p-a-m shadow" src="../icon/add_white.png" alt="floating">
+			<img class="floating HF-backGreen p-a-m shadow" src="../icon/add_white.png" alt="floating" onclick="location.href='calendarWho.do'">
 		</div>
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>

@@ -20,7 +20,6 @@ public class HandyFarmRoboInsertUICommand implements HandyFarmCommand {
 		// gh_id, robo_serial, next 값 가져오기
 		String gh_id = request.getParameter("gh_id");
 		String robo_serial = request.getParameter("robo_serial");
-		String next = request.getParameter("next");
 
 		// DB 연결
 		HandyFarmDAO dao = new HandyFarmDAO();

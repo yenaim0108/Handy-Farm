@@ -4,7 +4,6 @@ import urllib.request
 from bs4 import BeautifulSoup
 import time
 import datetime
-import MySQLdb
 
 # 페이지 종료 처리를 위한 마지막 내용 클래스 초기화
 oldmsg = BeautifulSoup("", 'html.parser')
@@ -13,10 +12,6 @@ item = 1
 # item = 180
 while True:
     try:
-        # db 연결
-        db = MySQLdb.connect(db="handyfarm", host="127.0.0.1", user="root", passwd="s218210050", charset="utf8")
-        cur = db.cursor()
-
         # 검색 조건에 최신순, 최근 6개월
         # 검색 시작일과 종료일을 주고 검색, 출력은 최신순으로 Naver에서 하므로, 별도의 sort 필요없음.
         today = datetime.datetime.now()

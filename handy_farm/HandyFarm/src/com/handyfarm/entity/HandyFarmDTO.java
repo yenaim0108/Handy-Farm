@@ -129,7 +129,7 @@ public class HandyFarmDTO {
 	// 푸시 알림 이력
 	String plog_id;                     // 푸시 알림 이력 - 푸시 이력 ID
 	String push_msg;                    // 푸시 알림 이력 - 푸시 알림 메시지
-	Timestamp push_date;                // 푸시 알림 이력 - 푸시 알림 보낸 시각
+	Timestamp push_date;                // 푸시 알림 이력 - 푸시 알림 보낸 날짜
 	String push_category;               // 푸시 알림 이력 - 푸시 알림 분류
 	boolean read_status;                // 푸시 알림 이력 - 읽음 상태
 	

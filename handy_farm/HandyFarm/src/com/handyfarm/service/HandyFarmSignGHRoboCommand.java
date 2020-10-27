@@ -12,13 +12,12 @@ public class HandyFarmSignGHRoboCommand implements HandyFarmCommand {
 		String password = request.getParameter("password");
 		String gh_img = request.getParameter("gh_img");
 		String gh_nickname = request.getParameter("gh_nickname");
-		String next = request.getParameter("next");
 		
 		// request 영역 속성값을 설정 -> 키, 값
 		request.setAttribute("id", id);
 		request.setAttribute("password", password);
 		request.setAttribute("gh_img", gh_img);
 		request.setAttribute("gh_nickname", gh_nickname);
-		request.setAttribute("next", next);
+		request.setAttribute("next", "roboSignInsertUI.do");
 	}
 }

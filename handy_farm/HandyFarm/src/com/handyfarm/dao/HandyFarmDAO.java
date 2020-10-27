@@ -37,22 +37,21 @@ public class HandyFarmDAO {
 	 * email : sym61503@naver.com
 	 */
 	
-	//작물별 경작조건, Crop리스트 가져오기 김연주 -----이미지도 DB에 넣고 추가해줘야 됌.
-	public ArrayList<HandyFarmDTO> cropAll_Select(String _phone_number) {
+	//작물별 경작조건, Crop리스트 가져오기 김연주 -----이미지도 DB에 넣고 추가해줘야 됌. ------- 민정이 추가함
+	public ArrayList<HandyFarmDTO> cropAll_Select(String id) {
 		// list 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
-		
 		try {
 			// DB 연결
 			con = ds.getConnection();
 			
 			// 병충해 목록을 가져오는 sql문
-			String query = "SELECT c.crops_name, w.wish FROM crops c, wish w WHERE c.cultivar_number=w.cultivar_number AND phone_number=?;";
+			String query = "SELECT * FROM crops c, wish w WHERE c.crops_id =w.crops_id AND id=?;";
 			
 			pstmt = con.prepareStatement(query);
 
 			// 매개변수 값 대입 -> set 메서드에 값 설정
-			pstmt.setString(1, _phone_number);
+			pstmt.setString(1, id);
 
 			// sql문 실행
 			rs = pstmt.executeQuery();
@@ -61,6 +60,9 @@ public class HandyFarmDAO {
 				
 				// 레코드의 정보를 각 변수에 저장
 				String crops_name = rs.getString("crops_name");
+				String crops_img = rs.getString("crops_img");
+				String crops_id = rs.getString("crops_id");
+				String id2=id;
 				Boolean wish = rs.getBoolean("wish");
 					
 				// data 객체 선언
@@ -68,6 +70,9 @@ public class HandyFarmDAO {
 				
 				// data  객체의 set 메서드에 해당하는 값을 설정
 				data.setCrops_name(crops_name);
+				data.setCrops_img(crops_img);
+				data.setCrops_id(crops_id);
+				data.setId(id2);
 				data.setWish(wish);
 				
 				
@@ -109,7 +114,8 @@ public class HandyFarmDAO {
 			// 병충해 목록을 가져오는 sql문
 			String query = "SELECT * " + 
 						   "FROM real_time_info " + 
-						   "WHERE category=?";
+						   "WHERE category=? " +
+						   "ORDER BY DATE DESC";
 			pstmt = con.prepareStatement(query);
 			
 			// 매개변수 값 대입 -> set 메서드에 값 설정
@@ -138,7 +144,7 @@ public class HandyFarmDAO {
 				data.setContent(content);
 				data.setDate(date);
 				
-				if (img != null) { // DB에 저장된 사진이 존재하면 해당 사진 가져오기
+				if (!img.equals("")) { // DB에 저장된 사진이 존재하면 해당 사진 가져오기
 					data.setImg(img);
 				} else { // DB에 저장된 사진이 없으면 HandyFarm Logo 사진 가져오기
 					data.setImg("../icon/handyfarm_logo.png");
@@ -182,7 +188,7 @@ public class HandyFarmDAO {
          pstmt.setString(5, _id);
          pstmt.setString(6, _crops_id);
          
-         int n = pstmt.executeUpdate();
+         pstmt.executeUpdate();
          
       }catch(Exception e) {
          e.printStackTrace();
@@ -198,7 +204,7 @@ public class HandyFarmDAO {
       }
    }//robo_insert end
    
-   //cultivar_list 정민정
+   //crops_list 정민정
    public ArrayList<HandyFarmDTO> crops_list(String robo_serial){
       ArrayList<HandyFarmDTO> crops_list = new ArrayList<HandyFarmDTO> ();
       
@@ -233,7 +239,6 @@ public class HandyFarmDAO {
             e.printStackTrace();
          }
       }
-      System.out.println(crops_list);
       return crops_list;
    }
    //cultivar_list end
@@ -315,7 +320,6 @@ public class HandyFarmDAO {
             e.printStackTrace();
          }
       }
-      System.out.println(robo_list);
       return robo_list;
    }
    //robo_select end   
@@ -373,7 +377,7 @@ public class HandyFarmDAO {
          pstmt.setString(2, robo_img);
          pstmt.setString(3, crops_id);
          pstmt.setString(4, robo_serial);
-         int n = pstmt.executeUpdate();
+         pstmt.executeUpdate();
          
       } catch (Exception e) {
          e.printStackTrace();
@@ -397,7 +401,7 @@ public class HandyFarmDAO {
          String query = "DELETE FROM robo WHERE robo_serial = ?";
          pstmt = con.prepareStatement(query);
          pstmt.setString(1, robo_serial);
-         int n = pstmt.executeUpdate();
+         pstmt.executeUpdate();
       }catch(Exception e) {
          e.printStackTrace();
       } finally {
@@ -453,7 +457,6 @@ public class HandyFarmDAO {
                if(rs2.next()) {
                   String gh_nickname = rs2.getString("gh_nickname");
                   data.setGh_nickname(gh_nickname);
-                  System.out.println(gh_nickname);
                }
                      
             }catch(Exception e) {
@@ -474,7 +477,6 @@ public class HandyFarmDAO {
             }catch(Exception e) {
                e.printStackTrace();
             }
-            System.out.println(push_category);
                   
             if(push_category.equals("병충해알림")) {
                data.setPush_name("pests");
@@ -503,7 +505,6 @@ public class HandyFarmDAO {
             e.printStackTrace();
          }
       }
-      System.out.println(crops_list);
       return crops_list;
    }
    //push_log end
@@ -601,7 +602,11 @@ public class HandyFarmDAO {
             
             HandyFarmDTO data = new HandyFarmDTO();
             data.setGh_id(gh_id);
-            data.setGh_img(gh_img);
+            if (gh_img == null) {
+            	data.setGh_img("../icon/camera.png");
+            } else {
+            	data.setGh_img(gh_img);
+            }
             data.setGh_nickname(gh_nickname);
             data.setId(id);
             
@@ -629,12 +634,12 @@ public class HandyFarmDAO {
    
       try {
          con = ds.getConnection();
-         String query = "UPDATE robo SET gh_img = ?, gh_nickname = ? where robo_serial = ?";
+         String query = "UPDATE greenhouse SET gh_img = ?, gh_nickname = ? where gh_id = ?";
          pstmt = con.prepareStatement(query);
          pstmt.setString(1, gh_img);
          pstmt.setString(2, gh_nickname);
          pstmt.setString(3, gh_id);
-         int n = pstmt.executeUpdate();
+         pstmt.executeUpdate();
          
       } catch (Exception e) {
          e.printStackTrace();
@@ -661,7 +666,7 @@ public class HandyFarmDAO {
          String query = "DELETE FROM greenhouse WHERE gh_id = ?";
          pstmt = con.prepareStatement(query);
          pstmt.setString(1, gh_id);
-         int n = pstmt.executeUpdate();
+         pstmt.executeUpdate();
       }catch(Exception e) {
          e.printStackTrace();
       } finally {
@@ -678,7 +683,254 @@ public class HandyFarmDAO {
       
    //gh_delete end
    
+ //Tip_select
+   
+   public ArrayList<HandyFarmDTO> tip_list(String crops_id) {
+	      
+	      ArrayList<HandyFarmDTO> tip_list = new ArrayList<HandyFarmDTO> ();
+	      
+	      try {
+	         con=ds.getConnection();
+	         String query="SELECT *"
+	         		+ " FROM crops"
+	         		+ " WHERE crops_id = ? ";
+	         pstmt = con.prepareStatement(query);
+	         pstmt.setString(1, crops_id);
+	         rs = pstmt.executeQuery();
+	         
+	         while (rs.next()) {
+	            float sum_mrn_min_temperature = rs.getFloat("sum_mrn_min_temperature");
+	            float sum_mrn_max_temperature = rs.getFloat("sum_mrn_max_temperature");
+	            float sum_aft_min_temperature = rs.getFloat("sum_aft_min_temperature");
+	            float sum_aft_max_temperature = rs.getFloat("sum_aft_max_temperature");
+	            float sum_ngh_min_temperature = rs.getFloat("sum_ngh_min_temperature");
+	            float sum_ngh_max_temperature = rs.getFloat("sum_ngh_max_temperature");
+	            float win_day_min_temperature = rs.getFloat("win_day_min_temperature");
+	            float win_day_max_temperature = rs.getFloat("win_day_max_temperature");
+	            float win_ngh_min_temperature = rs.getFloat("win_ngh_min_temperature");
+	            float win_ngh_max_temperature = rs.getFloat("win_ngh_max_temperature");
+	            float min_humidity = rs.getFloat("min_humidity");
+	            float max_humidity = rs.getFloat("max_humidity");
+	            float min_co2 = rs.getFloat("min_co2");
+	            float max_co2 = rs.getFloat("max_co2");
+	            float min_soil_moisture = rs.getFloat("min_soil_moisture");
+	            float max_soil_moisture = rs.getFloat("max_soil_moisture");
+	            float min_sunshine = rs.getFloat("min_sunshine");
+	            float max_sunshine = rs.getFloat("max_sunshine");
+	            float min_soil_temperature = rs.getFloat("min_soil_temperature");
+	            float max_soil_temperature = rs.getFloat("max_soil_temperature");
+	            String crops_name = rs.getString("crops_name");
+	            String crops_img = rs.getString("crops_img");
+	            
+	            HandyFarmDTO data = new HandyFarmDTO();
+	            data.setSum_mrn_min_temperature(sum_mrn_min_temperature);
+	            data.setSum_mrn_max_temperature(sum_mrn_max_temperature);
+	            data.setSum_aft_min_temperature(sum_aft_min_temperature);
+	            data.setSum_aft_max_temperature(sum_aft_max_temperature);
+	            data.setSum_ngh_min_temperature(sum_ngh_min_temperature);
+	            data.setSum_ngh_max_temperature(sum_ngh_max_temperature);
+	            data.setWin_day_min_temperature(win_day_min_temperature);
+	            data.setWin_day_max_temperature(win_day_max_temperature);
+	            data.setWin_ngh_min_temperature(win_ngh_min_temperature);
+	            data.setWin_ngh_max_temperature(win_ngh_max_temperature);
+	            data.setMin_humidity(min_humidity);
+	            data.setMax_humidity(max_humidity);
+	            data.setMin_co2(min_co2);
+	            data.setMax_co2(max_co2);
+	            data.setMin_soil_moisture(min_soil_moisture);
+	            data.setMax_soil_moisture(max_soil_moisture);
+	            data.setMin_sunshine(min_sunshine);
+	            data.setMax_sunshine(max_sunshine);
+	            data.setMin_soil_temperature(min_soil_temperature);
+	            data.setMax_soil_temperature(max_soil_temperature);
+	            data.setCrops_name(crops_name);
+	            data.setCrops_img(crops_img);
+	            
+	            //리스트 값 추가
+	            tip_list.add(data);
+	         }
+	         
+	      }catch(Exception e) {
+	         e.printStackTrace();
+	      }
+	      finally {
+	      try {
+	         if(pstmt != null) pstmt.close();
+	      }catch(SQLException e) {
+	         e.printStackTrace();
+	         }
+	      }
+	      return tip_list;
+	   }
+   
+   //Tip_select end
+   
+   
+   //Tip_search
+   
+   public ArrayList<HandyFarmDTO> tip_search(String id, String searchword) {
+	   
+		ArrayList<HandyFarmDTO> tip_search_list = new ArrayList<HandyFarmDTO>();
+		try {
+			String a = "%"+searchword+"%";
+			con = ds.getConnection();
+			//검색어 비교
+			String query = "SELECT * "
+					+ "FROM crops AS c JOIN wish AS w ON c.crops_id =w.crops_id"
+					+ " WHERE crops_name LiKE ? AND id=?";
+			
+			pstmt = con.prepareStatement(query);
 
+			pstmt.setString(1, a);
+			pstmt.setString(2, id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String crops_name = rs.getString("crops_name");
+				String crops_img = rs.getString("crops_img");
+				String crops_id = rs.getString("crops_id");
+				String id2=id;
+				Boolean wish = rs.getBoolean("wish");
+					
+				//data 선언
+				HandyFarmDTO data = new HandyFarmDTO();
+				
+				// data 값 설정
+				data.setCrops_name(crops_name);
+				data.setCrops_img(crops_img);
+				data.setCrops_id(crops_id);
+				data.setId(id2);
+				data.setWish(wish);
+				
+				
+				if (wish == true) { // 찜하기 선택이 되었다면
+					data.setImg("../icon/like_heart.png");
+				} else { // 찜하기 선택이 안되어있다면
+					data.setImg("../icon/unlike_heart.png");
+				}
+				
+				
+				tip_search_list.add(data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} 
+		
+		return tip_search_list;
+	}
+   
+   //Tip_search end
+   
+   //wish_update
+   public ArrayList<HandyFarmDTO> wish_update(String crops_id, String wish) {
+	   ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
+	   
+	   String wish2 = null;
+	   
+	   HandyFarmDTO data = new HandyFarmDTO();
+	   if(wish.equals("0")) {
+		   data.setWish(true);
+		   wish2 = "1";
+	   }else {
+		   data.setWish(false);
+		   wish2 = "0";
+	   }
+	   list.add(data);
+	   
+	   try {
+		   con = ds.getConnection();
+	       String query = "UPDATE wish SET wish = ? where crops_id = ?";
+	       pstmt = con.prepareStatement(query);
+	       pstmt.setString(1, wish2);
+	       pstmt.setString(2, crops_id);
+	       pstmt.executeUpdate();
+	       
+	   }
+	   catch (Exception e) {
+		   e.printStackTrace();
+	   }
+	   finally {
+		   try {
+			   if(pstmt != null)
+	               pstmt.close();
+			   if(con != null)
+				   con.close();
+		   } catch (SQLException e) {
+			   e.printStackTrace();
+			}
+	   }
+	   return list;
+   }
+   //wish_update end
+   
+   //wish_list
+   public ArrayList<HandyFarmDTO> wish_list(String id) {
+	   
+		ArrayList<HandyFarmDTO> wish_list = new ArrayList<HandyFarmDTO>();
+		try {
+			con = ds.getConnection();
+			//검색어 비교
+			String query = "SELECT * "
+					+ "FROM crops AS c JOIN wish AS w ON c.crops_id =w.crops_id"
+					+ " WHERE wish = ? AND id=?";
+			
+			pstmt = con.prepareStatement(query);
+
+			pstmt.setBoolean(1, true);
+			pstmt.setString(2, id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				String crops_name = rs.getString("crops_name");
+				String crops_img = rs.getString("crops_img");
+				String crops_id = rs.getString("crops_id");
+				String id2=id;
+				Boolean wish = rs.getBoolean("wish");
+					
+				//data 선언
+				HandyFarmDTO data = new HandyFarmDTO();
+				
+				// data 값 설정
+				data.setCrops_name(crops_name);
+				data.setCrops_img(crops_img);
+				data.setCrops_id(crops_id);
+				data.setId(id2);
+				data.setWish(wish);
+				
+				
+				if (wish == true) { // 찜하기 선택이 되었다면
+					data.setImg("../icon/like_heart.png");
+				} else { // 찜하기 선택이 안되어있다면
+					data.setImg("../icon/unlike_heart.png");
+				}
+				
+				
+				wish_list.add(data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} 
+		
+		return wish_list;
+	}
+   //wish_lis end
+   
 	/**
 	 * @author 임예나
 	 * email : yenaim0108@gmail.com
@@ -688,7 +940,6 @@ public class HandyFarmDAO {
 	public void insertHarvestable(Timestamp _time, String _serial, float _harvestable) {
 		// datas, robo 선언
 		String[] datas = new String[3];
-		String robo = null;
 		
 		// time 변수에서 년월일, 시분초 나눠서 가져오기
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HHmmss");
@@ -1608,7 +1859,7 @@ public class HandyFarmDAO {
 				
 				data.setCal_title(rs.getString("cal_title"));
 				data.setCal_color(colorList[i]);
-				if ((start == "00:00:00") && (end == "23:59:59")) {
+				if ((start == "00:00") && (end == "23:59")) {
 					data.setCal_time("하루종일");
 				} else {
 					data.setCal_time(rs.getTime("cal_start_time").toString());
@@ -1763,8 +2014,8 @@ public class HandyFarmDAO {
 			pstmt.setString(2, _cal_title);
 			pstmt.setDate(3, (java.sql.Date) sdf.parse(date));
 			pstmt.setDate(4, (java.sql.Date) sdf.parse(date));
-			pstmt.setTime(5, (java.sql.Time) sdf.parse("00:00:00"));
-			pstmt.setTime(6, (java.sql.Time) sdf.parse("23:59:59"));
+			pstmt.setTime(5, (java.sql.Time) sdf.parse("00:00"));
+			pstmt.setTime(6, (java.sql.Time) sdf.parse("23:59"));
 			pstmt.setFloat(7, _cal_yield_kg);
 			pstmt.setTimestamp(8, java.sql.Timestamp.valueOf(date));
 			pstmt.setString(9, _gh_id);

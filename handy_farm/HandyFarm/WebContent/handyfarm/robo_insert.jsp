@@ -44,6 +44,7 @@
 			<form method="post" action="${ next }" onsubmit="return checkData()">
 				<input type="hidden" name="id" value=${ id }>
 				<input type="hidden" name="password" value="${ password }">
+				<input type="hidden" name="gh_id" value="${ gh_id }">
 				<input type="hidden" name="gh_nickname" value=${ gh_nickname }>
 				<input type="hidden" name="robo_serial" value="${ robo_serial }">
 

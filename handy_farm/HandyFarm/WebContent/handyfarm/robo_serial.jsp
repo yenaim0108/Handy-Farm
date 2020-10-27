@@ -31,6 +31,7 @@
 			<form name="robo_serial" method="post" action="${ next }">
 				<input type="hidden" name="id" value="${ id }">
 				<input type="hidden" name="password" value="${ password }">
+				<input type="hidden" name="gh_id" value="${ gh_id }">
 				<input type="hidden" name="gh_nickname" value="${gh_nickname}">
 				<input type="hidden" name="next" value="${ next }">
 	         	

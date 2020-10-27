@@ -96,16 +96,10 @@
            <!-- // title -->
 	           
 		   <form method="post">
-<%
-				String id = request.getParameter("id");
-				String password = request.getParameter("password");
-				String gh_nickname = request.getParameter("gh_nickname");
-				String next = request.getParameter("next");
-%>
-			   <input type="hidden" name="id" value="<%= id %>">
-			   <input type="hidden" name="password" value="<%= password %>">
-			   <input type="hidden" name="gh_nickname" value="<%=gh_nickname%>">
-			   <input type="hidden" name="next" value="<%= next %>">
+			    <input type="hidden" name="id" value="${ id }">
+				<input type="hidden" name="password" value="${ password }">
+				<input type="hidden" name="gh_nickname" value="${gh_nickname}">
+				<input type="hidden" name="next" value="${ next }">
            
 		         <div class="waybox">
 		         *인증 방법을 선택해주세요

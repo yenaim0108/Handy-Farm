@@ -24,7 +24,7 @@
 			<!-- // upButton -->
 			
 			<!-- title -->
-			<div class="title">
+			<div class="title2">
 				알림센터
 			</div>
 			<!-- title -->

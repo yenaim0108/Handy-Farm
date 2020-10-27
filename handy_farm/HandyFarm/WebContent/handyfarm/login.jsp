@@ -11,6 +11,9 @@
 		<script>
 			// 입력된 데이터 유효성 검사
 			function checkData() {
+				var idCheck;
+				var passwordCheck;
+				
 				if (!$('#id').val()) {
 					alert("아이디를 입력해주세요.");
 					$('#id').focus();
@@ -22,24 +25,18 @@
 					$('#password').focus();
 					return false;
 				}
-			}
-			
-			// id가 존재하는지, 비밀번호가 일치하는지 체크하는 함수
-			function idPasswordCheck() {
-				var idCheck;
-				var passwordCheck;
 				
 				// member 테이블에 id가 있는지 확인하기.
 				$.ajax({
 					type: "POST",
 					url: "idCheck.do",
+					async: false,
 					data: "id=" + $('#id').val(),
 					dataType: "json",
 					success: function(data) {
-						console.log(data[0])
-						if (data[0].idCheck) { // id가 있으면 idCheck 변수 true로 초기화
+						if (data[0].idCheck) { // id가 member 테이블이 있으면 true
 							idCheck = true;
-						} else { // id가 없으면 idCheck 변수 false로 초기화
+						} else { // id가 member 테이블에 없으면 false
 							idCheck = false;
 						}
 					},
@@ -50,26 +47,33 @@
 				
 				if(!idCheck) {
 					alert("존재하지 않는 아이디입니다.\n회원가입을 진행해 주세요.");
-					window.history.back();
+					return false;
 				}
 				
 				// password가 동일한지 확인하기.
 				$.ajax({
 					type: "POST",
 					url: "passwordCheck.do",
+					async: false,
 					data: "id=" + $('#id').val() + "&password=" + $('#password').val(),
 					dataType: "json",
 					success: function(data) {
-						console.log(data[0])
-						if (!data[0].passwordCheck) { // 비밀번호가 일치하지 않으면 이전으로 돌아가기.
-							alert("비밀번호가 일치하지 않습니다.\n다시 입력해주세요.");
-							window.history.back();
+						console.log(data[0].passwordCheck)
+						if (data[0].passwordCheck) { // 비밀번호가 일치하면 true
+							passwordCheck = true;
+						} else { // 비밀번호가 일치하지 않으면 false
+							passwordCheck = false;
 						}
 					},
 					error: function(request, status, error) {
 						alert("code : " + request.status + "\nmessage : " + request.reponseText +"\nerror : " + error + "\n에러가 발생하였습니다.\n관리자에게 문의해보세요.");
 					}
 				});
+				
+				if (!passwordCheck) {
+					alert("비밀번호가 일치하지 않습니다.\n다시 입력해주세요.");
+					return false;
+				}
 			}
 		</script>
 	</head>
@@ -93,7 +97,7 @@
 				<div class="labelNick labelsetting t-a-l m-t-m">
 					비밀번호
 				</div>
-				<input class="textBox b-n shadow p-x-ml" type="text" id="password" name="password">
+				<input class="textBox b-n shadow p-x-ml" type="password" id="password" name="password">
 				<!-- // password -->
 				
 				<!-- autoLogin -->

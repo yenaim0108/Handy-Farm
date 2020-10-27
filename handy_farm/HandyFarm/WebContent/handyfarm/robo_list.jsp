@@ -13,20 +13,20 @@
 	<body>
 		<div class="wrap">
 			<!-- upButton -->
-			<button class="b-n HF-back d-b m-t-ml m-l-sl" value="back" onclick="history.back(-1);" >
+			<button class="b-n HF-back d-b m-t-ml m-l-sl" value="back" onclick="location.href='main.do'" >
 				<img class="ud-img f-l" src="../icon/upButton.png" alt="back"/>
 			</button>			
 			<!-- // upButton -->
 			
 			<!-- title -->
-			<div class="=title">
+			<div class="title2">
 			 	${ gh_nickname } - 로보 목록
 			</div>
 			<!-- // title -->
 			
 			<!-- 로보 목록 -->
 			<c:forEach items="${ roboList }" var="dto">
-               <form name="robo" method="post">'
+               <form name="robo" method="post">
                   <!-- 온실 ID -->
                   <input type="hidden" name="gh_id" value="${ gh_id }">
                   <!-- // 온실 ID -->
@@ -64,15 +64,9 @@
             <!-- // 로보 목록 -->
             
             <!-- 로보 개설 -->
-            <form name="roboInsert" method="post">
-                <!-- 온실 ID -->
-                <input type="hidden" name="gh_id" value="${ gh_id }">
-                <!-- // 온실 ID -->
-                  
-                <div class="add shadow" onclick="location.href='ghInsert.do'">
-                   <img src="../icon/add.png" alt="add">
-                </div>
-            </form>
+            <div class="add shadow" onclick="location.href='mainRoboInsertUI.do?gh_id=${ gh_id }'">
+               <img src="../icon/add.png" alt="add">
+            </div>
             <!-- // 로보 개설 -->
 		</div>
 	</body>

@@ -72,8 +72,5 @@ while True:
 
     # 검색 (10개씩) 된 페이지의 마지막 내용이 지난번 페이지의 마지막과 같으면 종료.
     # 아니면, 마지막을  oldmsg 에 보관
-    if oldmsg == msg:
-        break;
-    else:
-        oldmsg = msg
+ 
 

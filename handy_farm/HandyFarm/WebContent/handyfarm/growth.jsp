@@ -12,7 +12,7 @@
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	</head>
 	<body>
-		<div class="wrap">
+		<div class="wrap_bottomNone">
 			<!-- upButton -->
 			<button class="b-n HF-back d-b m-t-ml m-l-sl" value="back" onclick="history.back(-1);" >
 				<img class="ud-img f-l" src="../icon/upButton.png" alt="back"/>
@@ -40,9 +40,9 @@
 					<div class="growthBox d-ib shadow">
 						${ dto.sensor_name }
 						<div class="d-t m-t">
-							<img class="d-tc" src="../icon/${ dto.sensor_type }.png" alt="${ dto.sensor_type }">
+							<img class="d-tc m-r-sl" src="../icon/${ dto.sensor_type }.png" alt="${ dto.sensor_type }">
 							<fmt:parseNumber var="sensor_value" integerOnly="true" value="${ dto.sensor_value }" />
-							<div class="HF-DarkGray d-tc va-m value">${ sensor_value }${ dto.sensor_unit }</div>
+							<div class="HF-DarkGray d-tc va-m value t-a-r">${ sensor_value }${ dto.sensor_unit }</div>
 						</div>
 					</div>
 				</c:forEach>

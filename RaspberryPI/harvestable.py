@@ -2,9 +2,7 @@ import cv2
 import numpy as np
 import paho.mqtt.client as mqtt
 import sys
-import socket
 #import picamera
-import time
 
 def imgRead(src) :
     return cv2.imread(src) # 이미지 읽어오기
@@ -13,7 +11,7 @@ def imgShow(name, src) :
     cv2.namedWindow(name) # src 라는 이름의 윈도우 창 생성
     cv2.moveWindow(name, 600, 20) # src 라는 이름의 윈도우창 이동
     cv2.imshow(name, src) # src 이미지 보여주기
-    cv2.waitKey(0)
+    cv2.waitKey(0) # 키 입력이 있을 때까지 무한 대기
 
 ip = "172.18.89.243" # 서버 ip 주소
 
@@ -68,11 +66,8 @@ def hough_circle(img) :
     cmask = np.zeros(img.shape)  # 이미지 마스크 (검은 배경 이미지, numpy 배열)
     edge = cv2.Canny(img, 150, 200) # 이미지에서 엣지 찾기
     edge = cv2.cvtColor(edge, cv2.COLOR_GRAY2BGR) # edge 이미지 컬러로 변경
-    circleAllEdge = np.zeros(img.shape)  # 이미지 마스크 (검은 배경 이미지, numpy 배열)
 
-    imgShow("edge", edge) # 에지만 추출한 이미지 보여주기
-
-    circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=70, maxRadius=100) # 이미지에서 원 추출
+    circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=50, maxRadius=80) # 이미지에서 원 추출
     circles = np.uint16(np.around(circles))  # np.around() 함수로 circles의 값들을 반올림/반내림하고 이를 UNIT16으로 변환한다.
 
     show = True
@@ -82,20 +77,13 @@ def hough_circle(img) :
         circle = cv2.circle(emask, (i[0], i[1]), i[2], (255, 255, 255), -1)  # edge에 원만 흰색으로 칠하기
         circle = np2img(circle) # circle numpy 배열 이미지로 변환
         circle = cv2.cvtColor(circle, cv2.COLOR_BGR2GRAY) # circle 이미지 흑백으로 변경
-        circleArea = cv2.countNonZero(circle)  # 추출한 원의 원의 면적 계산하기
-
-        if show : # 한 번만 보여주기
-            imgShow("circle", circle) # 감지한 원 부분을 흰색으로 추출한 이미지 보여주기
+        circleArea = cv2.countNonZero(circle)  # 추출한 원의 원의 면적 계산하기 
 
         cv2.circle(call, (i[0], i[1]), i[2], (0, 255, 0), 2)  # 복사한 이미지에 추출한 원 그리기
         cv2.circle(call, (i[0], i[1]), 2, (0, 0, 255), 3)  # 복사한 이미지에 원 중심점 그리기
 
         emask = np2img(emask) # emask numpy 배열을 이미지로 변환
         circleEdge = cv2.bitwise_and(edge, emask) # edge 이미지와 마스크 이미지를 결합하여 추출된 원 부분에서 에지만 흰색으로 칠하고 다른 부분을 모두 검정으로 칠한다.
-
-        if show: # 한 번만 보여주기
-            imgShow("circleEdge", circleEdge) # 감지한 원 부분의 에지만 추출한 이미지 보여주기
-            show = False
             
         circleEdge = cv2.cvtColor(circleEdge, cv2.COLOR_BGR2GRAY) # edge 이미지를 흑백 이미지로 변환
         edgeArea = cv2.countNonZero(circleEdge) # 추출한 원에서 edge 면적 계산하기
@@ -106,18 +94,15 @@ def hough_circle(img) :
             cv2.circle(cmask, (i[0], i[1]), i[2], (255, 255, 255), -1)  # 검은 배경 이미지에 원만 흰색으로 칠하기
             cv2.circle(extractedCircle, (i[0], i[1]), i[2], (0, 255, 0), 2)  # 복사한 이미지에 추출한 원 그리기
             cv2.circle(extractedCircle, (i[0], i[1]), 2, (0, 0, 255), 3)  # 복사한 이미지에 원 중심점 그리기
-        else :
-            circleAllEdge = cv2.circle(circleAllEdge, (i[0], i[1]), i[2], (255, 255, 255), -1)
 
-    circleAllEdge = np2img(circleAllEdge) # circleAllEdge numpy 배열을 이미지로 변환
-    circleAllEdge = cv2.bitwise_and(edge, circleAllEdge)  # circleAllEdge 이미지와 마스크 이미지를 결합하여 추출된 원 부분에서 에지만 흰색으로 칠하고 다른 부분을 모두 검정으로 칠한다.
-    imgShow('circleAllEdge', circleAllEdge) # 추출한 모든 원의 에지 부분을 추출한 이미지 보여주기
-    
     cmask = np2img(cmask) # cmask numpy 배열 이미지로 변환
     crops = cv2.bitwise_and(img, cmask)  # 원본 컬러 이미지와 마스크 이미지를 결합하여 추출된 원 부분을 제외하고 다른 부분을 모두 검정으로 칠한 이미지를 만든다.
 
-    imgShow('circleAll', call) # 감지한 모든 원을 표시한 이미지 보여주기
 
+    imgShow('circleAll', call) # 감지한 모든 원을 표시한 이미지 보여주기
+    imgShow("edge", edge) # 에지만 추출한 이미지 보여주기
+    imgShow("circle", circle) # 감지한 원 부분을 흰색으로 추출한 이미지 보여주기
+    imgShow("circleEdge", circleEdge) # 감지한 원 부분의 에지만 추출한 이미지 보여주기
     imgShow('extractedCircle', extractedCircle) # 감지한 원 중에서 가져온 원을 표시한 이미지 보여주기
 
     return crops # 감지한 농작물만 추출한 사진 return
@@ -193,9 +178,10 @@ def mqtt_harvestable(serial, harvestable) :
 # img = camera()
 
 # 이미지 읽어오기
-img = imgRead(".\\tomato\\tomato49.jpg")
+img = imgRead(".\\tomato\\tomato46.jpg")
 
 # 이미지 사이즈 재조정
+img = cv2.resize(img, (0, 0), fx=0.5, fy=0.5)
 
 # 원본 이미지 보여주기
 imgShow('original', img)

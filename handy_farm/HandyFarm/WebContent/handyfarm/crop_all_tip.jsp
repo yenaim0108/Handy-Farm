@@ -59,7 +59,7 @@
 
 		<!-- pageBtn -->
 		<button type="button" class="unsel-pageBtn shadow d-ib"
-			onclick="location.href='realInfo.do'">실시간정보</button>
+			onclick="location.href='realInfo.do'">경작 연관 정보</button>
 		<button type="button" class="sel-pageBtn shadow d-ib"
 			onclick="location.href='cropAll.do'">작물별 경작조건</button>
 		<!-- // pageBtn -->

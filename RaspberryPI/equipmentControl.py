@@ -1,23 +1,19 @@
 import paho.mqtt.client as mqtt
 
-ip = "192.168.137.1" # 서버 ip 주소
-client = mqtt.Client("RaspverryPI") # mqtt.Client() 인스턴스 생성   
+ip = "192.168.0.29" # 서버 ip 주소
+client = mqtt.Client("RaspverryPI") # mqtt.Client() 인스턴스 생성
 
-def topicSub() :
-    client.connect(ip) # mqtt 브로커에 연결
-    
-    # JSP한테 현재 센서값, 기준 센서값 받아오기
-    client.subscribe('equipmentSensorValue') # equipmentSensorValue 토픽 구독
-    # ESP32한테 설비, 설비 상태 받아오기
-    client.subscribe('controlStatus') # controlStatus 토픽 구독
+def on_connect(client, userdata, flags, rc) :
+    if rc == 0 : # 연결 성공 시,
+        client.subscribe('equipmentSensorValue') # equipmentSensorValue 토픽 구독, JSP한테 현재 센서값, 기준 센서값 받아오기
+        client.subscribe('controlStatus') # controlStatus 토픽 구독, ESP32한테 설비, 설비 상태 받아오기
+    else: # 연결 실패 시,
+        print("Connection failed")
 
-    client.on_message = equipmentContorl # 브로커로부터 메시지가 오면 동작하는 callback 함수
-    client.loop_forever() # 지속적으로 버퍼를 체크하고 이벤트를 발생 시키키
+def on_message(client, userdata, message) :
+    msg = str(message.payload) # 값 받기
 
-def equipmentContorl(client, userdata, msg) :
-    # equipmentSensorValue 토픽에 값이 들어온 경우
-    if (msg.find(':') != -1) :
-        msg = str(msg.payload) # 값 받기
+    if (msg.find('/') != -1) : # equipmentSensorValue 토픽에 값이 들어온 경우
         msg = msg.split(" / ") # 슬래시(/)를 기준으로 값 나누기
 
         value = msg[0].split(", ") # 센서 값 (온도, 습도, 이산화탄소)
@@ -58,10 +54,9 @@ def equipmentContorl(client, userdata, msg) :
             for i in range(4) :
                 client.publish('control', msg[i])  # control 토픽에 msg 보내기
                 print("Publishing message: ", msg[i])
-    # controlStatus 토픽에 값이 들어온 경우
-    else : 
-        msg = str(msg.payload) # 센서 Type이랑 값 받기
-        msg = msg.split(' : ') # 콜론(:)을 기준으로 센서 Type이랑 값 나누기
+    else : # controlStatus 토픽에 값이 들어온 경우
+        print(msg)
+        msg = msg.split(':') # 콜론(:)을 기준으로 센서 Type이랑 값 나누기
         tmp = msg[0].split("'") # b'을 제거하기 위한 split
         msg[0] = tmp[1] # b'을 제거한 sensor_type 저장
         tmp = msg[1].split("'") # '을 제거하기 위한 split
@@ -93,5 +88,7 @@ def control(s) :
 
 print("run equipmentControl.py") 
 
-# 토픽 구독
-topicSub()
+client.on_connect = on_connect
+client.on_message = on_message # 브로커로부터 메시지가 오면 동작하는 callback 함수
+client.connect(ip, port=1883) # mqtt 브로커에 연결
+client.loop_forever() # 지속적으로 버퍼를 체크하고 이벤트를 발생 시키기

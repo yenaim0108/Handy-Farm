@@ -947,6 +947,8 @@ public class HandyFarmDAO {
 		String[] date = d.split(" ");
 		
 		try {
+			con = ds.getConnection();
+			
 			// 로보가 속한 품종번호, 온실 ID, 휴대폰 번호 가져오는 sql문
 			String query = "SELECT crops_id, gh_id, id " + 
 						   "FROM robo " + 
@@ -1001,8 +1003,10 @@ public class HandyFarmDAO {
 		String[] datas = new String[4];
 		String sensor = null;
 		int count = 0;
-		
+
 		try {
+			con = ds.getConnection();
+			
 			// sensor_id를 가져오는 sql문
 			String query = "SELECT sensor_id " + 
 						   "FROM sensor " + 
@@ -1281,15 +1285,19 @@ public class HandyFarmDAO {
 	
 	// 설비 상태를 DB에 저장하기 임예나
 	public void equipmentStatusInsert (Timestamp _time, String _serial, String _equipment_name, boolean _control_status) {
+		// gh_id, gh, _id, equipment_id, ei, count 선언
+		String _gh_id = null;
+		String[] gh = null;
+		String _id = null;
+		String _equipment_id = null;
+		String[] ei = null;
+		int count = 0;
+		System.out.println(_control_status);
+		
 		try {
-			// gh_id, phone_number, equipment_id, count 선언
-			String _gh_id = null;
-			String _id = null;
-			String _equipment_id = null;
-			int count = 0;
-			
+			con = ds.getConnection();
 			// 온실 id, 핸드폰 번호를 가져오는 sql문
-			String query = "SELECT gh_id " + 
+			String query = "SELECT gh_id, id " + 
 						   "FROM robo " + 
 						   "WHERE robo_serial = ?";
 			pstmt = con.prepareStatement(query);
@@ -1320,7 +1328,8 @@ public class HandyFarmDAO {
 				_equipment_id = rs.getString("equipment_id");
 			}
 			
-			String[] gh = _gh_id.split("-");
+			gh = _gh_id.split("-");
+			ei = _equipment_id.split("-");
 			
 			// sensor_value 갯수를 가져오는 sql문
 			query = "SELECT COUNT(*) " + 
@@ -1343,7 +1352,7 @@ public class HandyFarmDAO {
 					"VALUES (?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(query);
 			// 매개변수 값 대입 -> set 메서드에 값 설정
-			pstmt.setString(1, "ecl-" + _id + "-" + gh[2] + "-" + count);
+			pstmt.setString(1, "ecl-" + _id + "-" + gh[2] + "-" + gh[3] + "-" + ei[4] + "-" + count);
 			pstmt.setBoolean(2, _control_status);
 			pstmt.setTimestamp(3, _time);
 			pstmt.setString(4, _equipment_id);

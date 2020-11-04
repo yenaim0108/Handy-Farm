@@ -175,9 +175,7 @@ public class HandyFarmMQTT {
 				public void messageArrived(String topic, MqttMessage message) throws MqttException {
 					Timestamp time = new Timestamp(System.currentTimeMillis()); // 현재 시간 가져오기
 					String str = new String(message.getPayload()); // msg String 형으로 변환
-					System.out.println("나능 바보가 아니야!" + str);
 					String[] msg = str.split(", "); // 시리얼 번호, 센서 Type, 센서 값 나누기
-					
 					String serial = msg[0]; // 시리얼 번호 저장
 					String equipment_name = null; // 변수 초기화
 					if (msg[1].equals("cold")) {
@@ -191,13 +189,19 @@ public class HandyFarmMQTT {
 					} else {
 						equipment_name = "led";
 					}
-					boolean control_status = Boolean.parseBoolean(msg[2]); // 제어 상태 저장
-					
+					boolean control_status;
+					// 제어 상태 저장
+					if(msg[2].equals("1")) {
+						control_status = true;
+					} else {
+						control_status = false;
+					}
+
 					// DB 연결
 					HandyFarmDAO dao = new HandyFarmDAO();
 					
 					// sensor_value 테이블에 데이터 넣기
-					dao.equipmentStatusInsert(time, serial, equipment_name, control_status);;
+					dao.equipmentStatusInsert(time, serial, equipment_name, control_status);
 				}
 				
 				// 메세지가 전달되었을 때 호출되는 콜백 함수

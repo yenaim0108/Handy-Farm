@@ -40,7 +40,7 @@
 							${dto.content} <br> <br>
 						</div>
 						<div class="pest_infoFooter HF-DarkGray t-a-r m-l">
-							${dto.date }
+							${dto.c_date }
 						</div>
 					</div>
 				</div>

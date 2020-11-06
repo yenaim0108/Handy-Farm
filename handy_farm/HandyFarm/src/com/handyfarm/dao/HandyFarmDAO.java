@@ -113,9 +113,9 @@ public class HandyFarmDAO {
 			
 			// 병충해 목록을 가져오는 sql문
 			String query = "SELECT * " + 
-						   "FROM real_time_info " + 
-						   "WHERE category=? " +
-						   "ORDER BY DATE DESC";
+						   "FROM crawling " + 
+						   "WHERE category=? ";
+						   //"ORDER BY c_DATE DESC";
 			pstmt = con.prepareStatement(query);
 			
 			// 매개변수 값 대입 -> set 메서드에 값 설정
@@ -130,7 +130,7 @@ public class HandyFarmDAO {
 				int views = rs.getInt("views");
 				String title = rs.getString("title");
 				String content = rs.getString("content");
-				Date date = rs.getDate("date");
+				String c_date = rs.getString("c_date");
 				String img = rs.getString("img");
 				
 				
@@ -142,7 +142,7 @@ public class HandyFarmDAO {
 				data.setViews(views);
 				data.setTitle(title);
 				data.setContent(content);
-				data.setDate(date);
+				data.setC_date(c_date);
 				
 				if (!img.equals("")) { // DB에 저장된 사진이 존재하면 해당 사진 가져오기
 					data.setImg(img);

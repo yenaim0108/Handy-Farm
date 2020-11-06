@@ -90,7 +90,7 @@ public class HandyFarmDTO {
 	int views;                          // 실시간 정보 - 조회수
 	String title;                       // 실시간 정보 - 제목
 	String content;                     // 실시간 정보 - 내용
-	Date date;                          // 실시간 정보 - 작성일
+	String c_date;                          // 실시간 정보 - 작성일
 	String category;                    // 실시간 정보 - 카테고리
 	String img;                         // 실시간 정보 - 이미지
 	
@@ -652,12 +652,13 @@ public class HandyFarmDTO {
 		this.content = content;
 	}
 
-	public Date getDate() {
-		return date;
+
+	public String getC_date() {
+		return c_date;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setC_date(String c_date) {
+		this.c_date = c_date;
 	}
 
 	public String getCategory() {

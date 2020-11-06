@@ -24,14 +24,7 @@
          
          <!-- contents -->
          
-         <div class="labelsetting labelNick t-a-l p-a-0">실시간 이슈</div>
-                  
-         <!-- DropBox Realtime issue-->
-         <select name="issue_number" class="issueBox m-a-s p-a-sl f-s d-ib b-n shadow">
-            <!-- <option value="">농작물을 선택해주세요.</option> -->
-
-         </select>
-         <!-- DropBox Realtime issue-->
+         
          
          <!-- 한칸띄우기 -->
          <div class="d-b"></div>

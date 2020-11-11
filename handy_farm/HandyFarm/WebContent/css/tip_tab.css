@@ -139,7 +139,7 @@
 	height: 60px;
 	background-color: #FFFFFF;
 	border-radius: 20px 20px;
-	margin: 10;
+	margin: 3px 10px;
 	display: inline-block;
 	
 	
@@ -147,10 +147,6 @@
 
 .cropintitle{
 	font-size: 30px;
-	width: 90px;
-	padding-top:11px;
-	display: inline-block;
-	text-align: right;
 }
 
 .issueBox {
@@ -191,15 +187,29 @@
 	height: auto;
 }
 
-.crop-img{
-	width: 90px;
-	height: auto;
-	float: left;
-	margin-left: 5px;
-	margin-right: 65px;
-	
-	
+.crop {
+	width: calc(100% - 10px);
+	margin: 0 0 0 10px;
 }
+
+.crop_sel {
+	width: 230px;
+}
+
+.crop-img{
+	max-width: 90px;
+	max-height: 60px;
+	overflow: hidden;
+	border-radius: 25px;
+}
+
+.crop-img img {
+	width: 120px;
+	height: auto;
+	margin-left: -15px;
+	margin-top: calc((100% - 60px) / -2);
+}
+
 .heart-img{
 	width: 38px;
 	height: auto;
@@ -211,10 +221,6 @@
 .crop_heart-img{
 	width: 35px;
 	height: auto;
-	margin-right: 20px;
-	margin-top: 10px;
-	display: inline-block;
-	float: right;
 }
 
 .wish_toggle-img::before{

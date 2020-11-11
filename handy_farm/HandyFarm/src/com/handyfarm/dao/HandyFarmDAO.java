@@ -892,7 +892,6 @@ public class HandyFarmDAO {
 				String crops_name = rs.getString("crops_name");
 				String crops_img = rs.getString("crops_img");
 				String crops_id = rs.getString("crops_id");
-				String id2=id;
 				Boolean wish = rs.getBoolean("wish");
 					
 				//data 선언
@@ -902,16 +901,7 @@ public class HandyFarmDAO {
 				data.setCrops_name(crops_name);
 				data.setCrops_img(crops_img);
 				data.setCrops_id(crops_id);
-				data.setId(id2);
-				data.setWish(wish);
-				
-				
-				if (wish == true) { // 찜하기 선택이 되었다면
-					data.setImg("../icon/like_heart.png");
-				} else { // 찜하기 선택이 안되어있다면
-					data.setImg("../icon/unlike_heart.png");
-				}
-				
+				data.setImg("../icon/like_heart.png");
 				
 				wish_list.add(data);
 			}
@@ -929,7 +919,7 @@ public class HandyFarmDAO {
 		
 		return wish_list;
 	}
-   //wish_lis end
+   //wish_list end
    
 	/**
 	 * @author 임예나

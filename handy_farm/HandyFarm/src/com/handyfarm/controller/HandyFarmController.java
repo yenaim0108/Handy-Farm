@@ -40,14 +40,14 @@ public class HandyFarmController extends HttpServlet {
       
       // 앱 권한 동의
       if (com.equals("/handyfarm/agree.do")) {
-    	 command = new HandyFarmMqttCommand();
+    	 command = new HandyFarmThreadCommand();
          command.execute(request, response);
          nextPage = "agree.jsp";
       }
       
       // 로그인 화면
       if (com.equals("/handyfarm/loginUI.do")) {
-    	 command = new HandyFarmMqttCommand();
+    	 command = new HandyFarmThreadCommand();
          command.execute(request, response);
          nextPage = "login.jsp";
       }
@@ -309,15 +309,15 @@ public class HandyFarmController extends HttpServlet {
       }
       
       // Tip 탭 || 실시간정보
-      if (com.equals("/handyfarm/tip.do") || com.equals("/handyfarm/realInfo.do")) {
-         nextPage = "real_info.jsp";
+      if (com.equals("/handyfarm/tip.do") || com.equals("/handyfarm/crawling.do")) {
+         nextPage = "crawling.jsp";
       }
       
       // 실시간정보_선택
-      if (com.equals("/handyfarm/realInfoSel.do")) {
+      if (com.equals("/handyfarm/crawlingSel.do")) {
          command = new HandyFarmInfoSelectCommand();
          command.execute(request, response);
-         nextPage = "real_info_sel.jsp";
+         nextPage = "crawling_sel.jsp";
       }
       
       // 작물별 경작조건
@@ -341,11 +341,18 @@ public class HandyFarmController extends HttpServlet {
          return;
       }
       
-      // 찜 목록
-      if (com.equals("/handyfarm/wishlist.do")) {
+      // 찜 목록 -> sel
+      if (com.equals("/handyfarm/wishList.do")) {
          command = new HandyFarmWishSelectCommand();
          command.execute(request, response);
-         nextPage = "wish_list.jsp";
+         return;
+      }
+      
+      // 찜 목록 -> unsel
+      if (com.equals("/handyfarm/cropAllList.do")) {
+         command = new HandyFarmCropAllCommand2();
+         command.execute(request, response);
+         return;
       }
       
       // 설정 탭

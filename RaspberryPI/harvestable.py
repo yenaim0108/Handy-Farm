@@ -3,17 +3,18 @@ import numpy as np
 import paho.mqtt.client as mqtt
 import sys
 #import picamera
+import time
+
+ip = "192.168.137.1" # 서버 ip 주소
+serial = "10000000c366d002" # 라즈베리파이 시리얼 번호
 
 def imgRead(src) :
     return cv2.imread(src) # 이미지 읽어오기
 
-def imgShow(name, src) :
+def imgShow(name, src, x, y) :
     cv2.namedWindow(name) # src 라는 이름의 윈도우 창 생성
-    cv2.moveWindow(name, 600, 20) # src 라는 이름의 윈도우창 이동
+    cv2.moveWindow(name, x, y) # src 라는 이름의 윈도우창 이동
     cv2.imshow(name, src) # src 이미지 보여주기
-    cv2.waitKey(0) # 키 입력이 있을 때까지 무한 대기
-
-ip = "172.18.89.243" # 서버 ip 주소
 
 def camera() :
     camera = picamera.PiCamera() # 파이카메라 객체 생성
@@ -67,6 +68,8 @@ def hough_circle(img) :
     edge = cv2.Canny(img, 150, 200) # 이미지에서 엣지 찾기
     edge = cv2.cvtColor(edge, cv2.COLOR_GRAY2BGR) # edge 이미지 컬러로 변경
 
+    # imgShow("edge", edge) # 에지만 추출한 이미지 보여주기
+
     circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=50, maxRadius=80) # 이미지에서 원 추출
     circles = np.uint16(np.around(circles))  # np.around() 함수로 circles의 값들을 반올림/반내림하고 이를 UNIT16으로 변환한다.
 
@@ -77,13 +80,20 @@ def hough_circle(img) :
         circle = cv2.circle(emask, (i[0], i[1]), i[2], (255, 255, 255), -1)  # edge에 원만 흰색으로 칠하기
         circle = np2img(circle) # circle numpy 배열 이미지로 변환
         circle = cv2.cvtColor(circle, cv2.COLOR_BGR2GRAY) # circle 이미지 흑백으로 변경
-        circleArea = cv2.countNonZero(circle)  # 추출한 원의 원의 면적 계산하기 
+        circleArea = cv2.countNonZero(circle)  # 추출한 원의 원의 면적 계산하기
+
+        # if show : # 한 번만 보여주기
+        #     imgShow("circle", circle) # 감지한 원 부분을 흰색으로 추출한 이미지 보여주기
 
         cv2.circle(call, (i[0], i[1]), i[2], (0, 255, 0), 2)  # 복사한 이미지에 추출한 원 그리기
         cv2.circle(call, (i[0], i[1]), 2, (0, 0, 255), 3)  # 복사한 이미지에 원 중심점 그리기
 
         emask = np2img(emask) # emask numpy 배열을 이미지로 변환
         circleEdge = cv2.bitwise_and(edge, emask) # edge 이미지와 마스크 이미지를 결합하여 추출된 원 부분에서 에지만 흰색으로 칠하고 다른 부분을 모두 검정으로 칠한다.
+
+        # if show: # 한 번만 보여주기
+        #     imgShow("circleEdge", circleEdge) # 감지한 원 부분의 에지만 추출한 이미지 보여주기
+        #     show = False
             
         circleEdge = cv2.cvtColor(circleEdge, cv2.COLOR_BGR2GRAY) # edge 이미지를 흑백 이미지로 변환
         edgeArea = cv2.countNonZero(circleEdge) # 추출한 원에서 edge 면적 계산하기
@@ -98,12 +108,9 @@ def hough_circle(img) :
     cmask = np2img(cmask) # cmask numpy 배열 이미지로 변환
     crops = cv2.bitwise_and(img, cmask)  # 원본 컬러 이미지와 마스크 이미지를 결합하여 추출된 원 부분을 제외하고 다른 부분을 모두 검정으로 칠한 이미지를 만든다.
 
+    imgShow('circleAll', call, 300, 20) # 감지한 모든 원을 표시한 이미지 보여주기
 
-    imgShow('circleAll', call) # 감지한 모든 원을 표시한 이미지 보여주기
-    imgShow("edge", edge) # 에지만 추출한 이미지 보여주기
-    imgShow("circle", circle) # 감지한 원 부분을 흰색으로 추출한 이미지 보여주기
-    imgShow("circleEdge", circleEdge) # 감지한 원 부분의 에지만 추출한 이미지 보여주기
-    imgShow('extractedCircle', extractedCircle) # 감지한 원 중에서 가져온 원을 표시한 이미지 보여주기
+    imgShow('extractedCircle', extractedCircle, 600, 20) # 감지한 원 중에서 가져온 원을 표시한 이미지 보여주기
 
     return crops # 감지한 농작물만 추출한 사진 return
 
@@ -118,7 +125,7 @@ def highlight_remove(img) :
     upper = np.array([255, 255, 255]) # BGR(최댓값, 최댓값, 최댓값)
     mask = cv2.inRange(img, lower, upper) # 하이라이트(빛 반사 된 밝은 부분)만 흰색으로 칠하기
 
-    imgShow("highlight", mask) # 하이라이트(빛 반사된 부분)만 칠한 마스크 이미지 보여주기
+    imgShow("highlight", mask, 1200, 20) # 하이라이트(빛 반사된 부분)만 칠한 마스크 이미지 보여주기
 
     highlight = cv2.countNonZero(mask) # 하이라이트(빛 반사된 부분) 면적 계산하기
 
@@ -163,14 +170,14 @@ def color_extraction(img) :
     gray = cv2.cvtColor(img_result, cv2.COLOR_BGR2GRAY) # 컬러 이미지 흑백 이미지로 변환
     ripe = cv2.countNonZero(gray) # 추출한 색 부분 면적 계산
 
-    imgShow('color_extraction', img_result) # 색 추출한 부분만 가져온 이미지 보여주기
+    imgShow('color_extraction', img_result, 1500, 20) # 색 추출한 부분만 가져온 이미지 보여주기
 
     return ripe # 추출한 색 부분 면적 계산한 값 return
 
-def mqtt_harvestable(serial, harvestable) :
+def mqtt_harvestable(harvestable) :
     client = mqtt.Client()  # mqtt.Client() 인스턴스 생성
     client.connect(ip, 1883)  # 브로커에 연결
-    msg = serial + ", " + str(harvestable); # 수확 가능 비율과 시리얼 번호 하나의 메시지로 합치기
+    msg = "harvestable, " + serial + ", " + str(harvestable); # 수확 가능 비율과 시리얼 번호 하나의 메시지로 합치기
     client.publish('harvestable', msg)  # harvestable 토픽에 수확 가능 비율 보내기
     client.disconnect()  # 연결 종료
 
@@ -184,7 +191,7 @@ img = imgRead(".\\tomato\\tomato46.jpg")
 img = cv2.resize(img, (0, 0), fx=0.5, fy=0.5)
 
 # 원본 이미지 보여주기
-imgShow('original', img)
+imgShow('original', img, 0, 20)
 
 # 조도 값 요청하기
 #mqtt_ask_illuminance()
@@ -193,16 +200,16 @@ imgShow('original', img)
 #mqtt_illuminance()
 
 # 화이트 밸런스 처리
-img = white_balance(img)
+# img = white_balance(img)
 
 # 화이트 밸런스 처리한 사진 보여주기
-imgShow('whiteBalance', img)
+#imgShow('whiteBalance', img)
 
 # 농작물 감지
 img = hough_circle(img)
 
 # 감지한 농작물만 추출한 사진 보여주기
-imgShow('crops', img)
+imgShow('crops', img, 900, 20)
 
 # 마스크 이미지로 변환해서 농작물의 전체 면적 계산하기
 total = total_area(img)
@@ -220,6 +227,6 @@ ripe = color_extraction(img)
 harvestable = (ripe / (total - highlight - k)) * 100
 
 # mqtt 통신으로 서버에 수확 가능 비율 보내기
-#mqtt_harvestable("10000000c366d002", harvestable)
+#mqtt_harvestable(harvestable)
 
 print("(완숙도 70% 이상인 색 면적 / (이미지 전체 면적 – 빛이 반사된 부분 면적)) * 100 = 수확 가능 비율%\n", "(", ripe, " / (", total, " - ", highlight, ")) * 100 = ", harvestable, "%")

@@ -17,7 +17,7 @@ item = 1  # item = 180
 
 try:
     # db 연결
-    conn = MySQLdb.connect(db="handyfarm", host="127.0.0.1", user="root", passwd="s218210050", charset="utf8")
+    conn = MySQLdb.connect(db="handyfarm", host="localhost", user="farmplant", passwd="handyfarm", charset="utf8")
     cur = conn.cursor()
 
     # 초기화 : 테이블 데이터 del

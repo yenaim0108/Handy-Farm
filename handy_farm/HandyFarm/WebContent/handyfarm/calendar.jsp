@@ -15,6 +15,7 @@
 			var today = new Date(); // 오늘 날짜 저장
 			var firstDate; // 이번 달의 첫째 날
 			var lastDate; // 이번 달의 마지막 날
+			var selDate; // 선택된 날짜
 			
 			// 이전 달
 			function prvCalendar() {
@@ -102,18 +103,19 @@
 				clickDate = e.currentTarget;
 				clickDate.classList.add('active');
 				date = new Date(date.getFullYear(), date.getMonth(), clickDate.id);
+				selDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + clickDate.id;
 				
-				reloadList(date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + clickDate.id);
+				reloadList();
 			}
 			
 			// 사용자가 클릭한 날짜의 일정 가져오기
-			function reloadList(date) {
+			function reloadList() {
 				var html = " "
 				
 				$.ajax({
 					type: "POST",
 					url: "calendarSelect.do",
-					data: "date=" + date,
+					data: "date=" + selDate,
 					dataType: "json",
 					success: function(data) {
 						$('#to-doList').empty();
@@ -124,7 +126,6 @@
 							html += "<div class='m-t-s'></div>";
 							html += value.cal_time + " ~";
 							html += "</div>"
-
 						});
 						
 						document.getElementById('to-doList').innerHTML = html;
@@ -134,10 +135,22 @@
 					}
 				});
 			}
+			
+			function who() {
+		        $('#mask').fadeTo("fast", 0.5);
+		    	$('#who').show().animate({
+		    		bottom: 0
+		    	}, 500);
+			}
+			
+			function whoGH() {
+				
+			}
 		</script>
 
 	</head>
 	<body>
+		<div id="mask" class="full d-n"></div>
 		<div class="wrap">
 			<!-- calendar header -->
 			<div class="m-t-lg p-t">
@@ -180,10 +193,15 @@
 			</div>
 			<!-- to-do list -->
 			
-			<img class="floating HF-backGreen p-a-m shadow" src="../icon/add_white.png" alt="floating" onclick="location.href='calendarWho.do'">
+			<img class="floating HF-backGreen p-a-m shadow" src="../icon/add_white.png" alt="floating" onclick="who()">
 		</div>
+		
 		<!-- footer -->
 		<%@ include file="../include/bottonTabBar.inc" %>
 		<!-- //footer -->
+		
+		<!-- who -->
+		<%@ include file="../include/calendar_who.inc" %>
+		<!-- // who -->
 	</body>
 </html>

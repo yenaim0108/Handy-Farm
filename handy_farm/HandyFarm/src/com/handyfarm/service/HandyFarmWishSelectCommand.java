@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.handyfarm.dao.HandyFarmDAO;
 import com.handyfarm.entity.HandyFarmDTO;
 
@@ -16,17 +17,18 @@ public class HandyFarmWishSelectCommand implements HandyFarmCommand {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		
-		String searchword = null;
-		searchword = request.getParameter("searchword");
-		
 		HandyFarmDAO dao = new HandyFarmDAO();
 		
-		if(searchword == null) {
-			ArrayList<HandyFarmDTO> list = dao.wish_list(id);
-			request.setAttribute("cropAllList", list);
-		}else {
-			ArrayList<HandyFarmDTO> list = dao.tip_search(id, searchword);
-			request.setAttribute("cropAllList", list);
-		}
+		ArrayList<HandyFarmDTO> list = dao.wish_list(id);
+		
+		// json 파싱하기
+		String json = new Gson().toJson(list);
+		
+		 try {
+			 // 값 전송
+			 response.getWriter().write(json); 
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
 	}
 }

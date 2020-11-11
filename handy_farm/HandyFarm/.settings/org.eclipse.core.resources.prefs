@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding//WebContent/handyfarm/dashboard.jsp=UTF-8
+encoding//WebContent/include/calendar_who.inc=UTF-8
 encoding//src/com/handyfarm/controller/HandyFarmController.java=UTF-8
 encoding//src/com/handyfarm/dao/HandyFarmDAO.java=UTF-8

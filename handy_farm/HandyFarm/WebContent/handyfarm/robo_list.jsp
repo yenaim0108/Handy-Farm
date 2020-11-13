@@ -13,7 +13,7 @@
 	<body>
 		<div class="wrap">
 			<!-- upButton -->
-			<button class="b-n HF-back d-b m-t-ml m-l-sl" value="back" onclick="location.href='main.do'" >
+			<button class="b-n HF-back d-b m-t-ml m-l" value="back" onclick="history.back(-1);" >
 				<img class="ud-img f-l" src="../icon/upButton.png" alt="back"/>
 			</button>			
 			<!-- // upButton -->

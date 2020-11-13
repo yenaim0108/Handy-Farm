@@ -23,7 +23,6 @@ public class HandyFarmCalendarSelectAllCommand implements HandyFarmCommand {
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		Date date = new Date(time.getTime());
 		
-		
 		// DB 연결
 		HandyFarmDAO dao = new HandyFarmDAO();
 		

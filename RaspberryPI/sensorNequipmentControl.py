@@ -1,6 +1,7 @@
 import paho.mqtt.client as mqtt
+import time
 
-ip = "192.168.137.1" # 서버 ip 주소
+ip = "192.168.100.3" # 서버 ip 주소
 serial = "10000000c366d002" # 라즈베리파이 시리얼 번호
 client = mqtt.Client("controlRaspverryPI") # mqtt.Client() 인스턴스 생성
 
@@ -23,7 +24,6 @@ def on_message(client, userdata, message) :
         msg[1] = tmp[0] # '을 제거한 sensor_value 저장
         msg = "r_sensor, " + serial + ", " + msg[0] + ", " + msg[1] # 시리얼번호, 센서 타입, 센서 값 하나의 메시지로 합치기
         client.publish('r_sensor', msg)  # r_sensor 토픽에 msg 보내기
-        print("r_sensor publishing message: ", msg)
     elif (msg.find('/') != -1) : # equipmentSensorValue 토픽에 값이 들어온 경우
         msg = msg.split(" / ") # 슬래시(/)를 기준으로 값 나누기
 
@@ -32,8 +32,8 @@ def on_message(client, userdata, message) :
         status = None # 온도, 습도, 이산화탄소의 상태 값
         tmp = value[0].split("'") # b' 를 제거하기 위한 split
         value[0] = tmp[1] # b'가 제거된 온도값 저장
-        tmp = standard[4].split("'") # ' 를 제거하기 위한 split
-        standard[4] = tmp[0] # '가 제거된 이산화탄소 기준값 저장
+        tmp = standard[8].split("'") # ' 를 제거하기 위한 split
+        standard[8] = tmp[0] # '가 제거된 이산화탄소 기준값 저장
         
         # 온도 상태
         if int(value[0]) < int(standard[0]) : # 온도가 min온도 보다 작을 때
@@ -65,8 +65,24 @@ def on_message(client, userdata, message) :
             for i in range(4) :
                 client.publish('control', msg[i])  # control 토픽에 msg 보내기
                 print("control publishing message: ", msg[i])
+                time.sleep(2)
+
+        # 토양수분도 값으로 스프링쿨러 제어
+        if int(value[3]) > int(standard[5]) : # 토양수분도가 min토양수분도 보다 작을 때
+            client.publish('control', "sm:1")  # control 토픽에 sm:1 보내기
+            print("control publishing message: ", "sm:1")
+        elif int(value[3]) < int(standard[6]) : # 토양수분도가 max토양수분도 보다 클 때
+            client.publish('control', "sm:0")  # control 토픽에 sm:0 보내기
+            print("control publishing message: ", "sm:0")
+
+        # 조도 값으로 led 제어
+        if int(value[4]) < int(standard[7]): # 토양수분도가 min토양수분도 보다 작을 때
+            client.publish('control', "led:1")  # control 토픽에 led:1 보내기
+            print("control publishing message: ", "led:1")
+        elif int(value[4]) > int(standard[8]) : # 토양수분도가 max토양수분도 보다 클 때
+            client.publish('control', "led:0")  # control 토픽에 led:0 보내기
+            print("control publishing message: ", "led:0")
     else : # controlStatus 토픽에 값이 들어온 경우
-        print(msg)
         msg = msg.split(':') # 콜론(:)을 기준으로 센서 Type이랑 값 나누기
         tmp = msg[0].split("'") # b'을 제거하기 위한 split
         msg[0] = tmp[1] # b'을 제거한 sensor_type 저장
@@ -74,28 +90,27 @@ def on_message(client, userdata, message) :
         msg[1] = tmp[0] # '을 제거한 sensor_value 저장
         msg = "equipmentStatus, " + serial + ", " + msg[0] + ", " + msg[1];  # 시리얼번호, 센서 타입, 센서 값 하나의 메시지로 합치기
         client.publish('equipmentStatus', msg)  # equipmentStatus 토픽에 msg 보내기
-        print("equipmentStatus publishing message: ", msg)
 
 def control(s) :
     return {
-        '000' : 'cold:0, hot:0, air:0, humi:0',
-        '001' : 'cold:0, hot:0, air:1, humi:0',
-        '020' : 'cold:0, hot:0, air:1, humi:0',
-        '010' : 'cold:0, hot:0, air:0, humi:1',
-        '021' : 'cold:0, hot:0, air:1, humi:0',
-        '011' : 'cold:0, hot:0, air:0, humi:1',
-        '200' : 'cold:1, hot:0, air:0, humi:0',
-        '201' : 'cold:1, hot:0, air:0, humi:0',
-        '220' : 'cold:1, hot:0, air:0, humi:0',
-        '221' : 'cold:1, hot:0, air:0, humi:0',
-        '210' : 'cold:1, hot:0, air:0, humi:1',
-        '211' : 'cold:1, hot:0, air:0, humi:1',
-        '100' : 'cold:0, hot:1, air:0, humi:0',
-        '101' : 'cold:0, hot:1, air:0, humi:0',
-        '120' : 'cold:0, hot:1, air:0, humi:0',
-        '121' : 'cold:0, hot:1, air:0, humi:0',
-        '110' : 'cold:0, hot:1, air:0, humi:1',
-        '111' : 'cold:0, hot:1, air:0, humi:1',
+        '000' : 'cold:0, hot:0, air:0, humi:1',
+        '001' : 'cold:0, hot:0, air:1, humi:1',
+        '020' : 'cold:0, hot:0, air:1, humi:1',
+        '010' : 'cold:0, hot:0, air:0, humi:0',
+        '021' : 'cold:0, hot:0, air:1, humi:1',
+        '011' : 'cold:0, hot:0, air:0, humi:0',
+        '200' : 'cold:1, hot:0, air:0, humi:1',
+        '201' : 'cold:1, hot:0, air:0, humi:1',
+        '220' : 'cold:1, hot:0, air:0, humi:1',
+        '221' : 'cold:1, hot:0, air:0, humi:1',
+        '210' : 'cold:1, hot:0, air:0, humi:0',
+        '211' : 'cold:1, hot:0, air:0, humi:0',
+        '100' : 'cold:0, hot:1, air:0, humi:1',
+        '101' : 'cold:0, hot:1, air:0, humi:1',
+        '120' : 'cold:0, hot:1, air:0, humi:1',
+        '121' : 'cold:0, hot:1, air:0, humi:1',
+        '110' : 'cold:0, hot:1, air:0, humi:0',
+        '111' : 'cold:0, hot:1, air:0, humi:0',
     }.get(s, -1)
 
 print("run equipmentControl.py") 

@@ -12,13 +12,11 @@
 		<link rel="stylesheet" href="../css/common_ui.css">
 		<link rel="stylesheet" href="../css/main_tab.css">
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
-		
 	</head>
 	<body>
 		<div class="wrap">
 			<!-- upButton -->
-			<button class="b-n HF-back d-b m-t-ml m-l-sl" value="back" onclick="history.back(-1);" >
+			<button class="b-n HF-back d-b m-t-ml m-l" value="back" onclick="history.back(-1);" >
 				<img class="ud-img f-l" src="../icon/upButton.png" alt="back"/>
 			</button>			
 			<!-- // upButton -->

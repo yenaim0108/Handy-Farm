@@ -15,7 +15,7 @@
 			var today = new Date(); // 오늘 날짜 저장
 			var firstDate; // 이번 달의 첫째 날
 			var lastDate; // 이번 달의 마지막 날
-			var selDate; // 선택된 날짜
+			var selDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(); // 선택된 날짜
 			
 			// 이전 달
 			function prvCalendar() {
@@ -110,7 +110,7 @@
 			
 			// 사용자가 클릭한 날짜의 일정 가져오기
 			function reloadList() {
-				var html = " "
+				var html = "";
 				
 				$.ajax({
 					type: "POST",
@@ -143,8 +143,149 @@
 		    	}, 500);
 			}
 			
-			function whoGH() {
+			// 개인 일정 등록
+			function calendarInsertPersonal() {
+				location.href="calendarInsertUI.do?selDate=" + selDate;
+			}
+			
+			// 온실선택 화면
+			function ghUI() {
+				var html = "";
+				document.getElementById('l-title').innerHTML = "온실을 선택해주세요.";
 				
+				$.ajax ({
+					type: "POST",
+					url: "calendarGHUI.do",
+					dataType: "json",
+					success: function(data) {
+						$('#l-data').empty();
+						
+						$.each(data, function(key, value) {
+							html += "<div class='l-gh p-a-sl d-ib HF-backWhite t-a-c shadow' onclick=cropUI('" + value.gh_id + "');>";
+							html += value.gh_nickname;
+							html += "<div>";
+							html += "<img src='" + value.gh_img + "' alt='GHImage'>";
+							html += "</div>";
+							html += "</div>";
+						});
+						
+						document.getElementById('l-data').innerHTML = html;
+
+						$('#who').fadeOut("fast");
+				    	$('#list').show().animate({
+				    		bottom: 0
+				    	}, 500);
+					},
+					error: function(request, status, error) {
+						alert("code : " + request.status + "\nmessage : " + request.reponseText +"\nerror : " + error + "\n에러가 발생하였습니다.\n관리자에게 문의해보세요.");
+					}
+				});
+			}
+			
+			// 작물선택 화면
+			function cropUI(gh_id) {
+				var html = "";
+				var result;
+				var crops_id;
+				var msg = gh_id + "," + crops_id;
+				
+				$.ajax ({
+					type: "POST",
+					url: "isOneCrop.do",
+					data: "gh_id=" + gh_id,
+					dataType: "json",
+					async: false,
+					success: function (data) {
+						if (data[0].result) {
+							result = true;
+							crops_id = data[0].crops_id;
+						} else {
+							result = false;
+						}
+					},
+					error: function(request, status, error) {
+						alert("code : " + request.status + "\nmessage : " + request.reponseText +"\nerror : " + error + "\n에러가 발생하였습니다.\n관리자에게 문의해보세요.");
+					}
+				});
+				
+				if (result) { // 작물이 1개면 바로 일정 선택으로 넘어가기
+					whatCalendar(gh_id, crops_id);
+				} else { // 작물이 2개 이상이면 작물 선택 화면으로 넘어가기
+					document.getElementById('l-title').innerHTML = "작물을 선택해주세요.";
+				
+					$.ajax ({
+						type: "POST",
+						url: "calendarCropUI.do",
+						data: "gh_id=" + gh_id,
+						dataType: "json",
+						success: function(data) {
+							$('#l-data').empty();
+							
+							$.each(data, function(key, value) {
+								html += "<div class='l-gh p-a-sl d-ib HF-backWhite t-a-c shadow' onclick=whatCalendar('" + msg + "');>";
+								html += value.crops_name;
+								html += "<div>";
+								html += "<img src='" + value.crops_img + "' alt='CropImage'>";
+								html += "</div>";
+								html += "</div>";
+							});
+							
+							document.getElementById('l-data').innerHTML = html;
+
+							$('#list').css({
+								bottom: -495
+							})
+							$('#list').show().animate({
+					    		bottom: 0
+					    	}, 500);
+						},
+						error: function(request, status, error) {
+							alert("code : " + request.status + "\nmessage : " + request.reponseText +"\nerror : " + error + "\n에러가 발생하였습니다.\n관리자에게 문의해보세요.");
+						}
+					});
+				}
+			}
+			
+			// 어떤 일정?
+			function whatCalendar(msg) {
+				document.getElementById('l-title').innerHTML = "어떤 일정을 등록할까요?";
+				var list = new Array("밭 갈기", "농작물 심기", "물 주기", "비료 주기", "수확량", "기타");
+				var listImg = new Array("../icon/plowing.png", "../icon/planting_crops.png", "../icon/watering.png", "../icon/fertilizer_cycle.png", "../icon/yield.png", "../icon/etc.png");
+				var html = "";
+				var tmp = msg.split(",");
+				var gh_id = tmp[0];
+				var crops_id = tmp[1];
+				
+				for (var i = 0; i < list.length; i++) {
+					if (i < 4) {
+						html += "<div class='l-gh p-a-sl d-ib HF-backWhite t-a-c shadow' onclick=location.href='calendarGHInsert.do?i=" + i + "&yield=-1&selDate=" + selDate + "&gh_id=" + gh_id + "&crops_id=" + crops_id + "'>";
+					} else if (i == 4) { // 수확량을 클릭했을 때
+						html += "<div class='l-gh p-a-sl d-ib HF-backWhite t-a-c shadow' onclick=yieldUI('" + msg + "')>";
+					} else { // 기타를 클릭했을 때
+						html += "<div class='l-gh p-a-sl d-ib HF-backWhite t-a-c shadow' onclick=location.href='calendarInsertUI.do?selDate=" + selDate + "'>";
+					}
+					html += list[i];
+					html += "<div>";
+					html += "<img src='" + listImg[i] + "' alt='CropImage'>";
+					html += "</div>";
+					html += "</div>";
+				}
+				
+				document.getElementById('l-data').innerHTML = html;
+
+				$('#list').css({
+					bottom: -495
+				})
+				$('#list').show().animate({
+		    		bottom: 0
+		    	}, 500);
+			}
+			
+			// 수확량 등록 화면
+			function yieldUI(msg) {
+				document.getElementById('l-title').innerHTML = "수확량을 입력해주세요.";
+				
+				$('#l-data').empty();
 			}
 		</script>
 
@@ -184,11 +325,14 @@
 			</div>
 			<div id="to-doList" class="HF-backWhite shadow p-a-ml">
 				<c:forEach items="${ calendar }" var="dto">
-					<div class="do t-a-l m-b-s ${ dto.cal_color }">
-						${ dto.cal_title }
-						<div class="m-t-s"></div>
-						${ dto.cal_time } ~
-					</div>
+					<form name="calendar" method="post" action="calendarInfo.do">
+						<input type="hidden" value="${ dto.cal_number }">
+						<div class="do t-a-l m-b-s ${ dto.cal_color }">
+							${ dto.cal_title }
+							<div class="m-t-s"></div>
+							${ dto.cal_time } ~
+						</div>
+					</form>
 				</c:forEach>
 			</div>
 			<!-- to-do list -->
@@ -203,5 +347,9 @@
 		<!-- who -->
 		<%@ include file="../include/calendar_who.inc" %>
 		<!-- // who -->
+		
+		<!-- list -->
+		<%@ include file="../include/list.inc" %>
+		<!-- // list -->
 	</body>
 </html>

@@ -94,8 +94,13 @@
          </div>
          <!-- // 온실목록 -->
       </div>
+      
       <!-- footer -->
       <%@ include file="../include/bottonTabBar.inc" %>
       <!-- //footer -->
+      
+      <!-- list -->
+      <%@ include file="../include/list.inc" %>
+      <!-- // list -->
    </body>
 </html>

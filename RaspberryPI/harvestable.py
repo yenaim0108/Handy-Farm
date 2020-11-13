@@ -70,7 +70,7 @@ def hough_circle(img) :
 
     # imgShow("edge", edge) # 에지만 추출한 이미지 보여주기
 
-    circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=50, maxRadius=80) # 이미지에서 원 추출
+    circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=30, maxRadius=60) # 이미지에서 원 추출
     circles = np.uint16(np.around(circles))  # np.around() 함수로 circles의 값들을 반올림/반내림하고 이를 UNIT16으로 변환한다.
 
     show = True
@@ -108,9 +108,9 @@ def hough_circle(img) :
     cmask = np2img(cmask) # cmask numpy 배열 이미지로 변환
     crops = cv2.bitwise_and(img, cmask)  # 원본 컬러 이미지와 마스크 이미지를 결합하여 추출된 원 부분을 제외하고 다른 부분을 모두 검정으로 칠한 이미지를 만든다.
 
-    imgShow('circleAll', call, 300, 20) # 감지한 모든 원을 표시한 이미지 보여주기
+    imgShow('circleAll', call, 430, 0) # 감지한 모든 원을 표시한 이미지 보여주기
 
-    imgShow('extractedCircle', extractedCircle, 600, 20) # 감지한 원 중에서 가져온 원을 표시한 이미지 보여주기
+    imgShow('extractedCircle', extractedCircle, 860, 0) # 감지한 원 중에서 가져온 원을 표시한 이미지 보여주기
 
     return crops # 감지한 농작물만 추출한 사진 return
 
@@ -125,7 +125,7 @@ def highlight_remove(img) :
     upper = np.array([255, 255, 255]) # BGR(최댓값, 최댓값, 최댓값)
     mask = cv2.inRange(img, lower, upper) # 하이라이트(빛 반사 된 밝은 부분)만 흰색으로 칠하기
 
-    imgShow("highlight", mask, 1200, 20) # 하이라이트(빛 반사된 부분)만 칠한 마스크 이미지 보여주기
+    imgShow("highlight", mask, 0, 430) # 하이라이트(빛 반사된 부분)만 칠한 마스크 이미지 보여주기
 
     highlight = cv2.countNonZero(mask) # 하이라이트(빛 반사된 부분) 면적 계산하기
 
@@ -170,7 +170,7 @@ def color_extraction(img) :
     gray = cv2.cvtColor(img_result, cv2.COLOR_BGR2GRAY) # 컬러 이미지 흑백 이미지로 변환
     ripe = cv2.countNonZero(gray) # 추출한 색 부분 면적 계산
 
-    imgShow('color_extraction', img_result, 1500, 20) # 색 추출한 부분만 가져온 이미지 보여주기
+    imgShow('color_extraction', img_result, 430, 430) # 색 추출한 부분만 가져온 이미지 보여주기
 
     return ripe # 추출한 색 부분 면적 계산한 값 return
 
@@ -185,13 +185,13 @@ def mqtt_harvestable(harvestable) :
 # img = camera()
 
 # 이미지 읽어오기
-img = imgRead(".\\tomato\\tomato46.jpg")
+img = imgRead(".\\tomato\\tomato28.jpg")
 
 # 이미지 사이즈 재조정
-img = cv2.resize(img, (0, 0), fx=0.5, fy=0.5)
+img = cv2.resize(img, (0, 0), fx=0.3, fy=0.3)
 
 # 원본 이미지 보여주기
-imgShow('original', img, 0, 20)
+imgShow('original', img, 0, 0)
 
 # 조도 값 요청하기
 #mqtt_ask_illuminance()
@@ -209,7 +209,7 @@ imgShow('original', img, 0, 20)
 img = hough_circle(img)
 
 # 감지한 농작물만 추출한 사진 보여주기
-imgShow('crops', img, 900, 20)
+imgShow('crops', img, 1290, 0)
 
 # 마스크 이미지로 변환해서 농작물의 전체 면적 계산하기
 total = total_area(img)

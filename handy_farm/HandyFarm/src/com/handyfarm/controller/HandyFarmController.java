@@ -75,6 +75,8 @@ public class HandyFarmController extends HttpServlet {
       
       // 회원가입 화면
       if (com.equals("/handyfarm/signupUI.do")) {
+    	  command = new HandyFarmSignupUICommand();
+          command.execute(request, response);
     	  nextPage = "signup.jsp";
       }
       
@@ -270,35 +272,44 @@ public class HandyFarmController extends HttpServlet {
          nextPage = "calendar_insert.jsp";
       }
       
-      // 일정 등록
+      // 개인 일정 등록
       if (com.equals("/handyfarm/calendarInsert.do")) {
          command = new HandyFarmCalendarInsertCommand();
          command.execute(request, response);
          nextPage = "calendar.jsp";
       }
       
-      // 로보일정_온실선택
-      if (com.equals("/handyfarm/calendarGH.do")) {
+      // 로보일정_온실선택 화면
+      if (com.equals("/handyfarm/calendarGHUI.do")) {
          command = new HandyFarmCalendarGHCommand();
          command.execute(request, response);
-         nextPage = "calendar_gh.jsp";
+         return;
       }
       
-      // 로보일정_작물선택
-      if (com.equals("/handyfarm/calendarCrop.do")) {
+      // 작물이 1개인지 체크
+      if (com.equals("/handyfarm/isOneCrop.do")) {
+          command = new HandyFarmIsOneCropCommand();
+          command.execute(request, response);
+          return;
+       }
+      
+      // 로보일정_작물선택 화면
+      if (com.equals("/handyfarm/calendarCropUI.do")) {
          command = new HandyFarmCalendarCropCommand();
          command.execute(request, response);
-         nextPage = "calendar_crop.jsp";
-      }
-      
-      // 어떤 일정? 화면
-      if (com.equals("/handyfarm/calendarWhatUI.do")) {
-         nextPage = "calendar_what.jsp";
+         return;
       }
       
       // 수확량 등록 화면
       if (com.equals("/handyfarm/calendarYieldUI.do")) {
          nextPage = "calendar_yield.jsp";
+      }
+      
+      // 온실 일정 등록
+      if (com.equals("/handyfarm/calendarGHInsert.do")) {
+         command = new HandyFarmCalendarGHInsertCommand();
+         command.execute(request, response);
+         nextPage = "calendar.jsp";
       }
       
       // 일정 삭제

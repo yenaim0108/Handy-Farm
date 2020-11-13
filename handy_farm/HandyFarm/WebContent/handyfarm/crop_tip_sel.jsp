@@ -15,13 +15,11 @@
 	<c:forEach var="dto" items="${tip_list}" >
 		<div class="wrap">
 		
-		<!-- icon_back -->
-		<button class="b-n HF-back d-b m-t-ml m-l-sl" value="push_back"
-			onclick="location.href='cropAll.do'">
-			<img class="tip_back-img f-l" src="../icon/upButton.png" alt="back" />
-		</button>
-		<!-- icon_back -->
-		
+		<!-- upButton -->
+		<button class="b-n HF-back d-b m-t-ml m-l" value="back" onclick="history.back(-1);" >
+			<img class="ud-img f-l" src="../icon/upButton.png" alt="back"/>
+		</button>			
+		<!-- // upButton -->
 		
 		
 		<!-- content -->

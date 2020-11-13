@@ -1,8 +1,16 @@
 package com.handyfarm.dao;
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -1086,9 +1094,9 @@ public class HandyFarmDAO {
 	// 설비를 제어할 센서값 가져오기 임예나
 	public String equipmentSensorValueSelect(String _serial) {
 		// sensor_type, content, crop 선언
-		String[] sensor_type = {"temperature", "humidity", "co2"};
+		String[] sensor_type = {"temperature", "humidity", "co2", "soil-moisture", "sunshine"};
 		String content = "";
-		String crop = null;
+		String crops_id = null;
 		
 		try {
 			con = ds.getConnection();
@@ -1117,6 +1125,7 @@ public class HandyFarmDAO {
 				}
 			}
 			content += " / ";
+			
 			// 품종 번호를 가져오는 query문
 			String query = "SELECT crops_id " + 
 						   "FROM robo " + 
@@ -1129,7 +1138,7 @@ public class HandyFarmDAO {
 			
 			if(rs.next()) {
 				// crop에 대입하기
-				crop = rs.getString("crops_id");
+				crops_id = rs.getString("crops_id");
 			}
 			
 			// temperature, time 선언
@@ -1240,12 +1249,12 @@ public class HandyFarmDAO {
 			temperature[1] += "max_temperature";
 			
 			// 비교 조건을 가져오는 sql문
-			query = "SELECT " + temperature[0] + ", " + temperature[1] + ", " + "min_humidity, max_humidity, max_co2 " + 
+			query = "SELECT " + temperature[0] + ", " + temperature[1] + ", " + "min_humidity, max_humidity, max_co2, min_soil_moisture, max_soil_moisture, min_sunshine, max_sunshine " + 
 					"FROM crops " + 
 					"WHERE crops_id = ?";
 			pstmt = con.prepareStatement(query);
 			// 매개변수 값 대입 -> set 메서드에 값 설정
-			pstmt.setString(1, crop);
+			pstmt.setString(1, crops_id);
 			// sql문 실행
 			rs = pstmt.executeQuery();
 			
@@ -1256,7 +1265,11 @@ public class HandyFarmDAO {
 						  (int)rs.getFloat(temperature[1]) + ", " +
 						  (int)rs.getFloat("min_humidity") + ", " +
 						  (int)rs.getFloat("max_humidity") + ", " +
-						  (int)rs.getFloat("max_co2");
+						  (int)rs.getFloat("max_co2") + ", " +
+						  (int)rs.getFloat("min_soil_moisture") + ", " +
+						  (int)rs.getFloat("max_soil_moisture") + ", " +
+						  (int)rs.getFloat("min_sunshine") + ", " +
+						  (int)rs.getFloat("max_sunshine");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -1981,45 +1994,26 @@ public class HandyFarmDAO {
 		} // end finally
 	} // end personalCalendarInsert
 	
-	// 일정 추가 - 로보
-	public void roboCalendarInsert(String _cal_number, String _cal_title, float _cal_yield_kg, String _id, String date) {
-		// gh_id, crops_id 선언
-		String _gh_id = null;
-		String _crops_id = null;
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		
+	// 일정 추가 - 온실
+	public void ghCalendarInsert(String _cal_number, String _cal_title, Date date, float _cal_yield_kg, String _gh_id,String _id, String _crops_id) {
 		try {
 			con = ds.getConnection();
 			
-			// gh_id, crops_id 가져오기
-			String query = "SELECT gh_id, crops_id " + 
-						   "FROM robo " + 
-						   "WHERE id = ?";
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, _id);
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				_gh_id = rs.getString("gh_id");
-				_crops_id = rs.getString("crops_id");
-			};
-			
 			// 개인 온실을 추가하는 sql문
-			query = "INSERT INTO calendar (cal_number, cal_title, cal_start_date, cal_end_date, cal_start_time, cal_end_time, cal_yield_kg, cal_yield_time, gh_id, id, crops_id) " + 
-					"VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String query = "INSERT INTO calendar (cal_number, cal_title, cal_start_date, cal_end_date, cal_start_time, cal_end_time, cal_yield_kg, gh_id, id, crops_id) " + 
+						   "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			System.out.println(query);
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, _cal_number);
 			pstmt.setString(2, _cal_title);
-			pstmt.setDate(3, (java.sql.Date) sdf.parse(date));
-			pstmt.setDate(4, (java.sql.Date) sdf.parse(date));
-			pstmt.setTime(5, (java.sql.Time) sdf.parse("00:00"));
-			pstmt.setTime(6, (java.sql.Time) sdf.parse("23:59"));
+			pstmt.setDate(3, date);
+			pstmt.setDate(4, date);
+			pstmt.setTime(5, Time.valueOf("00:00"));
+			pstmt.setTime(6, Time.valueOf("23:59"));
 			pstmt.setFloat(7, _cal_yield_kg);
-			pstmt.setTimestamp(8, java.sql.Timestamp.valueOf(date));
-			pstmt.setString(9, _gh_id);
-			pstmt.setString(10, _id);
-			pstmt.setString(11, _crops_id);
+			pstmt.setString(8, _gh_id);
+			pstmt.setString(9, _id);
+			pstmt.setString(10, _crops_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -2089,4 +2083,112 @@ public class HandyFarmDAO {
 			}
 		} // end finally
 	} // end calendarDelete
+	
+	// 작물이 1개인지 확인하기
+	public ArrayList<HandyFarmDTO> isOneCrop(String _gh_id) {
+		// list, lhs, crops_id 선언
+		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
+		LinkedHashSet<String> lhs = new LinkedHashSet<String>();
+		String crops_id = "";
+		
+		try {
+			con = ds.getConnection();
+			
+			// 온실에 해당하는 로보의 작물 모두 가져오기
+			String query = "SELECT r.crops_id " + 
+						   "FROM robo AS r " + 
+						   "JOIN crops AS c " + 
+						   "ON r.crops_id = c.crops_id " + 
+						   "WHERE r.gh_id = ?";
+			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
+			pstmt.setString(1, _gh_id);
+			// sql문 실행
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				crops_id = rs.getString("crops_id");
+				lhs.add(crops_id);
+			}
+			
+			// data 객체 선언
+			HandyFarmDTO data = new HandyFarmDTO();
+			
+			// 작물이 1개면 crops_id랑 result true로 저장하기
+			if (lhs.size() == 1) {
+				// data 객체의 set 메서드에 해당하는 값을 설정
+				data.setCrops_id(crops_id);
+				data.setResult(true);
+			} else { // 작물이 2개이상이면 result false로 저장하기
+				// data 객체의 set 메서드에 해당하는 값을 설정
+				data.setResult(false);
+			}
+			
+			list.add(data);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		// 결과값 list 리턴
+		return list;
+	} // end isOneCrop
+	
+	// 온실에 등록된 작물 정보 가져오기
+	public ArrayList<HandyFarmDTO> cropList(String _gh_id) {
+		// list 선언
+		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
+		
+		try {
+			// DB 연결
+			con = ds.getConnection();
+			
+			// 온실 목록을 가져오는 sql문
+			String query = "SELECT r.crops_id, c.crops_img, c.crops_name " + 
+						   "FROM robo AS r " + 
+						   "JOIN crops AS c " + 
+						   "ON r.crops_id = c.crops_id " + 
+						   "WHERE r.gh_id = ?";
+			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
+			pstmt.setString(1, _gh_id);
+			// sql문 실행
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				// 레코드의 정보를 각 변수에 저장
+				String crops_id = rs.getString("crops_id");
+				String crops_img = rs.getString("crops_img");
+				String crops_name = rs.getString("crops_name");
+				
+				// data 객체 선언
+				HandyFarmDTO data = new HandyFarmDTO();
+				
+				// data 객체의 set 메서드에 해당하는 값을 설정
+				data.setCrops_id(crops_id);
+				data.setCrops_img(crops_img);
+				data.setCrops_name(crops_name);
+				
+				list.add(data);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) { con.close(); }
+				if (pstmt != null) { pstmt.close(); }
+				if (rs != null) { rs.close(); }
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} // end finally
+		// 결과값 list 리턴
+		return list;
+	} // end cropList
 }

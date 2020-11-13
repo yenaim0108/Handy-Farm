@@ -141,6 +141,7 @@ public class HandyFarmDTO {
 	boolean passwordCheck;
 	String cal_color;
 	String cal_time;
+	boolean result;
 
 	// 기본생성자
 	public HandyFarmDTO() {
@@ -995,5 +996,13 @@ public class HandyFarmDTO {
 
 	public void setCal_time(String cal_time) {
 		this.cal_time = cal_time;
+	}
+
+	public boolean getResult() {
+		return result;
+	}
+
+	public void setResult(boolean result) {
+		this.result = result;
 	}
 }

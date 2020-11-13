@@ -129,13 +129,81 @@ footer ul li {
 .title {
 	margin: 45px 0 30px 0;
 	font-size: 28px;
-	font-weight: bold;
 }
 
 .title2 {
-	margin: 15px 0 30px 0;
+	margin: 45px 0 35px 0;
 	font-size: 28px;
-	font-weight: bold;
+}
+
+#mask {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	background-color: #000000;
+}
+
+#list {
+	z-index: 1;
+	position: fixed;
+    left: 0;
+    right: 0;
+    bottom: -495px;
+    height: 450px;
+    border-radius: 40px 40px 0 0;
+    padding: 45px 20px 0 20px;
+    background-color: #F5F5F3;
+}
+
+#l-title {
+	font-size: 25px;
+	color: #000000;
+}
+
+#l-data {
+	height: 381px;
+	font-size: 18px;
+	color: #606060;
+	overflow-y: scroll;
+}
+
+.l-gh {
+	width: 135px;
+	height: 130px;
+	border-radius: 25px;
+	margin: 0 15px 30px 15px;
+}
+
+.l-gh img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	margin-top: 8px;
+}
+
+select {
+   width: 285px;
+   height: 46px;
+   border-radius: 30px 30px;   
+   background: url('../icon/dropbox_arrow.png') no-repeat 90% 50%;
+   background-size: 18px auto;
+   background-color: #FFFFFF;
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   margin: 0 auto;
+   color: #707070;
+   font-size: 17px;
+   font-weight: bold;
+}
+
+select::-ms-expand {
+   display: none;
+}
+
+select:focus {
+   outline: none;
 }
 
 .labelNick {

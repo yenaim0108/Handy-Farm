@@ -19,7 +19,7 @@ public class HandyFarmMQTT {
 	String brokerUrl = "tcp://localhost:1883";
 	MqttConnectOptions conOpt;
 	MqttClient client;
-	long timeInterval = 10000; // 10초
+	long timeInterval = 20000; // 20초
 	
 	// MQTT 연결하는 생성자
 	public HandyFarmMQTT() {

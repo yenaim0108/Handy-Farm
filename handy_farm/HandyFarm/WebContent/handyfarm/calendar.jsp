@@ -8,7 +8,7 @@
 		<title>캘린더</title>
 		<link rel="stylesheet" href="../css/common_ui.css?after">
 		<link rel="stylesheet" href="../css/calendar_tab.css?after">
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="../js/jquery-3.5.1.min.js"></script>
 		<script type="text/javascript">
 			// date, today, pageYear, firstDate, lastDate 선언
 			var date = new Date(); // 달력을 표시하는 기준 날짜 저장
@@ -187,7 +187,7 @@
 				var html = "";
 				var result;
 				var crops_id;
-				var msg = gh_id + "," + crops_id;
+				var msg = gh_id + ",";
 				
 				$.ajax ({
 					type: "POST",
@@ -209,7 +209,8 @@
 				});
 				
 				if (result) { // 작물이 1개면 바로 일정 선택으로 넘어가기
-					whatCalendar(gh_id, crops_id);
+					msg += crops_id;
+					whatCalendar(msg);
 				} else { // 작물이 2개 이상이면 작물 선택 화면으로 넘어가기
 					document.getElementById('l-title').innerHTML = "작물을 선택해주세요.";
 				
@@ -222,6 +223,7 @@
 							$('#l-data').empty();
 							
 							$.each(data, function(key, value) {
+								msg += value.crops_id
 								html += "<div class='l-gh p-a-sl d-ib HF-backWhite t-a-c shadow' onclick=whatCalendar('" + msg + "');>";
 								html += value.crops_name;
 								html += "<div>";

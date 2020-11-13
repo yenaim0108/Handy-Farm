@@ -7,7 +7,7 @@
 		<title>로그인</title>
 		<link rel="stylesheet" href="../css/common_ui.css">
 		<link rel="stylesheet" href="../css/loginSignUp.css">
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="../js/jquery-3.5.1.min.js"></script>
 		<script>
 			// 입력된 데이터 유효성 검사
 			function checkData() {

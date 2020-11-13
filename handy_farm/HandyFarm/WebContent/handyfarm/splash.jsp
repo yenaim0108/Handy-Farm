@@ -8,7 +8,7 @@
 		<meta http-equiv="refresh" content="1; URL=loginUI.do">
 		<title>스플래시</title>
 		<link rel="stylesheet" href="../css/common_ui.css">
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="../js/jquery-3.5.1.min.js"></script>
 	</head>
 	<body class="d-t">
 		<div class="d-tc va-m">

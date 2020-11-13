@@ -9,7 +9,7 @@
 		<title>Tip_작물별 경작 조건 선택(상세)</title>
 		<link rel="stylesheet" href="../css/common_ui.css">
 		<link rel="stylesheet" href="../css/tip_tab.css">
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="../js/jquery-3.5.1.min.js"></script>
 	</head>
 	<body>
 	<c:forEach var="dto" items="${tip_list}" >

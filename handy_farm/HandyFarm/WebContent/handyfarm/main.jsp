@@ -8,7 +8,7 @@
       <title>메인 페이지</title>
       <link rel="stylesheet" href="../css/common_ui.css">
       <link rel="stylesheet" href="../css/main_tab.css">
-      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="../js/jquery-3.5.1.min.js"></script>
    </head>
    <body class="HF-backWhite"> 
       <div class="HF-backGreen full-b over-x-h over-y-h">

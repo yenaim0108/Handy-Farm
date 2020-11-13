@@ -5,7 +5,7 @@ import sys
 #import picamera
 import time
 
-ip = "192.168.137.1" # 서버 ip 주소
+ip = "192.168.100.5" # 서버 ip 주소
 serial = "10000000c366d002" # 라즈베리파이 시리얼 번호
 
 def imgRead(src) :

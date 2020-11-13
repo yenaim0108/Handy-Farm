@@ -9,7 +9,7 @@
 		<title>생장 정보</title>
 		<link rel="stylesheet" type="text/css" href="../css/common_ui.css?after">
 		<link rel="stylesheet" type="text/css" href="../css/main_tab.css?after">
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="../js/jquery-3.5.1.min.js"></script>
 	</head>
 	<body>
 		<div class="wrap_bottomNone">

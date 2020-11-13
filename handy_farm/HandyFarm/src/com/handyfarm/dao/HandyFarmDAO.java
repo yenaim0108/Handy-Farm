@@ -1907,7 +1907,9 @@ public class HandyFarmDAO {
 						   "FROM calendar " + 
 						   "WHERE cal_number = ?";
 			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
 			pstmt.setString(1, _cal_number);
+			// sql 실행
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -1957,7 +1959,9 @@ public class HandyFarmDAO {
 						   "FROM robo " + 
 						   "WHERE id = ?";
 			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
 			pstmt.setString(1, _id);
+			// sql 실행
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
@@ -1969,6 +1973,7 @@ public class HandyFarmDAO {
 			query = "INSERT INTO calendar (cal_number, cal_title, cal_start_date, cal_end_date, cal_start_time, cal_end_time, cal_memo, cal_yield_kg, cal_yield_time, gh_id, id, crops_id) " + 
 					"VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
 			pstmt.setString(1, _cal_number);
 			pstmt.setString(2, _cal_title);
 			pstmt.setDate(3, _cal_start_date);
@@ -1981,6 +1986,8 @@ public class HandyFarmDAO {
 			pstmt.setString(10, _gh_id);
 			pstmt.setString(11, _id);
 			pstmt.setString(12, _crops_id);
+			// sql 적용
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -2002,18 +2009,20 @@ public class HandyFarmDAO {
 			// 개인 온실을 추가하는 sql문
 			String query = "INSERT INTO calendar (cal_number, cal_title, cal_start_date, cal_end_date, cal_start_time, cal_end_time, cal_yield_kg, gh_id, id, crops_id) " + 
 						   "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			System.out.println(query);
 			pstmt = con.prepareStatement(query);
+			// 매개변수 값 대입 -> set 메서드에 값 설정
 			pstmt.setString(1, _cal_number);
 			pstmt.setString(2, _cal_title);
 			pstmt.setDate(3, date);
 			pstmt.setDate(4, date);
-			pstmt.setTime(5, Time.valueOf("00:00"));
-			pstmt.setTime(6, Time.valueOf("23:59"));
+			pstmt.setTime(5, Time.valueOf("00:00:00"));
+			pstmt.setTime(6, Time.valueOf("23:59:00"));
 			pstmt.setFloat(7, _cal_yield_kg);
 			pstmt.setString(8, _gh_id);
 			pstmt.setString(9, _id);
 			pstmt.setString(10, _crops_id);
+			// sql 적용
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

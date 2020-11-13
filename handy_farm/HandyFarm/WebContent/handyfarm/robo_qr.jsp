@@ -8,10 +8,9 @@
       <link rel="stylesheet" href="../css/common_ui.css">
       <link rel="stylesheet" href="../css/loginSignUp.css">
       <link rel="stylesheet" href="../css/main_tab.css">
-      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="../js/jquery-3.5.1.min.js"></script>
       <script type="text/javascript" src="../js/jsQR.js"></script>
-      <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
-      
+      <script src="../js/jsQR.js"></script>
       <script type="text/javascript">   
 	      document.addEventListener("DOMContentLoaded", function() {
 	      var video = document.createElement("video");      

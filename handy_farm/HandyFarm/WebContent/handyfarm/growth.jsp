@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -40,9 +39,10 @@
 					<div class="growthBox d-ib shadow">
 						${ dto.sensor_name }
 						<div class="d-t m-t">
-							<img class="d-tc m-r-sl" src="../icon/${ dto.sensor_type }.png" alt="${ dto.sensor_type }">
-							<fmt:parseNumber var="sensor_value" integerOnly="true" value="${ dto.sensor_value }" />
-							<div class="HF-DarkGray d-tc va-m value t-a-r">${ sensor_value }${ dto.sensor_unit }</div>
+							<div class="d-tc m-r-sl va-m">
+								<img src="../icon/${ dto.sensor_type }.png" alt="${ dto.sensor_type }">
+							</div>
+							<div class="HF-DarkGray d-tc va-m value t-a-r">${ dto.str_sensor_value }${ dto.sensor_unit }</div>
 						</div>
 					</div>
 				</c:forEach>

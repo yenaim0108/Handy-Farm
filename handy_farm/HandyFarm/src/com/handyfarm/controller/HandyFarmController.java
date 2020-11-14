@@ -294,8 +294,8 @@ public class HandyFarmController extends HttpServlet {
        }
       
       // 로보일정_작물선택 화면
-      if (com.equals("/handyfarm/calendarCropUI.do")) {
-         command = new HandyFarmCalendarCropCommand();
+      if (com.equals("/handyfarm/CropUI.do")) {
+         command = new HandyFarmCropCommand();
          command.execute(request, response);
          return;
       }

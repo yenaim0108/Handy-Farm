@@ -216,7 +216,7 @@
 				
 					$.ajax ({
 						type: "POST",
-						url: "calendarCropUI.do",
+						url: "CropUI.do",
 						data: "gh_id=" + gh_id,
 						dataType: "json",
 						success: function(data) {

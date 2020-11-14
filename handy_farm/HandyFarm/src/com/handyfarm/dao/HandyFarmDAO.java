@@ -1754,35 +1754,51 @@ public class HandyFarmDAO {
 				if (rs.next()) {
 					// 레코드의 정보를 각 변수에 저장
 					float sensor_value = rs.getFloat("sensor_value");
-					
+					int tmp = (int) sensor_value;
 					
 					// data 객체 선언
 					HandyFarmDTO data = new HandyFarmDTO();
 					
 					// data 객체의 set 메서드에 해당하는 값을 설정
 					data.setSensor_type(_sensor_type);
-					data.setSensor_value(sensor_value);
 					
-					if (_sensor_type.equals("temperature")) {
-						data.setSensor_name("온도");
-						data.setSensor_unit("℃");
-					} else if (_sensor_type.equals("humidity")) {
-						data.setSensor_name("습도");
-						data.setSensor_unit("%");
-					} else if (_sensor_type.equals("co2")) {
-						data.setSensor_name("이산화탄소");
-						data.setSensor_unit("단계");
-					} else if (_sensor_type.equals("soil-moisture")) {
-						data.setSensor_name("토양 수분도");
-						data.setSensor_unit("%");
-					} else if (_sensor_type.equals("sunshine")) {
-						data.setSensor_name("일조량");
-						data.setSensor_unit("lx");
-					} else if (_sensor_type.equals("soil-temperature")) {
-						data.setSensor_name("토양 속 온도");
-						data.setSensor_unit("℃");
+					if (_sensor_type.equals("soil-moisture")) {
+						if (tmp > 2600) {
+							data.setStr_sensor_value("Dry");
+						} else if (tmp > 2200) {
+							data.setStr_sensor_value("Wet");
+						} else {
+							data.setStr_sensor_value("Very\nWet");
+						}
+					} else {
+						data.setStr_sensor_value(String.valueOf(tmp));
 					}
-					
+
+					switch (_sensor_type) {
+						case "temperature" :
+							data.setSensor_name("온도");
+							data.setSensor_unit("℃");
+							break;
+						case "humidity" :
+							data.setSensor_name("습도");
+							data.setSensor_unit("%");
+							break;
+						case "co2" :
+							data.setSensor_name("이산화탄소");
+							data.setSensor_unit("단계");
+							break;
+						case "soil-moisture" :
+							data.setSensor_name("토양 수분도");
+							break;
+						case "soil-temperature" :
+							data.setSensor_name("토양 온도");
+							data.setSensor_unit("℃");
+							break;
+						case "sunshine" :
+							data.setSensor_name("일조량");
+							data.setSensor_unit("lx");
+					}
+
 					list.add(data);
 				} // end if
 			} // end for
@@ -1803,13 +1819,14 @@ public class HandyFarmDAO {
 			if (rs.next()) {
 				// 레코드의 정보를 각 변수에 저장
 				float harvestable = rs.getFloat("harvestable");
+				int tmp = (int) harvestable;
 				
 				// data 객체 선언
 				HandyFarmDTO data = new HandyFarmDTO();
 				
 				// data 객체의 set 메서드에 해당하는 값을 설정
 				data.setSensor_type("harvestable");
-				data.setSensor_value(harvestable);
+				data.setStr_sensor_value(String.valueOf(tmp));
 				data.setSensor_name("수확 가능 비율");
 				data.setSensor_unit("%");
 				
@@ -1820,7 +1837,7 @@ public class HandyFarmDAO {
 				
 				// data 객체의 set 메서드에 해당하는 값을 설정
 				data.setSensor_type("harvestable");
-				data.setSensor_value(0);
+				data.setStr_sensor_value("0");
 				data.setSensor_name("수확 가능 비율");
 				data.setSensor_unit("%");
 				

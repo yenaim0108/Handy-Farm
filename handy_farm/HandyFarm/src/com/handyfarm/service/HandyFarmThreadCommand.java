@@ -16,7 +16,7 @@ public class HandyFarmThreadCommand implements HandyFarmCommand {
 		mqtt.pubMqtt.start();
 		
 		// 크롤링 시작
-		HandyFarmWebCrawling wc = new HandyFarmWebCrawling();
-		wc.webCrawling.start();
+		//HandyFarmWebCrawling wc = new HandyFarmWebCrawling();
+		//wc.webCrawling.start();
 	}
 }

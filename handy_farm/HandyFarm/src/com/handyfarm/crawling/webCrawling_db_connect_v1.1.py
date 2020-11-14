@@ -114,10 +114,10 @@ while going:
         if True:
             c_date = dates.text  # 날짜
             c_title = title.text  # 제목
-            print(c_date, end="  :  ")
-            print(c_title)
+            # print(c_date, end="  :  ")
+            # print(c_title)
 
-            print(">>>이미지 : " + image_URL)
+            # print(">>>이미지 : " + image_URL)
 
             # for pure in content:
             #    c_content = pure.text  # 내용
@@ -126,27 +126,22 @@ while going:
             strx = content_real.text.replace('\'', '')
             strx = strx.replace('\"', '')
 
-            print(">> 내용 : " + strx)
+            # print(">> 내용 : " + strx)
 
             c_link = title['href']  # 링크
-            print(">>>연결 링크 : " + c_link + '\n')
-            print('\n')
-
-
-
+            # print(">>>연결 링크 : " + c_link + '\n')
+            # print('\n')
 
             try:
-                query = "insert  into `crawling`" \
-                        "(`link`,`category`,`views`, `title`, `content`, `c_date`, `img`)" \
+                query = "insert  into `crawling` " \
+                        "(`link`,`category`,`views`, `title`, `content`, `c_date`, `img`) " \
                         "values (' " + c_link + "','병충해', '0', '" + c_title + " ', ' " + strx + "', ' " + c_date + "', '" + image_URL + "');"
-                cur.execute(query)
-                conn.commit()
+                print(query)
 
-
-                print("!!데이터 insert 성공입니다!!\n")
+                # print("!!데이터 insert 성공입니다!!\n")
 
             except MySQLdb.Error as err:
-                print("***오류발생 : "+err)
+                print("***insert 오류발생 : "+err)
 
     item += 10  # Next 10 items
 

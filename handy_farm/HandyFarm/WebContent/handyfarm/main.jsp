@@ -9,8 +9,73 @@
       <link rel="stylesheet" href="../css/common_ui.css">
       <link rel="stylesheet" href="../css/main_tab.css">
       <script src="../js/jquery-3.5.1.min.js"></script>
+      <script type="text/javascript">
+	   		// 작물선택 화면
+			function cropUI(gh_id) {
+				var html = "";
+				var result;
+				var crops_id;
+				var msg = gh_id + ",";
+				
+				$.ajax ({
+					type: "POST",
+					url: "isOneCrop.do",
+					data: "gh_id=" + gh_id,
+					dataType: "json",
+					async: false,
+					success: function (data) {
+						if (data[0].result) {
+							result = true;
+							crops_id = data[0].crops_id;
+						} else {
+							result = false;
+						}
+					},
+					error: function(request, status, error) {
+						alert("code : " + request.status + "\nmessage : " + request.reponseText +"\nerror : " + error + "\n에러가 발생하였습니다.\n관리자에게 문의해보세요.");
+					}
+				});
+				
+				if (result) { // 작물이 1개면 바로 생장환경으로 넘어가기
+					location.href="growth.do?gh_id=" + gh_id + "&crops_id=" + crops_id;
+				} else { // 작물이 2개 이상이면 작물 선택 화면으로 넘어가기
+					document.getElementById('l-title').innerHTML = "작물을 선택해주세요.";
+				
+					$.ajax ({
+						type: "POST",
+						url: "CropUI.do",
+						data: "gh_id=" + gh_id,
+						dataType: "json",
+						success: function(data) {
+							$('#l-data').empty();
+							
+							$.each(data, function(key, value) {
+								msg += value.crops_id
+								html += "<div class='l-gh p-a-sl d-ib HF-backWhite t-a-c shadow' onclick=location.href='growth.do?gh_id=" + gh_id +"&crops_id=" + value.crops_id + "'>";
+								html += value.crops_name;
+								html += "<div>";
+								html += "<img src='" + value.crops_img + "' alt='CropImage'>";
+								html += "</div>";
+								html += "</div>";
+							});
+							
+							document.getElementById('l-data').innerHTML = html;
+	
+							$('#mask').fadeTo("fast", 0.5);
+							$('#list').show().animate({
+					    		bottom: 0
+					    	}, 500);
+						},
+						error: function(request, status, error) {
+							alert("code : " + request.status + "\nmessage : " + request.reponseText +"\nerror : " + error + "\n에러가 발생하였습니다.\n관리자에게 문의해보세요.");
+						}
+					});
+				}
+			}
+      </script>
    </head>
-   <body class="HF-backWhite"> 
+   <body class="HF-backWhite">
+   	  <div id="mask" class="full d-n"></div>
       <div class="HF-backGreen full-b over-x-h over-y-h">
          <!-- 로고 -->
          <img class="logo-img d-ib m-t-lg" src="../icon/handyfarm_white.png" alt="handyfarm">
@@ -44,7 +109,7 @@
          <!-- 온실 목록 -->
          <div class="GHlist p-x-ml">
             <!-- 제목 -->
-            <div class="t-a-l m-t-lg m-b">
+            <div class="t-a-l m-t-lg m-b m-l">
                	나의 온실 목록
             </div>
             <!-- // 제목 -->
@@ -56,7 +121,7 @@
                   <input type="hidden" name="gh_id" value="${ dto.gh_id }">
                   <!-- // 온실 ID -->
                   
-                  <div class="GH GH-Red b-n shadow p-t-sl" onclick="document.forms['gh'].submit();">
+                  <div class="GH GH-Red b-n shadow p-t-sl" onclick="cropUI('${ dto.gh_id }')">
                   	<input type="submit" class="HF-Green b-n f-s GH-Red underline d-b f-r m-r-sl" value="로보목록" formaction="roboList.do">
                      <div class="d-t m-b">
                         <!-- 온실 사진 -->

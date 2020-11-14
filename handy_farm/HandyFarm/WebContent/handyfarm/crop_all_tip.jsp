@@ -137,7 +137,9 @@
 		<div class="m-0-a">
 			<input class="textBox b-n shadow f-s m-l-sl" type="text"
 				name="searchword" placeholder="검색어를 입력해주세요." formaction=cropAll.do
-				style="background-image: url('../icon/search.png'); background-position: 20px 9px; background-repeat: no-repeat; background-size: 25px;">
+				style="background-image: url('../icon/search.png'); background-position: 20px 9px; background-repeat: no-repeat; background-size: 25px;border:none;border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px;
+
+출처: https://bearpro.tistory.com/49 [not set] ">
 			<img class="heart-img f-r" src="../icon/unlike_heart.png" id="wish_list" onclick="wishList(this)" alt="wish">
 			<%
 			String searchword = request.getParameter("searchword");

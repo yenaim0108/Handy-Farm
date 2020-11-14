@@ -169,19 +169,6 @@
 	text-align: left;
 }
 
-.t-a-r {
-	text-align: right;
-}
-
-.b-n {
-	border: none;
-}
-
-.ud-img {
-	width:50px;
-	height: auto;
-}
-
 .tip_back-img{
 	width:25px;
 	height: auto;
@@ -201,6 +188,11 @@
 	max-height: 60px;
 	overflow: hidden;
 	border-radius: 25px;
+}
+
+.c-img {
+	width: 50px;
+	height: auto;
 }
 
 .crop-img img {

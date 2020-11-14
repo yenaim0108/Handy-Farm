@@ -23,8 +23,6 @@
          
          <!-- contents -->
          
-         
-         
          <!-- 한칸띄우기 -->
          <div class="d-b"></div>
 
@@ -33,14 +31,14 @@
 		<div class="categoryBox p-a-sl shadow t-a-l m-x-sl"
 			onclick="location.href='crawlingSel.do'">
 			<div class="categoryintitle p-a-sl m-x-s">
-				<img class="ud-img d-ib" src="../icon/pest.png" alt="pests" /><br>
+				<img class="c-img d-ib" src="../icon/pest.png" alt="pests" /><br>
 				병충해 정보
 			</div>
 		</div>
 
 		<div class="categoryBox p-a-sl shadow t-a-l m-x-sl">
 			<div class="categoryintitle p-a-sl m-x-s">
-				<img class="ud-img" src="../icon/fertilizer.png" alt="fertilizer" /><br>
+				<img class="c-img" src="../icon/fertilizer.png" alt="fertilizer" /><br>
 				비료 정보
 			</div>
 		</div>
@@ -51,14 +49,14 @@
 
 		<div class="categoryBox p-a-sl shadow t-a-l m-x-sl">
 			<div class="categoryintitle p-a-sl m-x-s">
-				<img class="ud-img" src="../icon/pesticide.png" alt="pesticide" /><br>
+				<img class="c-img" src="../icon/pesticide.png" alt="pesticide" /><br>
 				농약 정보
 			</div>
 
 		</div>
 		<div class="categoryBox p-a-sl shadow t-a-l m-x-sl">
 			<div class="categoryintitle p-a-sl m-x-s">
-				<img class="ud-img" src="../icon/price-tag.png" alt="priceTag" /><br>
+				<img class="c-img" src="../icon/price-tag.png" alt="priceTag" /><br>
 				작물시세 정보
 			</div>
 		</div>

@@ -142,6 +142,7 @@ public class HandyFarmDTO {
 	String cal_color;
 	String cal_time;
 	boolean result;
+	String str_sensor_value;
 
 	// 기본생성자
 	public HandyFarmDTO() {
@@ -1004,5 +1005,13 @@ public class HandyFarmDTO {
 
 	public void setResult(boolean result) {
 		this.result = result;
+	}
+
+	public String getStr_sensor_value() {
+		return str_sensor_value;
+	}
+
+	public void setStr_sensor_value(String str_sensor_value) {
+		this.str_sensor_value = str_sensor_value;
 	}
 }

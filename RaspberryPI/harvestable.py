@@ -15,6 +15,7 @@ def imgShow(name, src, x, y) :
     cv2.namedWindow(name) # src 라는 이름의 윈도우 창 생성
     cv2.moveWindow(name, x, y) # src 라는 이름의 윈도우창 이동
     cv2.imshow(name, src) # src 이미지 보여주기
+    cv2.waitKey(0)
 
 def camera() :
     camera = picamera.PiCamera() # 파이카메라 객체 생성
@@ -70,7 +71,7 @@ def hough_circle(img) :
 
     # imgShow("edge", edge) # 에지만 추출한 이미지 보여주기
 
-    circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=30, maxRadius=60) # 이미지에서 원 추출
+    circles = cv2.HoughCircles(gimg, cv2.HOUGH_GRADIENT, 1, 20, param1=50, param2=30, minRadius=28, maxRadius=60) # 이미지에서 원 추출
     circles = np.uint16(np.around(circles))  # np.around() 함수로 circles의 값들을 반올림/반내림하고 이를 UNIT16으로 변환한다.
 
     show = True

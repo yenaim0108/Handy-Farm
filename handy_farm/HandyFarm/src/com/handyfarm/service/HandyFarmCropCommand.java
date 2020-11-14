@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import com.handyfarm.dao.HandyFarmDAO;
 import com.handyfarm.entity.HandyFarmDTO;
 
-public class HandyFarmCalendarCropCommand implements HandyFarmCommand {
+public class HandyFarmCropCommand implements HandyFarmCommand {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

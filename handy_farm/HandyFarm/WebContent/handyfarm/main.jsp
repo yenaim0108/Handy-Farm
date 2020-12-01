@@ -72,10 +72,19 @@
 					});
 				}
 			}
+	   		
+	   		// 팝업창 없애기
+	   		function remove() {
+	   			$('#mask').fadeOut("fast");
+	   			
+		    	$('#list').show().animate({
+		    		bottom: -495
+		    	});
+	   		}
       </script>
    </head>
    <body class="HF-backWhite">
-   	  <div id="mask" class="full d-n"></div>
+   	  <div id="mask" class="full d-n" onclick="remove();"></div>
       <div class="HF-backGreen full-b over-x-h over-y-h">
          <!-- 로고 -->
          <img class="logo-img d-ib m-t-lg" src="../icon/handyfarm_white.png" alt="handyfarm">

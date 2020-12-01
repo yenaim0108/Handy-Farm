@@ -289,11 +289,20 @@
 				
 				$('#l-data').empty();
 			}
+			
+			// 팝업창 없애기
+	   		function remove() {
+	   			$('#mask').fadeOut("fast");
+	   			$('#who').fadeOut("fast");
+		    	$('#list').show().animate({
+		    		bottom: -495
+		    	});
+	   		}
 		</script>
 
 	</head>
 	<body>
-		<div id="mask" class="full d-n"></div>
+		<div id="mask" class="full d-n" onclick="remove();"></div>
 		<div class="wrap">
 			<!-- calendar header -->
 			<div class="m-t-lg p-t">

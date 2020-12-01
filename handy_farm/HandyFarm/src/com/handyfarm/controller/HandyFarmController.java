@@ -220,12 +220,12 @@ public class HandyFarmController extends HttpServlet {
          nextPage = "push_log.jsp";
       }
       
-      // 메인_작물선택
-      if (com.equals("/handyfarm/mainCrop.do")) {
-         command = new HandyFarmMainCropCommand();
-         command.execute(request, response);
-         nextPage = "main_crop.jsp";
-      }
+//      // 메인_작물선택
+//      if (com.equals("/handyfarm/mainCrop.do")) {
+//         command = new HandyFarmMainCropCommand();
+//         command.execute(request, response);
+//         nextPage = "main_crop.jsp";
+//      }
       
       // 생장 정보
       if (com.equals("/handyfarm/growth.do")) {
@@ -234,13 +234,13 @@ public class HandyFarmController extends HttpServlet {
          nextPage = "growth.jsp";
       }
       
-      // 분석 정보
-      if (com.equals("/handyfarm/analysis.do")) {
-         command = new HandyFarmAnalysisCommand();
-         command.execute(request, response);
-         nextPage = "analysis.jsp";
-      }
-      
+//      // 분석 정보
+//      if (com.equals("/handyfarm/analysis.do")) {
+//         command = new HandyFarmAnalysisCommand();
+//         command.execute(request, response);
+//         nextPage = "analysis.jsp";
+//      }
+//      
       // 캘린더 탭
       if (com.equals("/handyfarm/calendar.do")) {
          command = new HandyFarmCalendarSelectAllCommand();
@@ -255,12 +255,12 @@ public class HandyFarmController extends HttpServlet {
           return;
       }
       
-      // 일정 확인
-      if (com.equals("/handyfarm/calendarInfo.do")) {
-         command = new HandyFarmCalendarSelectCommand();
-         command.execute(request, response);
-         nextPage = "calendar_info.jsp";
-      }
+//      // 일정 확인
+//      if (com.equals("/handyfarm/calendarInfo.do")) {
+//         command = new HandyFarmCalendarSelectCommand();
+//         command.execute(request, response);
+//         nextPage = "calendar_info.jsp";
+//      }
       
       // 누구의 일정?
       if (com.equals("/handyfarm/calendarWho.do")) {
@@ -272,12 +272,12 @@ public class HandyFarmController extends HttpServlet {
          nextPage = "calendar_insert.jsp";
       }
       
-      // 개인 일정 등록
-      if (com.equals("/handyfarm/calendarInsert.do")) {
-         command = new HandyFarmCalendarInsertCommand();
-         command.execute(request, response);
-         nextPage = "calendar.jsp";
-      }
+//      // 개인 일정 등록
+//      if (com.equals("/handyfarm/calendarInsert.do")) {
+//         command = new HandyFarmCalendarInsertCommand();
+//         command.execute(request, response);
+//         nextPage = "calendar.jsp";
+//      }
       
       // 로보일정_온실선택 화면
       if (com.equals("/handyfarm/calendarGHUI.do")) {
@@ -312,12 +312,12 @@ public class HandyFarmController extends HttpServlet {
          nextPage = "calendar.jsp";
       }
       
-      // 일정 삭제
-      if (com.equals("/handyfarm/calendarDelete.do")) {
-         command = new HandyFarmCalendarDeleteCommand();
-         command.execute(request, response);
-         nextPage = "calendar_delete.jsp";
-      }
+//      // 일정 삭제
+//      if (com.equals("/handyfarm/calendarDelete.do")) {
+//         command = new HandyFarmCalendarDeleteCommand();
+//         command.execute(request, response);
+//         nextPage = "calendar_delete.jsp";
+//      }
       
       // Tip 탭 || 실시간정보
       if (com.equals("/handyfarm/tip.do") || com.equals("/handyfarm/crawling.do")) {
@@ -371,33 +371,33 @@ public class HandyFarmController extends HttpServlet {
          nextPage = "setting.jsp";
       }
       
-      // 알림관리_온실선택
-      if (com.equals("/handyfarm/pushGH.do")) {
-         command = new HandyFarmPushGHCommand();
-         command.execute(request, response);
-         nextPage = "push_gh.jsp";
-      }
-      
-      // 알림관리_작물선택
-      if (com.equals("/handyfarm/pushCrop.do")) {
-         command = new HandyFarmPushCropCommand();
-         command.execute(request, response);
-         nextPage = "push_crop.jsp";
-      }
-      
-      // 알림관리
-      if (com.equals("/handyfarm/push.do")) {
-         command = new HandyFarmPushCommand();
-         command.execute(request, response);
-         nextPage = "push.jsp";
-      }
-      
-      // 알림 관리 수정
-      if (com.equals("/handyfarm/pushUpdate.do")) {
-         command = new HandyFarmPushUpdateCommand();
-         command.execute(request, response);
-         nextPage = "setting.jsp";
-      }
+//      // 알림관리_온실선택
+//      if (com.equals("/handyfarm/pushGH.do")) {
+//         command = new HandyFarmPushGHCommand();
+//         command.execute(request, response);
+//         nextPage = "push_gh.jsp";
+//      }
+//      
+//      // 알림관리_작물선택
+//      if (com.equals("/handyfarm/pushCrop.do")) {
+//         command = new HandyFarmPushCropCommand();
+//         command.execute(request, response);
+//         nextPage = "push_crop.jsp";
+//      }
+//      
+//      // 알림관리
+//      if (com.equals("/handyfarm/push.do")) {
+//         command = new HandyFarmPushCommand();
+//         command.execute(request, response);
+//         nextPage = "push.jsp";
+//      }
+//      
+//      // 알림 관리 수정
+//      if (com.equals("/handyfarm/pushUpdate.do")) {
+//         command = new HandyFarmPushUpdateCommand();
+//         command.execute(request, response);
+//         nextPage = "setting.jsp";
+//      }
             
       RequestDispatcher dis = request.getRequestDispatcher(nextPage);
       dis.forward(request, response);

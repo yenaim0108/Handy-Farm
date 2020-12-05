@@ -25,7 +25,7 @@ public class HandyFarmDAO {
    PreparedStatement pstmt = null;
    ResultSet rs = null;
       
-   // DB 연결하는 기본 생성자
+   // DB 연결하는 기본 생성자 임예나
    public HandyFarmDAO() {
       try { // jsp 단위 DB 연결
          Context ctx = new InitialContext();
@@ -38,14 +38,14 @@ public class HandyFarmDAO {
             e2.printStackTrace();
          }
       }
-   }
+   } // end HandyFarmDAO 임예나
 
    /**
 	 * @author 김연주
 	 * email : sym61503@naver.com
 	 */
 	
-	//작물별 경작조건, Crop리스트 가져오기 김연주 -----이미지도 DB에 넣고 추가해줘야 됌. ------- 민정이 추가함
+	// cropAll_Select 김연주 -----이미지도 DB에 넣고 추가해줘야 됌. ------- 민정이 추가함
 	public ArrayList<HandyFarmDTO> cropAll_Select(String id) {
 		// list 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
@@ -107,10 +107,10 @@ public class HandyFarmDAO {
 		// 조회 결과 List 반환
 		
 		return list;
-	} // end cropAll_Select
+	} // end cropAll_Select 김연주 -----이미지도 DB에 넣고 추가해줘야 됌. ------- 민정이 추가함
 	
 	
-	// 실시간 병충해 정보 Tip리스트 가져오기 김연주
+	// realInfo_pest_Select 김연주
 	public ArrayList<HandyFarmDTO> realInfo_pest_Select(String _category) {
 		// list 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
@@ -174,7 +174,7 @@ public class HandyFarmDAO {
 		// 조회 결과 List 반환
 		
 		return list;
-	} // end realInfo_pest_Select
+	} // end realInfo_pest_Select 김연주
 
    /**
     * @author 정민정
@@ -210,7 +210,7 @@ public class HandyFarmDAO {
             e.printStackTrace();
          }
       }
-   }//robo_insert end
+   }//robo_insert 정민정 end
    
    //crops_list 정민정
    public ArrayList<HandyFarmDTO> crops_list(String robo_serial){
@@ -249,10 +249,9 @@ public class HandyFarmDAO {
       }
       return crops_list;
    }
-   //cultivar_list end
+   //cultivar_list 정민정 end
    
-   //crops_list_robo_insert 위의 쿼리 함수에서 경우에 따라 조금만 바꿔서 해당 함수 쓰려했는데 시간 없어서 걍 새로 만듦
-   //정민정
+   //crops_list_robo_insert 정민정 / 위의 쿼리 함수에서 경우에 따라 조금만 바꿔서 해당 함수 쓰려했는데 시간 없어서 걍 새로 만듦
    public ArrayList<HandyFarmDTO> crops_list_insert(){
       ArrayList<HandyFarmDTO> crops_list = new ArrayList<HandyFarmDTO> ();
       
@@ -288,7 +287,7 @@ public class HandyFarmDAO {
       }
       return crops_list;
    }
-   //cultivar_list_insert end
+   //cultivar_list_insert 정민정 end
    
    //robo_select 정민정
    public ArrayList<HandyFarmDTO> robo_list(String gh_id){
@@ -330,7 +329,7 @@ public class HandyFarmDAO {
       }
       return robo_list;
    }
-   //robo_select end   
+   //robo_select 정민정 end   
          
    //robo_search 정민정
    public ArrayList<HandyFarmDTO> robo_search_list(String robo_serial) {
@@ -372,7 +371,7 @@ public class HandyFarmDAO {
       }
       return robo_search_list;
    }
-   //robo_search end
+   //robo_search 정민정 end
       
    //robo_Update 정민정
    public void robo_update(String robo_serial, String robo_nickname, String robo_img, String crops_id) {
@@ -399,7 +398,7 @@ public class HandyFarmDAO {
             e.printStackTrace();
          }
       }
-   }//robo_Update end
+   }//robo_Update 정민정 end
       
    //robo_delete 정민정
    
@@ -424,7 +423,7 @@ public class HandyFarmDAO {
       }
    }
       
-   //robo_delete end
+   //robo_delete 정민정 end
       
    //push_log 정민정
    public ArrayList<HandyFarmDTO> push_list(String id){
@@ -515,7 +514,7 @@ public class HandyFarmDAO {
       }
       return crops_list;
    }
-   //push_log end
+   //push_log 정민정 end
    
    //gh_insert 정민정
    public String gh_insert(String gh_img, String gh_nickname, String id) {
@@ -556,7 +555,7 @@ public class HandyFarmDAO {
       }
       // gh_id 리턴
       return gh_id;
-   }//gh_insert_end
+   }//gh_insert 정민정 end
    
    //gh_id 가져오기 정민정
    
@@ -588,7 +587,7 @@ public class HandyFarmDAO {
          }
       }
       return gh_id;
-   }//gh_id 가져오기 end
+   }//gh_id 가져오기 정민정 end
    
    
    //gh_in_list 정민정
@@ -633,7 +632,7 @@ public class HandyFarmDAO {
          }
       }
       return robo_search_list;
-   }//gh_in_list end
+   }//gh_in_list 정민정 end
 
 
    //gh_update 정민정
@@ -663,7 +662,7 @@ public class HandyFarmDAO {
       }
    }
 
-   //gh_update end
+   //gh_update 정민정 end
    
    
    //gh_delete 정민정
@@ -689,10 +688,9 @@ public class HandyFarmDAO {
       }
    }
       
-   //gh_delete end
+   //gh_delete 정민정end
    
- //Tip_select
-   
+   // tip_list 정민정
    public ArrayList<HandyFarmDTO> tip_list(String crops_id) {
 	      
 	      ArrayList<HandyFarmDTO> tip_list = new ArrayList<HandyFarmDTO> ();
@@ -770,13 +768,11 @@ public class HandyFarmDAO {
 	      }
 	      return tip_list;
 	   }
+       // tip_list 정민정 end
    
-   //Tip_select end
    
-   
-   //Tip_search
-   
-   public ArrayList<HandyFarmDTO> tip_search(String id, String searchword) {
+   	  // tip_search 정민정
+      public ArrayList<HandyFarmDTO> tip_search(String id, String searchword) {
 	   
 		ArrayList<HandyFarmDTO> tip_search_list = new ArrayList<HandyFarmDTO>();
 		try {
@@ -834,10 +830,9 @@ public class HandyFarmDAO {
 		
 		return tip_search_list;
 	}
+      // tip_search 정민정 end
    
-   //Tip_search end
-   
-   //wish_update
+   // wish_update 정민정
    public ArrayList<HandyFarmDTO> wish_update(String crops_id, String wish) {
 	   ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
 	   
@@ -877,9 +872,9 @@ public class HandyFarmDAO {
 	   }
 	   return list;
    }
-   //wish_update end
+   //wish_update 정민정 end
    
-   //wish_list
+   //wish_list 정민정
    public ArrayList<HandyFarmDTO> wish_list(String id) {
 	   
 		ArrayList<HandyFarmDTO> wish_list = new ArrayList<HandyFarmDTO>();
@@ -927,12 +922,12 @@ public class HandyFarmDAO {
 		
 		return wish_list;
 	}
-   //wish_list end
+   //wish_list 정민정 end
    
-	/**
-	 * @author 임예나
-	 * email : yenaim0108@gmail.com
-	 */
+   /**
+    * @author 임예나
+    * email : yenaim0108@gmail.com
+    */
 
 	// 수확 가능 비율 DB에 저장하기 임예나
 	public void insertHarvestable(Timestamp _time, String _serial, float _harvestable) {
@@ -993,7 +988,7 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-	} // end insertHarvestable
+	} // end insertHarvestable 임예나
 	
 	// 센서값 DB에 저장하기 임예나
 	public void insertSensorValue(Timestamp _time, String _serial, String _sensor_type, float _sensor_value) {
@@ -1089,7 +1084,7 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-	} // end insertSensorValue
+	} // end insertSensorValue 임예나
 	
 	// 설비를 제어할 센서값 가져오기 임예나
 	public String equipmentSensorValueSelect(String _serial) {
@@ -1284,7 +1279,7 @@ public class HandyFarmDAO {
 		} // end finally
 		// 로보한테 보낼 메시지 return
 		return content;
-	} // end equipmentSensorValueSelect
+	} // end equipmentSensorValueSelect 임예나
 	
 	// 설비 상태를 DB에 저장하기 임예나
 	public void equipmentStatusInsert (Timestamp _time, String _serial, String _equipment_name, boolean _control_status) {
@@ -1374,9 +1369,9 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-	} // end equipmentStatusInsert
+	} // end equipmentStatusInsert 임예나
 	
-	// id 중복 확인하기
+	// id 중복 확인하기 임예나
 	public ArrayList<HandyFarmDTO> idCheck(String _id) {
 		// isOverlap 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
@@ -1416,9 +1411,9 @@ public class HandyFarmDAO {
 		} // end finally
 		// 결과값 isOverlap 리턴
 		return list;
-	} // end idCheck
+	} // end idCheck 임예나
 	
-	// 비밀번호가 일치하는지 확인하기
+	// 비밀번호가 일치하는지 확인하기 임예나
 	public ArrayList<HandyFarmDTO> passwordCheck(String _id, String _password) {
 		// isOverlap 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
@@ -1462,9 +1457,9 @@ public class HandyFarmDAO {
 		} // end finally
 		// 결과값 isOverlap 리턴
 		return list;
-	} // end passwordCheck
+	} // end passwordCheck 임예나
 	
-	// 회원 테이블에 id, password 저장하기
+	// 회원 테이블에 id, password 저장하기 임예나
 	public boolean signup(String _id, String _password) {
 		// result 선언
 		boolean result = false;
@@ -1500,9 +1495,9 @@ public class HandyFarmDAO {
 		} // end finally
 		// DB 저장 성공 여부 결과값 result 리턴
 		return result;
-	} // end signup
+	} // end signup 임예나
 	
-	// 회원가입 할 때 모든 농작물에 대한 찜 상태 0으로 insert 해주기
+	// 회원가입 할 때 모든 농작물에 대한 찜 상태 0으로 insert 해주기 임예나
 	public boolean signupWishDataInsert(String _id) {
 		// datas, result 선언
 		ArrayList<String> datas = new ArrayList<String>();
@@ -1554,7 +1549,7 @@ public class HandyFarmDAO {
 		} // end finally
 		// DB 저장 성공 여부 결과값 result 리턴
 		return result;
-	}
+	} // end signupWishDataInsert 임예나
 	
 	// 온실 목록 가져오기 임예나
 	public ArrayList<HandyFarmDTO> GHSelect(String _id) {
@@ -1608,7 +1603,7 @@ public class HandyFarmDAO {
 		} // end finally
 		// 조회 결과 list 리턴
 		return list;
-	} // end GHSelect
+	} // end GHSelect 임예나
 
 	// 로보 목록 가져오기 임예나
 	public ArrayList<HandyFarmDTO> roboSelect(String _gh_id) {
@@ -1666,7 +1661,7 @@ public class HandyFarmDAO {
 		} // end finally
 		// 조회 결과 list 리턴
 		return list;
-	} // end RoboSelect
+	} // end RoboSelect 임예나
 	
 	// 온실 이름 가져오기 임예나
 	public String getGHNickname(String _gh_id) {
@@ -1702,7 +1697,7 @@ public class HandyFarmDAO {
 		} // end finally
 		// 조회 결과 gh_name 리턴
 		return gh_name;
-	} // end getGHName
+	} // end getGHName 임예나
 	
 	// 생장 정보 가져오기 임예나
 	public  ArrayList<HandyFarmDTO> growth(String _gh_id, String _crops_id) {
@@ -1800,7 +1795,7 @@ public class HandyFarmDAO {
 					}
 
 					list.add(data);
-				} // end if
+				} // end switch
 			} // end for
 			
 			// 해당 온실 in 작물에 대한 수확 가능 비율 정보 조회 sql문
@@ -1856,9 +1851,9 @@ public class HandyFarmDAO {
 		} // end finally
 		// 조회 결과 list 리턴
 		return list;
-	} // end growth
+	} // end growth 임예나
 	
-	// 일정 조회
+	// 일정 조회 임예나
 	public ArrayList<HandyFarmDTO> calendarAllSelect(String _id, Date _date) {
 		// list, _cal_start_date 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
@@ -1888,10 +1883,10 @@ public class HandyFarmDAO {
 				
 				data.setCal_title(rs.getString("cal_title"));
 				data.setCal_color(colorList[i]);
-				if ((start == "00:00") && (end == "23:59")) {
+				if ((start.equals("00:00:00")) && (end.equals("23:59:00"))) {
 					data.setCal_time("하루종일");
 				} else {
-					data.setCal_time(rs.getTime("cal_start_time").toString());
+					data.setCal_time(rs.getTime("cal_start_time").toString() + " ~");
 				}
 				
 				list.add(data);
@@ -1910,9 +1905,9 @@ public class HandyFarmDAO {
 		} // end finally
 		// 조회 결과값 리턴
 		return list;
-	} // end calendarAllSelect
+	} // end calendarAllSelect 임예나
 	
-	// 일정 보기
+	// 일정 보기 임예나
 	public ArrayList<HandyFarmDTO> calendarSelect(String _cal_number) {
 		// list, _cal_start_date 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
@@ -1960,9 +1955,9 @@ public class HandyFarmDAO {
 		} // end finally
 		// 조회 결과값 return
 		return list;
-	} // end calendarSelect
+	} // end calendarSelect 임예나
 	
-	// 일정 추가 - 개인
+	// 일정 추가 - 개인 임예나
 	public void personalCalendarInsert(String _cal_number, String _cal_title, Date _cal_start_date, Date _cal_end_date, Time _cal_start_time, Time _cal_end_time, String _cal_memo, float _cal_yield_kg, Timestamp _cal_yield_time, String _id) {
 		// gh_id, crops_id 선언
 		String _gh_id = null;
@@ -2016,9 +2011,9 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-	} // end personalCalendarInsert
+	} // end personalCalendarInsert 임예나
 	
-	// 일정 추가 - 온실
+	// 일정 추가 - 온실 임예나
 	public void ghCalendarInsert(String _cal_number, String _cal_title, Date date, float _cal_yield_kg, String _gh_id,String _id, String _crops_id) {
 		try {
 			con = ds.getConnection();
@@ -2051,9 +2046,9 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-	} // end roboCalendarInsert
+	} // end roboCalendarInsert 임예나
 	
-	// 일정 수정
+	// 일정 수정 임예나
 	public void calendarUpdate(String _cal_number, String _cal_title, Date _cal_start_date, Date _cal_end_date, Time _cal_start_time, Time _cal_end_time, String _cal_memo, float _cal_yield_kg, Timestamp _cal_yield_time) {
 		try {
 			con = ds.getConnection();
@@ -2083,9 +2078,9 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-	} // end calendarUpdate
+	} // end calendarUpdate 임예나
 	
-	// 일정 삭제
+	// 일정 삭제 임예나
 	public void claendarDelete(String _cal_number) {
 		try {
 			con = ds.getConnection();
@@ -2108,9 +2103,9 @@ public class HandyFarmDAO {
 				e.printStackTrace();
 			}
 		} // end finally
-	} // end calendarDelete
+	} // end calendarDelete 임예나
 	
-	// 작물이 1개인지 확인하기
+	// 작물이 1개인지 확인하기 임예나
 	public ArrayList<HandyFarmDTO> isOneCrop(String _gh_id) {
 		// list, lhs, crops_id 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
@@ -2164,9 +2159,9 @@ public class HandyFarmDAO {
 		} // end finally
 		// 결과값 list 리턴
 		return list;
-	} // end isOneCrop
+	} // end isOneCrop 임예나
 	
-	// 온실에 등록된 작물 정보 가져오기
+	// 온실에 등록된 작물 정보 가져오기 임예나
 	public ArrayList<HandyFarmDTO> cropList(String _gh_id) {
 		// list 선언
 		ArrayList<HandyFarmDTO> list = new ArrayList<HandyFarmDTO>();
@@ -2216,5 +2211,5 @@ public class HandyFarmDAO {
 		} // end finally
 		// 결과값 list 리턴
 		return list;
-	} // end cropList
+	} // end cropList 임예나
 }

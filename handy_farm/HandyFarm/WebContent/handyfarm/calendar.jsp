@@ -1,3 +1,8 @@
+<%--
+	* @author 임예나
+	* email : yenaim0108@gmail.com
+ --%>
+ 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -124,7 +129,7 @@
 							html += "<div class='do t-a-l m-b-s " + value.cal_color + "'>";
 							html += value.cal_title;
 							html += "<div class='m-t-s'></div>";
-							html += value.cal_time + " ~";
+							html += value.cal_time;
 							html += "</div>"
 						});
 						
@@ -352,7 +357,7 @@
 		</div>
 		
 		<!-- footer -->
-		<%@ include file="../include/bottonTabBar.inc" %>
+		<%@ include file="../include/bottomTabBar.inc" %>
 		<!-- //footer -->
 		
 		<!-- who -->

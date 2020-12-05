@@ -1,3 +1,8 @@
+/**
+    * @author 김연주
+    * email : sym61503@naver.com
+*/
+
 package com.handyfarm.service;
 
 import java.util.ArrayList;

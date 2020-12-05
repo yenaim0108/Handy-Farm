@@ -1,0 +1,8 @@
+햄버거 메뉴 > 팔렛트 관리에서 아래 노드 설치하기
+node-red-contrib-box-note
+node-red-contrib-mqtt-broker
+node-red-contrib-mqtt-connection-check
+node-red-dashboard
+node-red-html-to-text
+node-red-node-rbe
+node-red-node-tail

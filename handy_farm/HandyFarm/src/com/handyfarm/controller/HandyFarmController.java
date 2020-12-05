@@ -1,3 +1,7 @@
+/**
+    * @author 임예나
+    * email : yenaim0108@gmail.com
+*/
 package com.handyfarm.controller;
 
 import java.io.IOException;
@@ -279,7 +283,7 @@ public class HandyFarmController extends HttpServlet {
 //         nextPage = "calendar.jsp";
 //      }
       
-      // 로보일정_온실선택 화면
+      // 온실일정_온실선택 화면
       if (com.equals("/handyfarm/calendarGHUI.do")) {
          command = new HandyFarmCalendarGHCommand();
          command.execute(request, response);
@@ -293,7 +297,7 @@ public class HandyFarmController extends HttpServlet {
           return;
        }
       
-      // 로보일정_작물선택 화면
+      // 온실일정_작물선택 화면
       if (com.equals("/handyfarm/CropUI.do")) {
          command = new HandyFarmCropCommand();
          command.execute(request, response);
@@ -346,7 +350,7 @@ public class HandyFarmController extends HttpServlet {
       }
       
       // 찜 업데이트
-      if (com.equals("/handyfarm/wishUdate.do")) {
+      if (com.equals("/handyfarm/wishUpdate.do")) {
          command = new HandyFarmWishCommand();
          command.execute(request, response);
          return;

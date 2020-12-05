@@ -11,7 +11,7 @@
 
 const char* ssid = "hhyu2";
 const char* password = "";
-const char* mqtt_server = "192.168.100.3";
+const char* mqtt_server = "192.168.100.15";
 
 //const char* ssid = "HL0C";
 //const char* password = "22042206";
@@ -37,8 +37,8 @@ long lastMsg = 0;
 char msg[50];
 String packet;
 int forsize = 8;
-String handy = "handy";
-String nonhandy = "nonhandy";
+String handy = "수동";
+String nonhandy = "자동";
 const char* control_on[9]={"cold:1","hot:1","air:1","humi:1","led:1","sm:1","sair:1","8:1","\0"};
 const char* control_off[9]={"cold:0","hot:0","air:0","humi:0","led:0","sm:0","sair:0","8:0","\0"};
 String handystatus = "";
@@ -54,6 +54,7 @@ void setup() {
   Serial.begin(115200);
   setup_wifi();
   client.setServer(mqtt_server, mqttPort);
+  client.setBufferSize(1024);
   for(i=0; i<forsize; i++){
     pinMode(Relaypin[i],OUTPUT);
   }
@@ -175,7 +176,7 @@ void reconnect() {
       Serial.println("connected");
       // Once connected, publish an announcement...
       // ... and resubscribe
-      client.subscribe(topic_sub);
+      //client.subscribe(topic_sub);
       client.subscribe(topic_handy);
     } else {
       Serial.print("failed, rc=");

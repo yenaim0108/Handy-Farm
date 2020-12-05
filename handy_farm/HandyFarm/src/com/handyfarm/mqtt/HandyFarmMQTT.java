@@ -1,3 +1,8 @@
+/**
+    * @author 임예나
+    * email : yenaim0108@gmail.com
+*/
+
 package com.handyfarm.mqtt;
 import java.sql.Timestamp;
 import java.util.Arrays;

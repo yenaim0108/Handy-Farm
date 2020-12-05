@@ -1,3 +1,9 @@
+/**
+    * @author 임예나(Thread), 김연주(Buffer)
+    * email : yenaim0108@gmail.com, sym61503@naver.com
+*/
+
+
 package com.handyfarm.crawling;
 
 import java.io.BufferedReader;

@@ -1,3 +1,8 @@
+/**
+    * @author 임예나
+    * email : yenaim0108@gmail.com
+*/
+
 package com.handyfarm.service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +21,7 @@ public class HandyFarmThreadCommand implements HandyFarmCommand {
 		mqtt.pubMqtt.start();
 		
 		// 크롤링 시작
-		//HandyFarmWebCrawling wc = new HandyFarmWebCrawling();
-		//wc.webCrawling.start();
+		HandyFarmWebCrawling wc = new HandyFarmWebCrawling();
+		wc.webCrawling.start();
 	}
 }

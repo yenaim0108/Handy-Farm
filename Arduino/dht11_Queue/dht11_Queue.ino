@@ -24,7 +24,7 @@ int TempArray[COUNT];
 
 const char* ssid = "hhyu2";
 const char* password = "";
-const char* mqtt_server = "192.168.100.3";
+const char* mqtt_server = "192.168.100.15";
 
 //const char* ssid = "MJ";
 //const char* password = "mj0218!!!!";
@@ -156,7 +156,12 @@ void mqtt_publish(float Humi, float Temp){
   if (now - lastMsg > 2000) {
     lastMsg = now;
 
-    //temp 먼저 통신
+    if(Humi == -715827840.00 || Humi == 715827904.00){
+      
+    }else if(Temp == -715827840.00 || Temp == 715827904.00){
+        
+    }else{
+      //temp 먼저 통신
     //문자열과 숫자를 합친다.
     packet = "Temperature : " + String(Temp); 
     //mqtt publishing이 char형으로만 보낼 수 있기때문에 toCharArray로 변환한다.
@@ -200,7 +205,8 @@ void mqtt_publish(float Humi, float Temp){
     Serial.print("topic_humi : ");
     Serial.println(msg);
     client.publish(topic_humi, msg);
-    
+       
+    }
   }
 }
 
@@ -210,13 +216,13 @@ void loop() {
   Humi = getHumi(); //습도를 받아서 변수에 입력
   Temp = getTemp(); //온도를 받아서 변수에 입력
 
-  if(Humi == -715827840 || Humi == 715827840){
+  if(Humi == -715827840.00 || Humi == 715827904.00){
     HumiArray[IDX] = HumiArray[1];
   }else{
     HumiArray[IDX] = Humi;
   }
 
-  if(Temp == -715827840 || Temp == 71527840){
+  if(Temp == -715827840.00 || Temp == 715827904.00){
     TempArray[IDX] = TempArray[1];
   }else{
     TempArray[IDX] = Temp;

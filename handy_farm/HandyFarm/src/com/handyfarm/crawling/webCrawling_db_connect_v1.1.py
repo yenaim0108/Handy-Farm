@@ -1,3 +1,7 @@
+"""
+* @author 김연주
+* email : sym61503@naver.com
+"""
 import urllib.request
 from bs4 import BeautifulSoup
 import time

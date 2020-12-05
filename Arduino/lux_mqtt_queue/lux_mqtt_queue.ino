@@ -24,7 +24,7 @@ int luxArray[COUNT];
 
 const char* ssid = "hhyu2";
 const char* password = "";
-const char* mqtt_server = "192.168.100.3";
+const char* mqtt_server = "192.168.100.15";
 
 //const char* ssid = "LAPTOP-ImYena";
 //const char* password = "Iyn1023!@";

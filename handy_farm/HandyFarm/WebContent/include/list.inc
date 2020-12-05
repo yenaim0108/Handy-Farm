@@ -1,3 +1,8 @@
+<%--
+	* @author 임예나
+	* email : yenaim0108@gmail.com
+ --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div id="list" class="HF-backWhite t-a-l d-n">

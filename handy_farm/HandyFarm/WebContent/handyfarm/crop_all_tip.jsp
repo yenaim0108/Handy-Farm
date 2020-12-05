@@ -1,3 +1,8 @@
+<%--
+	* @author 김연주(ui), 정민정(ui 수정, 작물 검색), 임예나(ui 수정, wishUpdate(), wishList())
+	* email : sym61503@naver.com, as514188@gmail.com, yenaim0108@gmail.com
+ --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -13,7 +18,7 @@
 	<script src="../js/jquery-3.5.1.min.js"></script>
 	 <script type="text/javascript">
 	
-		 function wishUdate(img){
+		 function wishUpdate(img){
 			 var nowsrc = img.getAttribute('src');	//src를 가져옴
 			 var unsel = "../icon/unlike_heart.png";
 			 var sel = "../icon/like_heart.png";
@@ -28,7 +33,7 @@
 			 
 			 $.ajax({
 				 type:"POST",
-				 url:"wishUdate.do",
+				 url:"wishUpdate.do",
 				 data: "wish=" + wish + "&crops_id=" + crops_id,
 				 dataType:"json",
 				 success: function(data){
@@ -71,7 +76,7 @@
 							html += value.crops_name;
 							html += "</div>";
 							html += "<div class='d-tc va-m t-a-r p-r'>";
-							html += "<img class='crop_heart-img' src=" + value.img + " id='wish' title=" + value.crops_id + " onclick='wishUdate(this)'  alt='" + value.crops_id + "'>";
+							html += "<img class='crop_heart-img' src=" + value.img + " id='wish' title=" + value.crops_id + " onclick='wishUpdate(this)'  alt='" + value.crops_id + "'>";
 							html += "</div>";
 							html += "</div>";
 							html += "</div>";
@@ -103,7 +108,7 @@
 							html += value.crops_name;
 							html += "</div>";
 							html += "<div class='d-tc va-m t-a-r p-r'>";
-							html += "<img class='crop_heart-img' src=" + value.img + " id='wish' title=" + value.crops_id + " onclick='wishUdate(this)'  alt='" + value.crops_id + "'>";
+							html += "<img class='crop_heart-img' src=" + value.img + " id='wish' title=" + value.crops_id + " onclick='wishUpdate(this)'  alt='" + value.crops_id + "'>";
 							html += "</div>";
 							html += "</div>";
 							html += "</div>";
@@ -160,7 +165,7 @@
 							${dto.crops_name}
 						</div>
 						<div class="d-tc va-m t-a-r p-r">
-							<img class="crop_heart-img" src="${dto.img }" id="wish" title="${dto.crops_id }" onclick="wishUdate(this)"  alt="${dto.crops_id }">
+							<img class="crop_heart-img" src="${dto.img }" id="wish" title="${dto.crops_id }" onclick="wishUpdate(this)"  alt="${dto.crops_id }">
 						</div>
 					</div>
 				</div>
@@ -174,7 +179,7 @@
 	</div>
 
 	<!-- footer -->
-	<%@ include file="../include/bottonTabBar.inc"%>
+	<%@ include file="../include/bottomTabBar.inc"%>
 	<!-- //footer -->
 </body>
 </html>

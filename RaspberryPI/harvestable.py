@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import paho.mqtt.client as mqtt
 import sys
-#import picamera
+import picamera
 import time
 
 ip = "192.168.100.5" # 서버 ip 주소
@@ -195,16 +195,16 @@ img = cv2.resize(img, (0, 0), fx=0.3, fy=0.3)
 imgShow('original', img, 0, 0)
 
 # 조도 값 요청하기
-#mqtt_ask_illuminance()
+mqtt_ask_illuminance()
 
 # mqtt 통신으로 조도값을 받아와서 일정 값 이하면 수확 가능 비율 판단 중지
-#mqtt_illuminance()
+mqtt_illuminance()
 
 # 화이트 밸런스 처리
-# img = white_balance(img)
+img = white_balance(img)
 
 # 화이트 밸런스 처리한 사진 보여주기
-#imgShow('whiteBalance', img)
+imgShow('whiteBalance', img)
 
 # 농작물 감지
 img = hough_circle(img)
@@ -228,6 +228,6 @@ ripe = color_extraction(img)
 harvestable = (ripe / (total - highlight - k)) * 100
 
 # mqtt 통신으로 서버에 수확 가능 비율 보내기
-#mqtt_harvestable(harvestable)
+mqtt_harvestable(harvestable)
 
 print("(완숙도 70% 이상인 색 면적 / (이미지 전체 면적 – 빛이 반사된 부분 면적)) * 100 = 수확 가능 비율%\n", "(", ripe, " / (", total, " - ", highlight, ")) * 100 = ", harvestable, "%")
